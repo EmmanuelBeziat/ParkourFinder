@@ -30,6 +30,18 @@ module.exports = {
 			}
 		]
 	},
+	build: {
+		loaders: [
+			{
+				test: /\.(png|jpe?g|gif|svg)$/,
+				loader: 'url-loader',
+				query: {
+					limit: 10000, // 10KO
+					name: 'img/[name].[hash].[ext]'
+				}
+			}
+		]
+	},
 	/*
 	** Global CSS
 	*/
