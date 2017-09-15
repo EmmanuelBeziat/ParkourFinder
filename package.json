@@ -1,50 +1,38 @@
 {
-	"name": "adonuxt",
+	"name": "parkourfinder",
 	"version": "1.0.0",
-	"author": "",
-	"description": "",
-	"license": "MIT",
+	"description": "A tiny app to help locate and share parkour spots",
+	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": true,
-	"main": "server.js",
 	"scripts": {
-		"serve:dev": "npm run dev",
-		"dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
-		"build": "node ./ace nuxtbuild",
-		"start": "cross-env NODE_ENV=production node server.js",
-		"precommit": "npm run lint",
-		"lint": "standard && eslint --ext .js,.vue resources/"
+		"dev": "nuxt",
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"generate": "nuxt generate",
+		"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+		"precommit": "npm run lint"
 	},
 	"dependencies": {
-		"adonis-ace": "^3.0.6",
-		"adonis-auth": "^1.0.5",
-		"adonis-commands": "^2.1.5",
-		"adonis-fold": "^3.0.3",
-		"adonis-framework": "^3.0.9",
-		"adonis-lucid": "^3.0.13",
-		"adonis-middleware": "^1.0.10",
-		"adonis-websocket": "^1.0.2",
-		"cross-env": "^3.1.4",
-		"nuxt": "latest",
-		"standard": "^8.6.0",
-		"youch": "^2.0.4"
-	},
-	"standard": {
-		"global": [
-			"use",
-			"make"
-		]
-	},
-	"autoload": {
-		"App": "./app"
+		"axios": "^0.16.2",
+		"geolocation": "^0.2.0",
+		"moment": "^2.18.1",
+		"nuxt": "^1.0.0-rc8",
+		"vue2-google-maps": "^0.8.2"
 	},
 	"devDependencies": {
-		"babel-eslint": "^7.1.1",
-		"eslint": "^3.13.1",
-		"eslint-config-standard": "^6.2.1",
-		"eslint-plugin-html": "^2.0.0",
-		"eslint-plugin-promise": "^3.4.0",
-		"eslint-plugin-standard": "^2.0.1",
-		"nodemon": "^1.11.0",
-		"standard": "^8.6.0"
-	}
+		"autoprefixer": "^7.1.4",
+		"babel-eslint": "^8.0.0",
+		"eslint": "^4.3.0",
+		"eslint-config-standard": "^10.2.1",
+		"eslint-loader": "^1.9.0",
+		"eslint-plugin-html": "^3.1.1",
+		"eslint-plugin-import": "^2.7.0",
+		"eslint-plugin-node": "^5.1.1",
+		"eslint-plugin-promise": "^3.5.0",
+		"eslint-plugin-standard": "^3.0.1",
+		"stylus": "^0.54.5",
+		"stylus-loader": "^3.0.1"
+	},
+	"repository": "https://github.com/EmmanuelBeziat/parkourfinder.git",
+	"license": "MIT"
 }
