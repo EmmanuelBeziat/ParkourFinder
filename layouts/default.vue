@@ -75,11 +75,14 @@ body
 
 	&:hover
 		background #bb2b4d
-		text-shadow 1px 1px 0 rgba(0, 0, 0, .5)
+		text-shadow 1px 1px 0 rgba(0, 0, 0, .35)
 		color #fff
 	&:active
 		background darken(#bb2b4d, 15%)
-		text-shadow 1px 1px 0 rgba(0, 0, 0, .5)
+		text-shadow 1px 1px 0 rgba(0, 0, 0, .35)
+
+.btn + .btn
+	margin-left 5px
 
 .btn-primary
 	background #bb2b4d
