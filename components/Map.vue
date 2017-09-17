@@ -34,7 +34,7 @@ export default {
 					console.log(position)
 				})
 			} else {
-				this.center = {lat: 0, lng: 0}
+				this.center = {lat: 42.6991088, lng: 2.8694822}
 			}
 		}
 	}
