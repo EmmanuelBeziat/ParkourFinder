@@ -1,0 +1,25 @@
+.btn
+	transition .25s ease
+	box-shadow none
+	outline none
+	background $color-white
+	border 1px solid $color-red
+	color $color-red
+	padding 1em 2em
+	cursor pointer
+	border-radius .15em
+
+	&:hover
+		background $color-red
+		text-shadow 1px 1px 0 $color-shadow
+		color $color-white
+	&:active
+		background darken($color-red, 15%)
+		text-shadow 1px 1px 0 $color-shadow
+
+.btn + .btn
+	margin-left 5px
+
+.btn-primary
+	background $color-red
+	color $color-white

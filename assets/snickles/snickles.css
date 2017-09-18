@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Snickles';
+	src: local('Snickles Regular'),
+		 url('snickles.woff2') format('woff2'),
+         url('snickles.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

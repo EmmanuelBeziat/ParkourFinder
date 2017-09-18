@@ -23,12 +23,13 @@ module.exports = {
 	},
 
 	css: [
-		'@/assets/icons/css/icons.css'
+		'@/assets/icons/css/icons.css',
+		'@/assets/snickles/snickles.css'
 	],
 	/*
 	** Customize the progress-bar color
 	*/
-	loading: { color: '#3B8070' },
+	loading: { color: '#bb2b4d' },
 	/**
 	 * Router
 	 */

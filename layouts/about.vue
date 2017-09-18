@@ -2,7 +2,6 @@
 	<div class="site">
 		<ui-header/>
 		<main class="main">
-			<module-map/>
 			<nuxt/>
 		</main>
 	</div>
@@ -10,12 +9,10 @@
 
 <script>
 import UiHeader from '~/components/Header.vue'
-import ModuleMap from '~/components/Map.vue'
 
 export default {
 	components: {
-		UiHeader,
-		ModuleMap
+		UiHeader
 	}
 }
 </script>
@@ -43,7 +40,6 @@ body
 .main
 	flex 1
 	display flex
-	position relative
 
 @require '~assets/styles/helpers.styl'
 @require '~assets/styles/modules/layout.styl'
