@@ -50,17 +50,19 @@ export default {
 	position absolute
 	left 1rem
 	top 1rem
+	right 1rem
 	background $color-white
 	padding 1rem
 	box-shadow 0 0 5px $color-shadow
 	border-radius 3px
-	width calc(100vw - 2rem)
 	max-height calc(100vh - 56px - 2rem)
+	outline 99rem solid $color-shadow
 
 	@media $mq-desktop
-		width 35vw
+		right auto
+		width 50vw
 		min-width rem(320px)
-		max-width rem(680px)
+		max-width rem(980px)
 
 .spot-title
 	margin 0

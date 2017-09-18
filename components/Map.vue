@@ -1,12 +1,12 @@
 <template>
 	<gmap-map :center="center" :zoom="7">
 		<gmap-marker
-			v-for="(m, index) in markers"
+			v-for="(marker, index) in markers"
 			:key="index"
-			:position="m.position"
+			:position="marker.position"
 			:clickable="true"
 			:draggable="false"
-			@click="showSpot(m.slug)">
+			@click="showSpot(marker.slug, marker.position)">
 		</gmap-marker>
 	</gmap-map>
 </template>
@@ -81,7 +81,7 @@ export default {
 			}
 		},
 
-		showSpot (slug) {
+		showSpot (slug, position) {
 			this.$router.push('/spot/' + slug)
 		}
 	}
