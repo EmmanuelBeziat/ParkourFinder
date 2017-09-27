@@ -13,9 +13,11 @@
 
 <script>
 import Vue from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
 import geolocation from 'geolocation'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
+
+// import { mapMutations } from 'vuex'
 
 Vue.use(VueGoogleMaps, {
 	load: {
@@ -26,20 +28,26 @@ Vue.use(VueGoogleMaps, {
 
 export default {
 	name: 'Map',
-
 	data () {
 		return {
-			center: null,
-			markers: null
+			center: null
 		}
 	},
 
+	/*
 	asyncData ({ req, params }) {
 		console.log('test')
 		return axios.get('http://rest.parkourfinder.localhost/spots/')
 			.then((res) => {
 				return { markers: res.data }
 			})
+	},
+	*/
+
+	computed: {
+		markers () {
+			return this.$store.state.map.markers
+		}
 	},
 
 	created () {
