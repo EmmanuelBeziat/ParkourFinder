@@ -14,24 +14,25 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
 	name: 'spotSingle',
 
-	data () {
-		return {
-			spot: {
-				'id': 1,
-				'slug': 'perpignan-parking-arago',
-				'name': 'Parking Arago',
-				'position': {
-					'lat': 42.6974956,
-					'lng': 2.8920385
-				},
-				'description': 'Bla bla'
-			}
+	validate ({ params }) {
+		return isNaN(params.slug)
+	},
+
+	async asyncData ({ params }) {
+		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.slug}/`)
+		console.log('bite')
+
+		// No return datas
+		if (!data) {
+			res.statusCode = 404
 		}
+
+		return { spot: data }
 	},
 
 	head () {

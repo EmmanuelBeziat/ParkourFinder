@@ -3,17 +3,17 @@
 		<gmap-marker
 			v-for="(marker, index) in markers"
 			:key="index"
-			:position="marker.position"
+			:position="makeCoords(marker.position_lat, marker.position_lng)"
 			:clickable="true"
 			:draggable="false"
-			@click="showSpot(marker.slug, marker.position)">
+			@click="showSpot(marker.id, marker.slug, marker.position)">
 		</gmap-marker>
 	</gmap-map>
 </template>
 
 <script>
 import Vue from 'vue'
-// import axios from 'axios'
+import axios from 'axios'
 import geolocation from 'geolocation'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
 
@@ -30,40 +30,17 @@ export default {
 	data () {
 		return {
 			center: null,
-			markers: [
-				{
-					'id': 1,
-					'slug': 'perpignan-parking-arago',
-					'name': 'Parking Arago',
-					'position': {
-						'lat': 42.6974956,
-						'lng': 2.8920385
-					},
-					'description': 'Bla bla'
-				},
-				{
-					'id': 2,
-					'slug': 'perpignan-fontaine-rouge',
-					'name': 'Fontaine Rouge',
-					'position': {
-						'lat': 42.7040423,
-						'lng': 2.8919186
-					},
-					'description': 'Bla bla'
-				}
-			]
+			markers: null
 		}
 	},
 
-	/*
-	asyncData () {
-		console.log('nique ta mère')
-		return axios.get('https://www.parkourfinder.com/markers.json')
+	asyncData ({ req, params }) {
+		console.log('test')
+		return axios.get('http://rest.parkourfinder.localhost/spots/')
 			.then((res) => {
 				return { markers: res.data }
 			})
 	},
-	// */
 
 	created () {
 		this.setCenterMap()
@@ -81,8 +58,12 @@ export default {
 			}
 		},
 
-		showSpot (slug, position) {
-			this.$router.push('/spot/' + slug)
+		makeCoords (lat, lng) {
+			return { lat: parseFloat(lat), lng: parseFloat(lng) }
+		},
+
+		showSpot (id, slug, position) {
+			this.$router.push('/spot/' + id + '-' + slug)
 		}
 	}
 }

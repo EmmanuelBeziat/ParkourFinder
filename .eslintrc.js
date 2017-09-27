@@ -17,7 +17,8 @@ module.exports = {
 			"tab"
 		],
 		"no-console": 0,
-		"no-tabs": 0
+		"no-tabs": 0,
+		"no-undef": 0
 	},
 	globals: {}
 }
