@@ -1,7 +1,7 @@
-/* import axios from 'axios'
+import axios from 'axios'
 
 const api = 'http://rest.parkourfinder.localhost/spots'
- */
+
 export const state = () => ({
 	markers: null
 })
