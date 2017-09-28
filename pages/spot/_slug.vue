@@ -24,7 +24,8 @@ export default {
 	},
 
 	async asyncData ({ params }) {
-		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.id}-${params.slug}/`)
+		console.log(params)
+		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.slug}`)
 
 		// No return datas
 		if (!data) {

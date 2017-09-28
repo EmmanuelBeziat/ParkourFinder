@@ -1,5 +1,5 @@
 <template>
-	<gmap-map :center="center" :zoom="7">
+	<gmap-map :center="center" :zoom="14">
 		<gmap-marker
 			v-for="(marker, index) in markers"
 			:key="index"
