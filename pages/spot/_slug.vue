@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios'
+import removeAccents from 'remove-accents'
 
 export default {
 	name: 'spotSingle',
@@ -24,7 +25,6 @@ export default {
 	},
 
 	async asyncData ({ params }) {
-		console.log(params)
 		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.slug}`)
 
 		// No return datas
@@ -32,6 +32,7 @@ export default {
 			res.statusCode = 404
 		}
 
+		data.name = removeAccents(data.name)
 		return { spot: data }
 	},
 
@@ -70,7 +71,7 @@ export default {
 	color $color-red
 	font 400 $font-size-heading-1/1.25 $font-stack-heading
 
-.spot-close
+.btn.spot-close
 	position absolute
 	font-size $font-size-heading-3
 	padding 0
