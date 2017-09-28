@@ -1,9 +1,9 @@
-export const state = () => {}
+export const state = () => ({})
 
 export const mutations = {}
 
 export const actions = {
-	nuxtServerInit ({ commit }) {
+	async nuxtServerInit ({ commit }, { req }) {
 		// ??
 		console.log('test')
 	}
