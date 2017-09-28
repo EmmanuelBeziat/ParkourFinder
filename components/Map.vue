@@ -6,7 +6,7 @@
 			:position="makeCoords(marker.position_lat, marker.position_lng)"
 			:clickable="true"
 			:draggable="false"
-			@click="showSpot(marker.id, marker.slug, marker.position)">
+			@click="showSpot(marker.id, marker.slug, marker.position_lat, marker.position_lng)">
 		</gmap-marker>
 	</gmap-map>
 </template>
@@ -60,7 +60,8 @@ export default {
 			return { lat: parseFloat(lat), lng: parseFloat(lng) }
 		},
 
-		showSpot (id, slug, position) {
+		showSpot (id, slug, lat, lng) {
+			// this.center = this.makeCoords(lat, lng)
 			this.$router.push('/spot/' + id + '-' + slug)
 		}
 	}
