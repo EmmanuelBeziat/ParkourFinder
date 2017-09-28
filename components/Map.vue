@@ -34,16 +34,6 @@ export default {
 		}
 	},
 
-	/*
-	asyncData ({ req, params }) {
-		console.log('test')
-		return axios.get('http://rest.parkourfinder.localhost/spots/')
-			.then((res) => {
-				return { markers: res.data }
-			})
-	},
-	*/
-
 	computed: {
 		markers () {
 			return this.$store.state.map.markers
