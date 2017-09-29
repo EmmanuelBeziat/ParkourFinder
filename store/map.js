@@ -3,20 +3,18 @@ import axios from 'axios'
 const api = 'http://rest.parkourfinder.localhost/spots'
 
 export const state = () => ({
-	markers: []
+	markers: null
 })
 
 export const mutations = {
-	loadData (state) {
-		axios.get(api)
-			.then((res) => {
-				state.markers = res.data
-			})
+	setMarkers (state, markers) {
+		state.markers = markers
 	}
 }
 
 export const actions = {
-	init ({ commit }) {
-		commit('loadData')
+	async init ({ commit }) {
+		let { data } = await axios.get(api)
+		commit('setMarkers', data)
 	}
 }
