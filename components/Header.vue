@@ -4,9 +4,9 @@
 			<h1 class="header-title"><nuxt-link to="/">Parkour<span>Finder</span></nuxt-link></h1>
 
 			<nav class="header-actions">
-				<button class="btn"><i class="icon-location" aria-hidden="true"></i><div class="sr-only">Add new spot</div></button>
-				<button class="btn"><i class="icon-search" aria-hidden="true"></i><div class="sr-only">Search</div></button>
-				<nuxt-link class="btn" to="/about"><i class="icon-help" aria-hidden="true"></i><div class="sr-only">About</div></nuxt-link>
+				<button class="btn btn--icon"><i class="icon-location" aria-hidden="true"></i><div class="sr-only">Add new spot</div></button>
+				<button class="btn btn--icon"><i class="icon-search" aria-hidden="true"></i><div class="sr-only">Search</div></button>
+				<nuxt-link class="btn btn--icon" to="/about"><i class="icon-help" aria-hidden="true"></i><div class="sr-only">About</div></nuxt-link>
 			</nav>
 		</div>
 	</header>
@@ -46,7 +46,5 @@
 
 	.btn
 		position relative
-		padding .25em
-		font-size 1.15rem
 
 </style>

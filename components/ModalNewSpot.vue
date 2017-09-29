@@ -16,7 +16,7 @@
 
 			<footer class="modal-footer">
 				<button class="btn btn-default"><i class="icon-times" aria-hidden="true"></i> Cancel</button>
-				<button class="btn btn-primary"><i class="icon-plus" aria-hidden="true"></i> Add new</button>
+				<button class="btn btn--primary"><i class="icon-plus" aria-hidden="true"></i> Add new</button>
 			</footer>
 		</section>
 		<div class="modal-layout"></div>

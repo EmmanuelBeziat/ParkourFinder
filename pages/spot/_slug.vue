@@ -10,6 +10,18 @@
 
 			<div class="spot-description">{{ spot.description }}</div>
 		</div>
+
+		<footer class="spot-complementary">
+			<div class="spot-actions">
+				<button class="btn btn--icon" @click="getPicture" data-tooltip="Take a picture"><i class="icon-camera" aria-hidden="true"></i> <span class="sr-only">Take a photo</span></button>
+				<button class="btn btn--icon" @click="getPicture" data-tooltip="Upload a picture"><i class="icon-picture" aria-hidden="true"></i> <span class="sr-only">Upload a picture</span></button>
+			</div>
+
+			<div class="spot-infos">
+				<div class="spot-date">Created: <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date" :v-if="spot.modified">Last edited: <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
+			</div>
+		</footer>
 	</section>
 </template>
 
@@ -34,6 +46,18 @@ export default {
 
 		data.name = removeAccents(data.name)
 		return { spot: data }
+	},
+
+	methods: {
+		getPicture () {
+			if (process.BROWSER_BUILD && navigator.geolocation) {
+				navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+					quality: 50,
+					destinationType: navigator.camera.DestinationType.FILE_URI,
+					sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+				})
+			}
+		}
 	},
 
 	head () {
@@ -73,9 +97,23 @@ export default {
 
 .btn.spot-close
 	position absolute
-	font-size $font-size-heading-3
-	padding 0
 	right 1rem
 	top 1rem
+	padding 0
+	font-size $font-size-heading-3
+
+.spot-complementary
+	padding-top 1rem
+	margin-top 1rem
+	border-top 1px solid $color-shadow
+	@media $mq-tablet
+		display flex
+
+.spot-infos
+	text-align right
+	margin-left auto
+
+.spot-date
+	font italic rem(12px)/1.25 $font-stack-common
 
 </style>

@@ -1,0 +1,38 @@
+[data-tooltip]
+	position relative
+
+	&::before
+		content attr(data-tooltip)
+		position absolute
+		opacity 0
+		visibility hidden
+		transform translate(-50%, 50%)
+		transition .25s ease
+		background alpha($color-black, 95%)
+		color $color-white
+		font-size rem(12px)
+		padding .5em
+		text-shadow 1px 1px 0 $color-black
+		left 50%
+		bottom -5px
+		min-width rem(100px)
+		z-index 10
+		border-radius 3px
+
+	&:hover
+	&:focus
+		&::before
+			opacity 1
+			visibility visible
+			transform translate(-50%, 100%)
+
+[data-tooltip-position="top"]
+	&::before
+		bottom auto
+		top -5px
+		transform translate(-50%, -50%)
+
+	&:hover
+	&:focus
+		&::before
+			transform translate(-50%, -100%)

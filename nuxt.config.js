@@ -48,6 +48,13 @@ module.exports = {
 	},
 
 	/**
+	 * Plugins
+	 */
+	plugins: [
+		'~plugins/vue-filters.js'
+	],
+
+	/**
 	 * Transition
 	 */
 	transition: {
