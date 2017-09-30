@@ -19,7 +19,7 @@
 
 			<div class="spot-infos">
 				<div class="spot-date">Created: <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
-				<div class="spot-date" :v-if="spot.modified">Last edited: <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date" v-if="spot.modified !== null">Last edited: <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
 			</div>
 		</footer>
 	</section>
