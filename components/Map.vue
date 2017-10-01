@@ -13,8 +13,6 @@
 
 <script>
 import Vue from 'vue'
-// import axios from 'axios'
-import geolocation from 'geolocation'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
 
 // import { mapMutations } from 'vuex'
@@ -30,7 +28,7 @@ export default {
 	name: 'Map',
 	data () {
 		return {
-			center: null
+			center: { lat: 42.6991088, lng: 2.8694822 }
 		}
 	},
 
@@ -45,21 +43,38 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Define the center position of the map if geolocation is available or not
+		 */
 		setCenterMap () {
-			if (process.BROWSER_BUILD && navigator.geolocation) {
-				this.center = geolocation.getCurrentPosition(function (err, position) {
-					if (err) throw err
-					console.log(position)
-				})
-			} else {
+			let that = this
+
+			function sucess (position) {
+				that.center = that.makeCoords(position.coords.latitude, position.coords.longitude)
+			}
+
+			function error (error) {
+				console.log(`Error ${error.code}: ${error.message}`)
+			}
+
+			if (process.browser && navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(sucess, error)
+			}
+			else {
 				this.center = { lat: 42.6991088, lng: 2.8694822 }
 			}
 		},
 
+		/**
+		 * Format valid coords for Google Maps
+		 */
 		makeCoords (lat, lng) {
 			return { lat: parseFloat(lat), lng: parseFloat(lng) }
 		},
 
+		/**
+		 * Open the page linked to a marker
+		 */
 		showSpot (id, slug, lat, lng) {
 			// this.center = this.makeCoords(lat, lng)
 			this.$router.push('/spot/' + id + '-' + slug)

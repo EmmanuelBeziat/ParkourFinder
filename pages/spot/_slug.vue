@@ -12,14 +12,18 @@
 		</div>
 
 		<footer class="spot-complementary">
-			<div class="spot-actions">
-				<button class="btn btn--icon" @click="getPicture" data-tooltip="Take a picture"><i class="icon-camera" aria-hidden="true"></i> <span class="sr-only">Take a photo</span></button>
-				<button class="btn btn--icon" @click="getPicture" data-tooltip="Upload a picture"><i class="icon-picture" aria-hidden="true"></i> <span class="sr-only">Upload a picture</span></button>
-			</div>
+			<form enctype="multipart/form-data" novalidate>
+				<div class="spot-actions">
+					<button class="btn btn--icon" @click="takePicture" data-tooltip="Take a picture"><i class="icon-camera" aria-hidden="true"></i> <span class="sr-only">Take a photo</span></button>
+					<button class="btn btn--icon" @click="uploadPicture" data-tooltip="Upload a picture"><i class="icon-picture" aria-hidden="true"></i> <span class="sr-only">Upload a picture</span></button>
+				</div>
+
+				<input type="file" multiple accept="image/*">
+			</form>
 
 			<div class="spot-infos">
 				<div class="spot-date">Created: <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
-				<div class="spot-date" v-if="spot.modified !== null">Last edited: <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date" v-if="spot.modified">Last edited: <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
 			</div>
 		</footer>
 	</section>
@@ -39,17 +43,12 @@ export default {
 	async asyncData ({ params }) {
 		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.slug}`)
 
-		// No return datas
-		if (!data) {
-			res.statusCode = 404
-		}
-
 		data.name = removeAccents(data.name)
 		return { spot: data }
 	},
 
 	methods: {
-		getPicture () {
+		takePicture () {
 			if (process.BROWSER_BUILD && navigator.geolocation) {
 				navigator.camera.getPicture(onPhotoURISuccess, onFail, {
 					quality: 50,
@@ -57,6 +56,10 @@ export default {
 					sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 				})
 			}
+		},
+
+		uploadPicture () {
+
 		}
 	},
 
@@ -64,6 +67,11 @@ export default {
 		return {
 			title: this.spot.name
 		}
+	},
+
+	transition (to, from) {
+		if (!from) return 'slide-left'
+		return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
 	}
 }
 </script>

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add -D remove-accents
+  /usr/local/bin/node /usr/local/bin/yarn remove axios
 
 PATH: 
   /usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/mysql/sbin:/Applications/MAMP/bin/php/php7.1.6/bin/php:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Emmanuel/.composer/vendor/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Emmanuel/.yarn/bin:/Users/Emmanuel/.poultou/bin:/Users/Emmanuel/.poultou/bin/poultou
@@ -29,10 +29,10 @@ npm manifest:
   		"precommit": "npm run lint"
   	},
   	"dependencies": {
-  		"axios": "^0.16.2",
   		"geolocation": "^0.2.0",
   		"moment": "^2.18.1",
   		"nuxt": "^1.0.0-rc8",
+  		"remove-accents": "^0.4.1",
   		"vue2-google-maps": "^0.8.2"
   	},
   	"devDependencies": {
@@ -4680,6 +4680,10 @@ Lockfile:
     version "0.2.7"
     resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   
+  remove-accents@^0.4.1:
+    version "0.4.1"
+    resolved "https://registry.yarnpkg.com/remove-accents/-/remove-accents-0.4.1.tgz#98141bba4edf09e5fc4ca6fda6bd8ed8ad78d271"
+  
   remove-trailing-separator@^1.0.1:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -5730,4 +5734,4 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: EPERM: operation not permitted, chmod '/Users/Emmanuel/Sites/parkourfinder/node_modules/@nuxtjs/youch/node_modules/.bin/mustache'
+  Error: EACCES: permission denied, unlink '/Users/Emmanuel/Sites/parkourfinder/node_modules/.bin/acorn'

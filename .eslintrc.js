@@ -18,7 +18,8 @@ module.exports = {
 		],
 		"no-console": 0,
 		"no-tabs": 0,
-		"no-undef": 0
+		"no-undef": 0,
+		"brace-style": 0
 	},
 	globals: {}
 }

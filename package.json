@@ -10,9 +10,11 @@
 		"start": "nuxt start",
 		"generate": "nuxt generate",
 		"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+		"dev-debug": "node --inspect node_modules/.bin/nuxt",
 		"precommit": "npm run lint"
 	},
 	"dependencies": {
+		"@nuxtjs/manifest": "^1.7.0",
 		"axios": "^0.16.2",
 		"geolocation": "^0.2.0",
 		"moment": "^2.18.1",
@@ -21,6 +23,7 @@
 		"vue2-google-maps": "^0.8.2"
 	},
 	"devDependencies": {
+		"@nuxtjs/localtunnel": "^1.0.0",
 		"autoprefixer": "^7.1.4",
 		"babel-eslint": "^8.0.0",
 		"eslint": "^4.3.0",

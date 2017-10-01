@@ -26,10 +26,12 @@ module.exports = {
 		'@/assets/icons/css/icons.css',
 		'@/assets/snickles/snickles.css'
 	],
+
 	/*
 	** Customize the progress-bar color
 	*/
 	loading: { color: '#bb2b4d' },
+
 	/**
 	 * Router
 	 */
@@ -55,12 +57,26 @@ module.exports = {
 	],
 
 	/**
+	 * Modules
+	 */
+	modules: [
+		// ['@nuxtjs/localtunnel', { subdomain: 'pkfinder' }],
+		'@nuxtjs/manifest'
+	],
+
+	manifest: {
+		name: 'ParkourFinder',
+		lang: 'en'
+	},
+
+	/**
 	 * Transition
 	 */
 	transition: {
 		name: 'page',
 		mode: 'out-in'
 	},
+
 	/*
 	** Build configuration
 	*/
@@ -78,9 +94,11 @@ module.exports = {
 				})
 			}
 		},
+
 		postcss: [
 			require('autoprefixer')
 		],
+
 		vendor: [
 			'axios',
 			'moment',
