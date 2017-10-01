@@ -33,7 +33,7 @@ module.exports = {
 	},
 
 	css: [
-		'@/assets/favicons/css/favicons.css',
+		'@/assets/icons/css/icons.css',
 		'@/assets/snickles/snickles.css'
 	],
 
