@@ -15,25 +15,25 @@ module.exports = {
 			{ hid: 'description', name: 'description', content: 'A tiny app to help locate and share parkour spots' },
 			{ name: 'apple-mobile-web-app-title', content: 'ParkourFinder' },
 			{ name: 'application-name', content: 'ParkourFinder' },
-			{ name: 'msapplication-config', content: '/icons/browserconfig.xml' },
+			{ name: 'msapplication-config', content: '/favicons/browserconfig.xml' },
 			{ name: 'theme-color', content: '#bd1747' }
 		],
 		noScript: [
 			{ innerHTML: 'Javascript est requis pour parcourir ce site.' }
 		],
 		link: [
-			{ rel: 'apple-touch-icon', sizes: '180x180', href: '/icons/apple-touch-icon.png' },
-			{ rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icons/favicon-32x32.png' },
-			{ rel: 'icon', type: 'image/png', sizes: '192x192', href: '/icons/android-chrome-192x192.png' },
-			{ rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon-16x16.png' },
-			{ rel: 'manifest', href: '/icons/manifest.json' },
-			{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#bd1747' },
-			{ rel: 'shortcut icon', href: '/icons/favicon.ico' }
+			{ rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/apple-touch-icon.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicons/favicon-32x32.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicons/android-chrome-192x192.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicons/favicon-16x16.png' },
+			{ rel: 'manifest', href: '/favicons/manifest.json' },
+			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bd1747' },
+			{ rel: 'shortcut icon', href: '/favicons/favicon.ico' }
 		]
 	},
 
 	css: [
-		'@/assets/icons/css/icons.css',
+		'@/assets/favicons/css/favicons.css',
 		'@/assets/snickles/snickles.css'
 	],
 
