@@ -37,7 +37,8 @@ module.exports = {
 	 */
 	router: {
 		linkActiveClass: '-active',
-		base: '/'
+		base: '/',
+		middleware: 'i18n'
 	},
 
 	minify: {
@@ -53,7 +54,8 @@ module.exports = {
 	 * Plugins
 	 */
 	plugins: [
-		'~plugins/vue-filters.js'
+		'~plugins/vue-filters.js',
+		'~/plugins/i18n.js'
 	],
 
 	/**
@@ -101,7 +103,8 @@ module.exports = {
 
 		vendor: [
 			'axios',
-			'moment'
+			'moment',
+			'vue-i18n'
 		]
 	}
 }

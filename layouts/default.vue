@@ -16,6 +16,12 @@ export default {
 	components: {
 		UiHeader,
 		ModuleMap
+	},
+
+	methods: {
+		path (url) {
+			return (this.$i18n.locale === 'fr' ? url : '/' + this.$i18n.locale + url)
+		}
 	}
 }
 </script>

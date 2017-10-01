@@ -14,16 +14,16 @@
 		<footer class="spot-complementary">
 			<form enctype="multipart/form-data" novalidate>
 				<div class="spot-actions">
-					<button class="btn btn--icon" @click="takePicture" data-tooltip="Take a picture"><i class="icon-camera" aria-hidden="true"></i> <span class="sr-only">Take a photo</span></button>
-					<button class="btn btn--icon" @click="uploadPicture" data-tooltip="Upload a picture"><i class="icon-picture" aria-hidden="true"></i> <span class="sr-only">Upload a picture</span></button>
+					<button class="btn btn--icon" @click="takePicture" :data-tooltip="$t('spot.actions.take_picture')"><i class="icon-camera" aria-hidden="true"></i> <span class="sr-only">{{ $t('spot.actions.take_picture') }}</span></button>
+					<button class="btn btn--icon" @click="uploadPicture" :data-tooltip="$t('spot.actions.upload_picture')"><i class="icon-picture" aria-hidden="true"></i> <span class="sr-only">{{ $t('spot.actions.upload_picture') }}</span></button>
 				</div>
 
 				<input type="file" multiple accept="image/*">
 			</form>
 
 			<div class="spot-infos">
-				<div class="spot-date">Created: <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
-				<div class="spot-date" v-if="spot.modified">Last edited: <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date">{{ $t('spot.infos.created') }} <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date" v-if="spot.modified">{{ $t('spot.infos.edited') }} <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
 			</div>
 		</footer>
 	</section>

@@ -20,6 +20,7 @@
 		"moment": "^2.18.1",
 		"nuxt": "^1.0.0-rc8",
 		"remove-accents": "^0.4.1",
+		"vue-i18n": "^7.3.0",
 		"vue2-google-maps": "^0.8.2"
 	},
 	"devDependencies": {

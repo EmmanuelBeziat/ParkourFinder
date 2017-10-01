@@ -1,0 +1,34 @@
+{
+	"home": {
+		"title": "Home",
+		"description": "Description home"
+	},
+	"header": {
+		"newspot": "Add new spot",
+		"search": "Search",
+		"about": "About",
+		"settings": "Settings"
+	},
+	"about": {
+		"title": "About",
+		"description": "Description about"
+	},
+	"settings": {
+		"title": "Settings",
+		"description": "Description settings"
+	},
+	"spot": {
+		"actions": {
+			"close": "Close",
+			"take_picture": "Take a picture",
+			"upload_picture": "Uplaod a picture"
+		},
+		"infos": {
+			"created": "Created:",
+			"edited": "Last edited:"
+		},
+		"team": {
+			"name": "Team:"
+		}
+	}
+}

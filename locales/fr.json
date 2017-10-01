@@ -1,0 +1,34 @@
+{
+	"home": {
+		"title": "Accueil",
+		"description": "Description accueil"
+	},
+	"header": {
+		"newspot": "Ajouter un spot",
+		"search": "Rechercher",
+		"about": "À propos",
+		"settings": "Paramètres"
+	},
+	"about": {
+		"title": "À propos",
+		"description": "Description à propos"
+	},
+	"settings": {
+		"title": "Paramètres",
+		"description": "Description paramètres"
+	},
+	"spot": {
+		"actions": {
+			"close": "Fermer",
+			"take_picture": "Prendre une photo",
+			"upload_picture": "Envoyer une photo"
+		},
+		"infos": {
+			"created": "Création :",
+			"edited": "Dernière modification :"
+		},
+		"team": {
+			"name": "Groupe :"
+		}
+	}
+}
