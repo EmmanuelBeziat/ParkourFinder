@@ -101,8 +101,7 @@ module.exports = {
 
 		vendor: [
 			'axios',
-			'moment',
-			'geolocation'
+			'moment'
 		]
 	}
 }

@@ -1,21 +1,21 @@
 <template>
 	<gmap-map :center="center" :zoom="14">
-		<gmap-marker
-			v-for="(marker, index) in markers"
-			:key="index"
-			:position="makeCoords(marker.position_lat, marker.position_lng)"
-			:clickable="true"
-			:draggable="false"
-			@click="showSpot(marker.id, marker.slug, marker.position_lat, marker.position_lng)">
-		</gmap-marker>
+		<gmap-cluster :maxZoom="12">
+			<gmap-marker
+				v-for="(marker, index) in markers"
+				:key="index"
+				:position="makeCoords(marker.position_lat, marker.position_lng)"
+				:clickable="true"
+				:draggable="false"
+				@click="showSpot(marker.id, marker.slug, marker.position_lat, marker.position_lng)">
+			</gmap-marker>
+		</gmap-cluster>
 	</gmap-map>
 </template>
 
 <script>
 import Vue from 'vue'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
-
-// import { mapMutations } from 'vuex'
 
 Vue.use(VueGoogleMaps, {
 	load: {

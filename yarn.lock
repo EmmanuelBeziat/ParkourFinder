@@ -1629,7 +1629,7 @@ debug@^2.4.5:
   dependencies:
     ms "2.0.0"
 
-debug@~0.7.2, debug@~0.7.4:
+debug@~0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
@@ -2443,13 +2443,6 @@ gauge@~2.7.3:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
-
-geolocation@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/geolocation/-/geolocation-0.2.0.tgz#687774d19f64f230fe6fddf7cb6ee058232796b2"
-  dependencies:
-    debug "~0.7.2"
-    inherits "~2.0.0"
 
 get-caller-file@^1.0.1:
   version "1.0.2"
