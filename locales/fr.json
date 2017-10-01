@@ -15,7 +15,12 @@
 	},
 	"settings": {
 		"title": "Paramètres",
-		"description": "Description paramètres"
+		"description": "Description paramètres",
+		"lang": {
+			"title": "Langage :",
+			"en": "Anglais",
+			"fr": "Français"
+		}
 	},
 	"spot": {
 		"actions": {

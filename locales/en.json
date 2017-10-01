@@ -15,7 +15,12 @@
 	},
 	"settings": {
 		"title": "Settings",
-		"description": "Description settings"
+		"description": "Description settings",
+		"lang": {
+			"title": "Language:",
+			"en": "English",
+			"fr": "French"
+		}
 	},
 	"spot": {
 		"actions": {
