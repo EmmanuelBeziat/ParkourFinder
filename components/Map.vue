@@ -1,5 +1,5 @@
 <template>
-	<gmap-map :center="center" :zoom="14">
+	<gmap-map :center="center" :zoom="zoom">
 		<gmap-cluster :maxZoom="12">
 			<gmap-marker
 				v-for="(marker, index) in markers"
@@ -28,7 +28,8 @@ export default {
 	name: 'Map',
 	data () {
 		return {
-			center: { lat: 42.6991088, lng: 2.8694822 }
+			center: { lat: 42.6991088, lng: 2.8694822 },
+			zoom: 5
 		}
 	},
 
@@ -51,6 +52,7 @@ export default {
 
 			function sucess (position) {
 				that.center = that.makeCoords(position.coords.latitude, position.coords.longitude)
+				that.zoom = 14
 			}
 
 			function error (error) {

@@ -1,7 +1,9 @@
 <template>
 	<section class="about">
 		<div class="container">
-			<h1>{{ $t('about.title') }}</h1>
+			<h1 v-html="$t('about.title')"></h1>
+
+			<p v-html="$t('about.author')"></p>
 		</div>
 	</section>
 </template>
@@ -19,6 +21,11 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '~assets/styles/variables.styl'
+
 .about
 	flex 1
+
+.heart
+	color $color-red
 </style>

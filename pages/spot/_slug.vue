@@ -6,20 +6,26 @@
 		</header>
 
 		<div class="spot-body">
-			<div class="spot-slider"></div>
-
 			<div class="spot-description">{{ spot.description }}</div>
+
+			<div class="spot-gallery">
+				<a href="#" class="spot-gallery-item" v-for="picture in spot.pictures" :key="picture">
+					<img class="spot-gallery-img" :src="picture.src" :alt="picture.title">
+				</a>
+			</div>
 		</div>
 
 		<footer class="spot-complementary">
-			<form enctype="multipart/form-data" novalidate>
-				<div class="spot-actions">
-					<button class="btn btn--icon" @click="takePicture" :data-tooltip="$t('spot.actions.take_picture')"><i class="icon-camera" aria-hidden="true"></i> <span class="sr-only">{{ $t('spot.actions.take_picture') }}</span></button>
-					<button class="btn btn--icon" @click="uploadPicture" :data-tooltip="$t('spot.actions.upload_picture')"><i class="icon-picture" aria-hidden="true"></i> <span class="sr-only">{{ $t('spot.actions.upload_picture') }}</span></button>
-				</div>
-
-				<input type="file" multiple accept="image/*">
-			</form>
+			<div class="spot-actions">
+				<button class="btn btn--icon" :data-tooltip="$t('spot.actions.upload_picture')" @click="uploadPicture()">
+					<i class="icon-picture" aria-hidden="true"></i>
+					<span class="sr-only">{{ $t('spot.actions.upload_picture') }}</span>
+				</button>
+				<button class="btn btn--icon" :data-tooltip="$t('spot.actions.edit')" @click="editSpot()">
+					<i class="icon-edit" aria-hidden="true"></i>
+					<span class="sr-only">{{ $t('spot.actions.edit') }}</span>
+				</button>
+			</div>
 
 			<div class="spot-infos">
 				<div class="spot-date">{{ $t('spot.infos.created') }} <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
@@ -40,26 +46,36 @@ export default {
 		return isNaN(params.slug)
 	},
 
+	data () {
+		return {
+			imagesPath: 'http://rest.parkourfinder.localhost/images/'
+		}
+	},
+
 	async asyncData ({ params }) {
 		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.slug}`)
 
+		let gallery = []
+		let images = data.pictures ? data.pictures.split(';') : null
+
+		if (images) {
+			images.forEach(function (image) {
+				gallery.push(JSON.parse(image))
+			})
+		}
+
+		data.pictures = gallery
 		data.name = removeAccents(data.name)
 		return { spot: data }
 	},
 
 	methods: {
-		takePicture () {
-			if (process.BROWSER_BUILD && navigator.geolocation) {
-				navigator.camera.getPicture(onPhotoURISuccess, onFail, {
-					quality: 50,
-					destinationType: navigator.camera.DestinationType.FILE_URI,
-					sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-				})
-			}
-		},
-
 		uploadPicture () {
 
+		},
+
+		editSpot () {
+			alert('Not available')
 		}
 	},
 
@@ -124,4 +140,16 @@ export default {
 .spot-date
 	font italic rem(12px)/1.25 $font-stack-common
 
+.spot-gallery
+	display flex
+	flex-wrap wrap
+	margin 1rem -5px 0
+
+.spot-gallery-item
+	margin 5px
+	width calc(100% / 5 - 10px)
+
+.spot-gallery-img
+	display block
+	max-width 100%
 </style>
