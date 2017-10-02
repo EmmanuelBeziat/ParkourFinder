@@ -9,7 +9,7 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a href="#" class="spot-gallery-item" v-for="picture in spot.pictures" :key="picture">
+				<a href="#" class="spot-gallery-item" v-for="picture in spot.pictures" :key="picture.src">
 					<img class="spot-gallery-img" :src="picture.src" :alt="picture.title">
 				</a>
 			</div>
@@ -21,10 +21,12 @@
 					<i class="icon-picture" aria-hidden="true"></i>
 					<span class="sr-only">{{ $t('spot.actions.upload_picture') }}</span>
 				</button>
-				<button class="btn btn--icon" :data-tooltip="$t('spot.actions.edit')" @click="editSpot()">
+				<button class="btn btn--icon" disabled aria-disabled="true" :data-tooltip="$t('spot.actions.edit')" @click="editSpot()">
 					<i class="icon-edit" aria-hidden="true"></i>
 					<span class="sr-only">{{ $t('spot.actions.edit') }}</span>
 				</button>
+
+				<input ref="fileUploader" type="file" accept="image/*;capture=camera" class="sr-only">
 			</div>
 
 			<div class="spot-infos">
@@ -71,7 +73,7 @@ export default {
 
 	methods: {
 		uploadPicture () {
-
+			this.$refs.fileUploader.click()
 		},
 
 		editSpot () {

@@ -28,3 +28,13 @@
 .btn--icon
 	padding .25em
 	font-size 1.25rem
+
+.btn[disabled]
+	color $color-shadow !important
+	border-color $color-shadow !important
+	background darken($color-white, 5%) !important
+	text-shadow none !important
+	cursor not-allowed
+
+	&[data-tooltip]::before
+		content none !important
