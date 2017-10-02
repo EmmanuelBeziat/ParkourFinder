@@ -12,10 +12,16 @@
 export default {
 	name: 'About',
 	layout: 'text',
+
 	head () {
 		return {
 			title: this.$t('about.title')
 		}
+	},
+
+	transition (to, from) {
+		if (!from) return 'slide-left'
+		return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
 	}
 }
 </script>
