@@ -26,7 +26,7 @@
 					<span class="sr-only">{{ $t('spot.actions.edit') }}</span>
 				</button>
 
-				<input ref="fileUploader" type="file" accept="image/*;capture=camera" class="sr-only">
+				<input ref="fileUploader" type="file" accept="image/*;capture=camera" class="sr-only" @change="changeFileUpload()">
 			</div>
 
 			<div class="spot-infos">
@@ -60,6 +60,7 @@ export default {
 		let gallery = []
 		let images = data.pictures ? data.pictures.split(';') : null
 
+		// Add images(s)
 		if (images) {
 			images.forEach(function (image) {
 				gallery.push(JSON.parse(image))
@@ -73,7 +74,36 @@ export default {
 
 	methods: {
 		uploadPicture () {
-			this.$refs.fileUploader.click()
+			const fileUploader = this.$refs.fileUploader
+			fileUploader.click()
+		},
+
+		changeFileUpload () {
+			const fileUploader = this.$refs.fileUploader
+			let data = new FormData()
+
+			let config = {
+				headers: { 'content-type': 'multipart/form-data' },
+				onUploadProgress: function (progressEvent) {
+					let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+					console.log(percentCompleted)
+				}
+			}
+
+			// Abort if no file
+			if (!fileUploader.files.length) {
+				return
+			}
+
+			data.append('image', fileUploader.files[0])
+
+			axios.put('/images', data, config)
+				.then(function (res) {
+					console.log(res.data)
+				})
+				.catch(function (err) {
+					console.log(err.message)
+				})
 		},
 
 		editSpot () {
