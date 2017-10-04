@@ -37,5 +37,11 @@
 		"team": {
 			"name": "Groupe :"
 		}
+	},
+	"error": {
+		"404": {
+			"title": "Page introuvable",
+			"text": ""
+		}
 	}
 }
