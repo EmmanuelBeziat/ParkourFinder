@@ -1,7 +1,9 @@
 export default function ({ isHMR, app, store, route, params, error, redirect }) {
+	/*
 	// If middleware is called from hot module replacement, ignore it
 	if (isHMR) return
 	// Get locale from params
+
 	const locale = params.lang || 'fr'
 	if (store.state.locales.indexOf(locale) === -1) {
 		return error({ message: 'This page could not be found.', statusCode: 404 })
@@ -13,4 +15,5 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
 	if (locale === 'fr' && route.fullPath.indexOf('/fr') === 0) {
 		return redirect(route.fullPath.replace(/^\/fr/, '/'))
 	}
+	*/
 }
