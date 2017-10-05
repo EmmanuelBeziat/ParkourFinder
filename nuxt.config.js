@@ -4,14 +4,14 @@ module.exports = {
 	*/
 	head: {
 		htmlAttrs: {
-			lang: 'en-EN',
+			lang: this.$store.state.locale,
 			prefix: 'og: http://ogp.me/ns#'
 		},
 		title: '',
 		titleTemplate: 'ParkourFinder — %s',
 		meta: [
 			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+			{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no' },
 			{ hid: 'description', name: 'description', content: 'A tiny app to help locate and share parkour spots' },
 			{ name: 'apple-mobile-web-app-title', content: 'ParkourFinder' },
 			{ name: 'application-name', content: 'ParkourFinder' },

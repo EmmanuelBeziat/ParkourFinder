@@ -9,7 +9,13 @@
 </template>
 
 <script>
+import UiHeader from '~/components/Header.vue'
+
 export default {
-	props: ['error']
+	props: ['error'],
+
+	components: {
+		UiHeader
+	}
 }
 </script>

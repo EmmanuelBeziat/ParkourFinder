@@ -1,0 +1,97 @@
+<template>
+	<div class="vue-map-container">
+		<v-map ref="map" :zoom="zoom" :center="initialLocation">
+			<v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+			<v-marker-cluster>
+				<v-marker
+					v-for="(marker, index) in markers"
+					:key="index"
+					:lat-lng="makeCoords(marker.position_lat, marker.position_lng)"
+					:l-click="showSpot(marker.id, marker.slug, marker.position_lat, marker.position_lng)">
+				</v-marker>
+			</v-marker-cluster>
+		</v-map>
+	</div>
+</template>
+
+<script>
+
+import Vue2Leaflet from 'vue2-leaflet'
+
+export default {
+	name: 'Map',
+	data () {
+		return {
+			initialLocation: [42.6991088, 2.8694822],
+			zoom: 5
+		}
+	},
+
+	computed: {
+		markers () {
+			return this.$store.state.map.markers
+		}
+	},
+
+	created () {
+		this.setCenterMap()
+	},
+
+	components: {
+		'v-map': Vue2Leaflet.Map,
+		'v-tilelayer': Vue2Leaflet.TileLayer,
+		'v-marker': Vue2Leaflet.Marker,
+		'v-marker-cluster': Vue2LeafletMarkerCluster
+	},
+
+	methods: {
+		/**
+		 * Define the center position of the map if geolocation is available or not
+		 */
+		setCenterMap () {
+			let that = this
+
+			function sucess (position) {
+				that.initialLocation = that.makeCoords(position.coords.latitude, position.coords.longitude)
+				that.zoom = 14
+			}
+
+			function error (error) {
+				console.log(`Error ${error.code}: ${error.message}`)
+			}
+
+			if (process.browser && navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(sucess, error)
+			}
+			else {
+				this.initialLocation = [42.6991088, 2.8694822]
+			}
+		},
+
+		/**
+		 * Format valid coords for Google Maps
+		 */
+		makeCoords (lat, lng) {
+			return [parseFloat(lat), parseFloat(lng)]
+		},
+
+		/**
+		 * Open the page linked to a marker
+		 */
+		showSpot (id, slug, lat, lng) {
+			// this.center = this.makeCoords(lat, lng)
+			this.$router.push('/spot/' + id + '-' + slug)
+		}
+	}
+}
+</script>
+
+<style lang="stylus">
+@require '~assets/styles/variables.styl'
+@require '~assets/styles/mixins.styl'
+@import "~leaflet/dist/leaflet.css";
+
+.vue-map-container
+	flex 1
+	width 100vw
+</style>
