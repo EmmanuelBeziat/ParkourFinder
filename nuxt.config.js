@@ -4,7 +4,7 @@ module.exports = {
 	*/
 	head: {
 		htmlAttrs: {
-			lang: this.$store.state.locale,
+			lang: 'fr',
 			prefix: 'og: http://ogp.me/ns#'
 		},
 		title: '',
@@ -78,7 +78,7 @@ module.exports = {
 
 	manifest: {
 		name: 'ParkourFinder',
-		lang: 'en'
+		lang: 'fr'
 	},
 
 	/**
