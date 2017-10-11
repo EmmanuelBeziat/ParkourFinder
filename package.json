@@ -21,14 +21,8 @@
 		"moment": "^2.18.1",
 		"nuxt": "^1.0.0-rc11",
 		"remove-accents": "^0.4.1",
-<<<<<<< HEAD
-		"vue2-google-maps": "^0.8.2",
-		"vue2-leaflet": "^0.0.55",
-=======
-		"vue-i18n": "^7.3.1",
 		"vue2-google-maps": "^0.8.3",
 		"vue2-leaflet": "0.0.55",
->>>>>>> 76bad4264a45b2f7547e2283c7562cdb4fc54ca4
 		"vue2-leaflet-markercluster": "^1.1.0",
 		"vue2-leaflet-tracksymbol": "^1.0.8"
 	},
