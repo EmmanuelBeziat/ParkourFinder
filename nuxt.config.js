@@ -4,7 +4,7 @@ module.exports = {
 	*/
 	head: {
 		htmlAttrs: {
-			lang: this.$store.state.locale,
+			lang: 'fr',
 			prefix: 'og: http://ogp.me/ns#'
 		},
 		title: '',
@@ -47,8 +47,7 @@ module.exports = {
 	 */
 	router: {
 		linkActiveClass: '-active',
-		base: '/',
-		middleware: 'i18n'
+		base: '/'
 	},
 
 	minify: {
@@ -64,8 +63,7 @@ module.exports = {
 	 * Plugins
 	 */
 	plugins: [
-		'~plugins/vue-filters.js',
-		'~/plugins/i18n.js'
+		'~plugins/vue-filters.js'
 	],
 
 	/**
@@ -113,8 +111,7 @@ module.exports = {
 
 		vendor: [
 			'axios',
-			'moment',
-			'vue-i18n'
+			'moment'
 		]
 	}
 }

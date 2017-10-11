@@ -17,21 +17,21 @@
 
 		<footer class="spot-complementary">
 			<div class="spot-actions">
-				<button class="btn btn--icon" :data-tooltip="$t('spot.actions.upload_picture')" @click="uploadPicture()">
+				<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.spot.actions.upload_picture" @click="uploadPicture()">
 					<i class="icon-picture" aria-hidden="true"></i>
-					<span class="sr-only">{{ $t('spot.actions.upload_picture') }}</span>
+					<span class="sr-only">{{ this.$store.state.lang.spot.actions.upload_picture }}</span>
 				</button>
-				<button class="btn btn--icon" disabled aria-disabled="true" :data-tooltip="$t('spot.actions.edit')" @click="editSpot()">
+				<button class="btn btn--icon" disabled aria-disabled="true" :data-tooltip="this.$store.state.lang.spot.actions.edit" @click="editSpot()">
 					<i class="icon-edit" aria-hidden="true"></i>
-					<span class="sr-only">{{ $t('spot.actions.edit') }}</span>
+					<span class="sr-only">{{ this.$store.state.lang.spot.actions.edit }}</span>
 				</button>
 
 				<input ref="fileUploader" type="file" accept="image/*;capture=camera" class="sr-only" @change="changeFileUpload()">
 			</div>
 
 			<div class="spot-infos">
-				<div class="spot-date">{{ $t('spot.infos.created') }} <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
-				<div class="spot-date" v-if="spot.modified">{{ $t('spot.infos.edited') }} <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date">{{ this.$store.state.lang.spot.infos.created }} <time>{{ spot.created | moment('DD-MM-YYYY') }}</time></div>
+				<div class="spot-date" v-if="spot.modified">{{ this.$store.state.lang.spot.infos.edited }} <time>{{ spot.modified | moment('DD-MM-YYYY') }}</time></div>
 			</div>
 		</footer>
 	</section>
@@ -113,7 +113,10 @@ export default {
 
 	head () {
 		return {
-			title: this.spot.name
+			title: this.spot.name,
+			htmlAttrs: {
+				lang: this.$store.state.locale
+			}
 		}
 	},
 

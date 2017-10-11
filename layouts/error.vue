@@ -2,8 +2,7 @@
 	<div class="site">
 		<ui-header/>
 		<main class="main">
-			<h1 v-if="error.statusCode === 404">{{ $('error.404.title') }}</h1>
-
+			<h1 v-if="error.statusCode === 404"></h1>
 		</main>
 	</div>
 </template>
