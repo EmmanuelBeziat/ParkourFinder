@@ -1,9 +1,9 @@
 <template>
 	<section class="about">
 		<div class="container">
-			<h1 v-html="$t('about.title')"></h1>
+			<h1 v-html="this.$store.state.lang.about.title"></h1>
 
-			<p v-html="$t('about.author')"></p>
+			<p v-html="this.$store.state.lang.about.author"></p>
 		</div>
 	</section>
 </template>

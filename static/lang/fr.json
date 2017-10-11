@@ -1,13 +1,15 @@
 {
+	"site": {
+		"nav": {
+			"newspot": "Ajouter un spot",
+			"search": "Rechercher",
+			"about": "À propos",
+			"settings": "Paramètres"
+		}
+	},
 	"home": {
 		"title": "Accueil",
 		"description": "Description accueil"
-	},
-	"header": {
-		"newspot": "Ajouter un spot",
-		"search": "Rechercher",
-		"about": "À propos",
-		"settings": "Paramètres"
 	},
 	"about": {
 		"title": "À propos",

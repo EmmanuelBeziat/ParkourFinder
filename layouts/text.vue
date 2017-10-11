@@ -17,7 +17,7 @@ export default {
 
 	head: {
 		htmlAttrs: {
-			lang: this.$store.state.lang
+			// lang: this.$store.state.locale
 		}
 	}
 }
