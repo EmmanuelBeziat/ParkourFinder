@@ -15,6 +15,12 @@ export default {
 
 	components: {
 		UiHeader
+	},
+
+	head: {
+		htmlAttrs: {
+			lang: this.$store.state.lang
+		}
 	}
 }
 </script>

@@ -76,7 +76,7 @@ module.exports = {
 
 	manifest: {
 		name: 'ParkourFinder',
-		lang: 'en'
+		lang: 'fr'
 	},
 
 	/**
