@@ -1,6 +1,6 @@
 <template>
 	<nav class="header-actions">
-		<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.header.newspot">
+		<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.site.nav.newspot">
 			<i class="icon-location" aria-hidden="true"></i><div class="sr-only">{{ this.$store.state.lang.site.nav.newspot }}</div>
 		</button>
 		<!--
