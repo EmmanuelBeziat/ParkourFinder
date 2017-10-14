@@ -63,7 +63,8 @@ module.exports = {
 	 * Plugins
 	 */
 	plugins: [
-		'~plugins/vue-filters.js'
+		'~plugins/vue-filters.js',
+		'~plugins/vue-modal.js'
 	],
 
 	/**
@@ -111,7 +112,8 @@ module.exports = {
 
 		vendor: [
 			'axios',
-			'moment'
+			'moment',
+			'vue-js-modal'
 		]
 	}
 }

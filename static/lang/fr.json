@@ -38,6 +38,25 @@
 		},
 		"team": {
 			"name": "Groupe :"
+		},
+		"modal": {
+			"success": {
+				"title": "Ajouter un nouveau spot",
+				"description": "La géolocalisation est active. Vous pouvez ajouter un spot là où vous vous tenez.",
+				"buttons": [
+					"Ajouter ici",
+					"Ajouter manuellement",
+					"Annuler"
+				]
+			},
+			"error": {
+				"title": "Ajouter un nouveau spot",
+				"description": "La géolocalisation n’est pas activée. Vous pouvez toujours ajouter un spot manuellement.",
+				"buttons": [
+					"Ajouter un spot",
+					"Annuler"
+				]
+			}
 		}
 	},
 	"error": {

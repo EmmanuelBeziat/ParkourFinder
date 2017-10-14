@@ -36,6 +36,25 @@
 		},
 		"team": {
 			"name": "Team:"
+		},
+		"modal": {
+			"success": {
+				"title": "Add a new spot",
+				"description": "Geolocation is enabled. You can add a spot right where you stand.",
+				"buttons": [
+					"Add here",
+					"Add manually",
+					"Cancel"
+				]
+			},
+			"error": {
+				"title": "Add a new spot",
+				"description": "Geolocation is disabled. You still can add a spot manually.",
+				"buttons": [
+					"Add a spot",
+					"Cancel"
+				]
+			}
 		}
 	},
 	"error": {

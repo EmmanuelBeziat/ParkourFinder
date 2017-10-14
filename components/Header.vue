@@ -18,7 +18,6 @@ export default {
 }
 </script>
 
-
 <style lang="stylus">
 @require '~assets/styles/variables.styl'
 @require '~assets/styles/mixins.styl'
@@ -32,9 +31,13 @@ export default {
 
 .header-title
 	margin 0
-	font 400 $font-size-title/1 $font-stack-heading
+	font 400 $font-size-heading-3/1 $font-stack-heading
 	color $color-red
 	transform rotate(-8deg)
+	white-space nowrap
+
+	@media $mq-tablet
+		font-size $font-size-title
 
 	a
 		color inherit

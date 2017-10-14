@@ -50,7 +50,7 @@ export default {
 		setCenterMap () {
 			let that = this
 
-			function sucess (position) {
+			function success (position) {
 				that.center = that.makeCoords(position.coords.latitude, position.coords.longitude)
 				that.zoom = 14
 			}
@@ -59,8 +59,8 @@ export default {
 				console.log(`Error ${error.code}: ${error.message}`)
 			}
 
-			if (process.browser && navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(sucess, error)
+			if (process.browser && 'geolocation' in navigator) {
+				navigator.geolocation.watchPosition(success, error)
 			}
 			else {
 				this.center = { lat: 42.6991088, lng: 2.8694822 }
