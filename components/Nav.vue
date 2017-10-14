@@ -26,8 +26,7 @@ export default {
 	data () {
 		return {
 			modal: {},
-			geolocation: false,
-			currentPosition: {}
+			geolocation: false
 		}
 	},
 
@@ -73,7 +72,7 @@ export default {
 
 		getCurrentPosition () {
 			function success (position) {
-				this.currentPosition = { lat: position.coords.latitude, lng: position.coords.longitude }
+				console.log({ lat: position.coords.latitude, lng: position.coords.longitude })
 			}
 			function error (error) {
 				console.log(error)
