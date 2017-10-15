@@ -38,8 +38,10 @@
 		},
 		"team": {
 			"name": "Groupe :"
-		},
-		"modal": {
+		}
+	},
+	"modal": {
+		"newspot": {
 			"success": {
 				"title": "Ajouter un nouveau spot",
 				"description": "La géolocalisation est active. Vous pouvez ajouter un spot là où vous vous tenez.",
@@ -56,6 +58,13 @@
 					"Ajouter un spot",
 					"Annuler"
 				]
+			},
+			"form": {
+				"title": "Ajouter un nouveau spot",
+				"name": "Nom du spot",
+				"team": "Team régulière",
+				"validate": "Valider",
+				"cancel": "Annuler"
 			}
 		}
 	},

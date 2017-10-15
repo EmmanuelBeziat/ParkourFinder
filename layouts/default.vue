@@ -56,4 +56,5 @@ body
 @require '~assets/styles/modules/buttons.styl'
 @require '~assets/styles/modules/tooltips.styl'
 @require '~assets/styles/modules/pages-transitions.styl'
+@require '~assets/styles/modules/forms.styl'
 </style>
