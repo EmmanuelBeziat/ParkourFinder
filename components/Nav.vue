@@ -1,6 +1,6 @@
 <template>
 	<nav class="header-actions">
-		<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.site.nav.newspot" @click="newSpot()">
+		<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.site.nav.newspot" @click="newspot()">
 			<i class="icon-location" aria-hidden="true"></i><div class="sr-only">{{ this.$store.state.lang.site.nav.newspot }}</div>
 		</button>
 		<!--
@@ -16,6 +16,28 @@
 		</nuxt-link>
 
 		<v-dialog/>
+
+		<modal class="vue-dialog" name="new-spot" :delay="250" height="auto" :clickToClose="false">
+			<div class="dialog-content">
+				<div class="dialog-c-title">{{ this.$store.state.lang.modal.newspot.form.title }}</div>
+				<div class="dialog-c-text">
+					<form action="">
+						<div class="form-group">
+							<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.name }}</label>
+							<input type="text" id="nom" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.name">
+						</div>
+						<div class="form-group">
+							<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.team }}</label>
+							<input type="text" id="nom" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.team">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="dialog-buttons">
+				<button><i class="icon-left-open" aria-hidden="true"></i> {{ this.$store.state.lang.modal.newspot.form.cancel }}</button>
+				<button>{{ this.$store.state.lang.modal.newspot.form.validate }} <i class="icon-right-open" aria-hidden="true"></i></button>
+			</div>
+		</modal>
 	</nav>
 </template>
 
@@ -36,28 +58,28 @@ export default {
 	},
 
 	methods: {
-		newSpot () {
+		newspot () {
 			const that = this
 
 			if (this.geolocation) {
 				that.$modal.show('dialog', {
-					title: that.$store.state.lang.spot.modal.success.title,
-					text: that.$store.state.lang.spot.modal.success.description,
+					title: that.$store.state.lang.modal.newspot.success.title,
+					text: that.$store.state.lang.modal.newspot.success.description,
 					buttons: [
-						{ title: that.$store.state.lang.spot.modal.success.buttons[0], handler: () => { this.setMarkerAuto() } },
-						{ title: that.$store.state.lang.spot.modal.success.buttons[1], handler: () => { setMarkerManually() } },
-						{ title: that.$store.state.lang.spot.modal.success.buttons[2] }
+						{ title: that.$store.state.lang.modal.newspot.success.buttons[0], handler: () => { this.setMarkerAuto() } },
+						{ title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { setMarkerManually() } },
+						{ title: that.$store.state.lang.modal.newspot.success.buttons[2] }
 					]
 				})
 			}
 
 			else {
 				that.$modal.show('dialog', {
-					title: that.$store.state.lang.spot.modal.error.title,
-					text: that.$store.state.lang.spot.modal.error.description,
+					title: that.$store.state.lang.modal.newspot.error.title,
+					text: that.$store.state.lang.modal.newspot.error.description,
 					buttons: [
-						{ title: that.$store.state.lang.spot.modal.error.buttons[0], handler: () => { setMarkerManually() } },
-						{ title: that.$store.state.lang.spot.modal.error.buttons[1] }
+						{ title: that.$store.state.lang.modal.newspot.error.buttons[0], handler: () => { setMarkerManually() } },
+						{ title: that.$store.state.lang.modal.newspot.error.buttons[1] }
 					]
 				})
 			}
@@ -68,6 +90,8 @@ export default {
 		},
 
 		setMarkerAuto () {
+			this.$modal.hide('dialog')
+			this.$modal.show('new-spot')
 		},
 
 		getCurrentPosition () {
@@ -104,4 +128,8 @@ export default {
 	button:hover
 		background $color-red
 		color $color-white
+
+.dialog-buttons
+	button
+		flex 1
 </style>

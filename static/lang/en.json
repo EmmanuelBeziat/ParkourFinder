@@ -36,8 +36,10 @@
 		},
 		"team": {
 			"name": "Team:"
-		},
-		"modal": {
+		}
+	},
+	"modal": {
+		"newspot": {
 			"success": {
 				"title": "Add a new spot",
 				"description": "Geolocation is enabled. You can add a spot right where you stand.",
@@ -54,6 +56,13 @@
 					"Add a spot",
 					"Cancel"
 				]
+			},
+			"form": {
+				"title": "Add a new spot",
+				"name": "Spot name",
+				"team": "Regular team",
+				"validate": "Validate",
+				"cancel": "Cancel"
 			}
 		}
 	},
