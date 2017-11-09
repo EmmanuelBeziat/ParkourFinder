@@ -22,7 +22,7 @@ module.exports = {
 		"brace-style": 0,
 		"comma-dangle": [
 			"error",
-			"always-multiline"
+			"only-multiline"
 		],
 	},
 	globals: {}

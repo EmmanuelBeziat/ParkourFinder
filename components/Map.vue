@@ -4,10 +4,10 @@
 			<gmap-marker
 				v-for="(marker, index) in markers"
 				:key="index"
-				:position="makeCoords(marker.position_lat, marker.position_lng)"
+				:position="makeCoords(marker.location.lat, marker.location.lng)"
 				:clickable="true"
 				:draggable="false"
-				@click="showSpot(marker.id, marker.slug, marker.position_lat, marker.position_lng)">
+				@click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)">
 			</gmap-marker>
 		</gmap-cluster>
 	</gmap-map>
@@ -79,7 +79,7 @@ export default {
 		 */
 		showSpot (id, slug, lat, lng) {
 			// this.center = this.makeCoords(lat, lng)
-			this.$router.push('/spot/' + id + '-' + slug)
+			this.$router.push('/spot/' + id)
 		}
 	}
 }

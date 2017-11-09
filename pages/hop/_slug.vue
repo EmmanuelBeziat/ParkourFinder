@@ -41,6 +41,9 @@
 import axios from 'axios'
 import removeAccents from 'remove-accents'
 
+// const api = 'http://rest.parkourfinder.localhost/spots'
+const api = 'http://localhost:3030/spots'
+
 export default {
 	name: 'spotSingle',
 
@@ -55,7 +58,7 @@ export default {
 	},
 
 	async asyncData ({ params }) {
-		let { data } = await axios.get(`http://rest.parkourfinder.localhost/spots/${params.slug}`)
+		let { data } = await axios.get(`${api}/${params.slug}`)
 
 		let gallery = []
 		let images = data.pictures ? data.pictures.split(';') : null
