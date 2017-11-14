@@ -4,15 +4,21 @@
 		<main class="main">
 			<nuxt/>
 		</main>
+		<ui-footer/>
+		<ui-modales/>
 	</div>
 </template>
 
 <script>
-import UiHeader from '~/components/Header.vue'
+import UiHeader from '~/components/ui/Header'
+import UiFooter from '~/components/ui/Footer'
+import UiModales from '~/components/ui/Modales'
 
 export default {
 	components: {
-		UiHeader
+		UiHeader,
+		UiFooter,
+		UiModales
 	},
 
 	head: {

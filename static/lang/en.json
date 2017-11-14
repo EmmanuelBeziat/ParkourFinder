@@ -61,6 +61,9 @@
 				"title": "Add a new spot",
 				"name": "Spot name",
 				"team": "Regular team",
+				"description": "Spot description",
+				"city": "City",
+				"country": "Country",
 				"validate": "Validate",
 				"cancel": "Cancel"
 			}

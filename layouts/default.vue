@@ -5,16 +5,22 @@
 			<module-map/>
 			<nuxt/>
 		</main>
+		<ui-footer/>
+		<ui-modales/>
 	</div>
 </template>
 
 <script>
-import UiHeader from '~/components/Header.vue'
+import UiHeader from '~/components/ui/Header'
+import UiFooter from '~/components/ui/Footer'
+import UiModales from '~/components/ui/Modales'
 import ModuleMap from '~/components/Map.vue'
 
 export default {
 	components: {
 		UiHeader,
+		UiFooter,
+		UiModales,
 		ModuleMap
 	},
 
@@ -34,6 +40,9 @@ export default {
 *
 *::before
 *::after
+	box-sizing inherit
+
+html
 	box-sizing border-box
 
 body

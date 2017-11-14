@@ -79,7 +79,7 @@ export default {
 		 */
 		showSpot (id, slug, lat, lng) {
 			// this.center = this.makeCoords(lat, lng)
-			this.$router.push('/spot/' + id)
+			this.$router.push('/spot/' + slug)
 		}
 	}
 }

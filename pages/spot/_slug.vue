@@ -1,7 +1,7 @@
 <template>
 	<section class="spot">
 		<header class="spot-header">
-			<h1 class="spot-title">{{ spot.name }}</h1>
+			<h1 class="spot-title">{{ spot.title }}</h1>
 			<nuxt-link to="/" class="spot-close btn"><i class="icon-cancel" aria-hidden="true"></i><span class="sr-only">Close</span></nuxt-link>
 		</header>
 
@@ -71,7 +71,7 @@ export default {
 		}
 
 		data.pictures = gallery
-		data.name = removeAccents(data.name)
+		data.title = removeAccents(data.title)
 		return { spot: data }
 	},
 

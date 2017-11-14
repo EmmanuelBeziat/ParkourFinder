@@ -63,6 +63,9 @@
 				"title": "Ajouter un nouveau spot",
 				"name": "Nom du spot",
 				"team": "Team régulière",
+				"description": "Description du spot",
+				"city": "Ville",
+				"country": "Pays",
 				"validate": "Valider",
 				"cancel": "Annuler"
 			}

@@ -3,17 +3,19 @@
 		<div class="container-fluid flex">
 			<h1 class="header-title"><nuxt-link to="/">Parkour<span>Finder</span></nuxt-link></h1>
 
-			<ui-nav/>
+			<ui-menu/>
 		</div>
 	</header>
 </template>
 
 <script>
-import uiNav from '~/components/Nav.vue'
+import uiMenu from '~/components/ui/Menu.vue'
 
 export default {
+	name: 'UiHeader',
+
 	components: {
-		uiNav
+		uiMenu
 	}
 }
 </script>
