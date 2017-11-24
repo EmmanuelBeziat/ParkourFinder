@@ -16,6 +16,7 @@ export const mutations = {
 export const actions = {
 	async nuxtServerInit ({ dispatch, commit, state }, { req }) {
 		await dispatch('map/init')
+		// await dispatch('position/init')
 
 		try {
 			// Get the first accepted language by the browser sending the request

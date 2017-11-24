@@ -20,11 +20,16 @@ export default {
 		this.geolocation = process.browser && 'geolocation' in navigator
 	},
 
+	computed: {
+		position () { return this.$store.state.position.coords }
+	},
+
 	methods: {
 		newspot () {
 			const that = this
 
 			if (this.geolocation) {
+				that.getCurrentPosition()
 				that.$modal.show('dialog', {
 					title: that.$store.state.lang.modal.newspot.success.title,
 					text: that.$store.state.lang.modal.newspot.success.description,
@@ -58,16 +63,64 @@ export default {
 		},
 
 		getCurrentPosition () {
-			function success (position) {
-				console.log({ lat: position.coords.latitude, lng: position.coords.longitude })
+			if (process.browser && 'geolocation' in navigator) {
+				navigator.geolocation.getCurrentPosition((position) => {
+					this.getCity(position.coords.latitude, position.coords.longitude).then((datas) => {
+						this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude, city: datas.city, country: datas.country, countryCode: datas.countryCode })
+					})
+				}, (error) => {
+					console.log(`Error ${error.code}: ${error.message}`)
+				})
 			}
-			function error (error) {
-				console.log(error)
-			}
+		},
 
-			navigator.geolocation.getCurrentPosition(success, error, {
-				enableHighAccuracy: true,
-				maximumAge: 5000
+		getCity (lat, lng) {
+			return new Promise((resolve, reject) => {
+				let latlng = new google.maps.LatLng(lat, lng)
+				new google.maps.Geocoder().geocode({ 'latLng': latlng }, function (results, status) {
+					if (status === google.maps.GeocoderStatus.OK) {
+						if (results[1]) {
+							let country = null
+							let countryCode = null
+							let city = null
+							let c
+							let lc
+							let component
+
+							for (let r = 0, rl = results.length; r < rl; r += 1) {
+								let result = results[r]
+
+								if (!city && result.types[0] === 'locality') {
+									for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
+										component = result.address_components[c]
+
+										if (component.types[0] === 'locality') {
+											city = component.long_name
+											break
+										}
+									}
+								}
+								else if (!country && result.types[0] === 'country') {
+									country = result.address_components[0].long_name
+									countryCode = result.address_components[0].short_name
+								}
+
+								if (city && country) {
+									break
+								}
+							}
+
+							resolve({
+								city: city,
+								country: country,
+								countryCode: countryCode
+							})
+						}
+						else {
+							reject(google.maps.GeocoderStatus)
+						}
+					}
+				})
 			})
 		}
 	}

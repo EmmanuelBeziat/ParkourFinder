@@ -1,5 +1,5 @@
 <template>
-	<gmap-map :center="center" :zoom="zoom">
+	<gmap-map :center="center" :zoom="zoom" ref="gmap">
 		<gmap-cluster :maxZoom="11">
 			<gmap-marker
 				v-for="(marker, index) in markers"
@@ -16,7 +16,6 @@
 <script>
 import Vue from 'vue'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
-
 Vue.use(VueGoogleMaps, {
 	load: {
 		key: 'AIzaSyDsALDNDN2jhM6JwLP39aVo3rnPyXw-C5A',
@@ -34,9 +33,7 @@ export default {
 	},
 
 	computed: {
-		markers () {
-			return this.$store.state.map.markers
-		}
+		markers () { return this.$store.state.map.markers }
 	},
 
 	created () {
@@ -60,10 +57,10 @@ export default {
 			}
 
 			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.watchPosition(success, error)
+				navigator.geolocation.getCurrentPosition(success, error)
 			}
 			else {
-				this.center = { lat: 42.6991088, lng: 2.8694822 }
+				this.center = { lat: 0, lng: 0 }
 			}
 		},
 

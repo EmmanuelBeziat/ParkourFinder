@@ -12,15 +12,6 @@
 						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.description }}</label>
 						<textarea id="description" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.description" required ref="desc" @change="formChange"></textarea>
 					</div>
-					<hr>
-					<div class="form-group">
-						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.city }}</label>
-						<textarea id="city" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.city" required ref="city" @change="formChange"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.country }}</label>
-						<textarea id="country" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.country" required ref="country" @change="formChange"></textarea>
-					</div>
 				</form>
 			</div>
 		</div>
@@ -32,9 +23,11 @@
 </template>
 
 <script>
+/*
 import axios from 'axios'
 
 const api = `http://localhost:3030/spots`
+*/
 
 export default {
 	data () {
@@ -61,27 +54,8 @@ export default {
 
 			this.sendDatas({
 				title: title.value,
-				description: desc.value,
-				city: city.value,
-				country: country.value
+				description: desc.value
 			})
-		},
-
-		getCoords () {
-			function success (position) {
-				return { lat: position.coords.latitude, lng: position.coords.longitude }
-			}
-
-			function error (error) {
-				console.log(`Error ${error.code}: ${error.message}`)
-			}
-
-			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition(success, error)
-			}
-			else {
-				return { lat: 42.6991088, lng: 2.8694822 }
-			}
 		},
 
 		sendDatas (values) {
@@ -89,10 +63,10 @@ export default {
 				title: values.title,
 				description: values.description,
 				location: {
-					city: values.city,
-					country: values.country,
-					lat: 42.6991088,
-					lng: 2.8694822
+					city: this.$store.state.position.coords.city,
+					country: this.$store.state.position.coords.country,
+					lat: this.$store.state.position.coords.lat,
+					lng: this.$store.state.position.coords.lng
 				}
 			}
 
@@ -103,9 +77,17 @@ export default {
 				}
 			}
 
+			// Comment on atteint la putain de gmap ?!
+			/*
+			let marker = new google.maps.Marker({
+				position: { lat: datas.location.lat, lng: datas.location.lng },
+				map: '???'
+			})
+			*/
+
 			axios.post(api, datas, headers)
 				.then(res => {
-					console.log(res.data)
+					that.closeModal()
 				})
 				.catch(err => {
 					console.error(err.message)

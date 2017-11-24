@@ -5592,6 +5592,12 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+"vue-browser-geolocation@https://github.com/scaccogatto/vue-geolocation":
+  version "0.0.1"
+  resolved "https://github.com/scaccogatto/vue-geolocation#6715f6088b24158e68c9a04822f4f3642495215b"
+  dependencies:
+    vue "^2.0.1"
+
 vue-hot-reload-api@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
@@ -5710,6 +5716,10 @@ vue2-leaflet@^0.0.42:
 vue@^2.0.0-rc.8, vue@~2.4.2:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.4.tgz#ea9550b96a71465fd2b8b17b61673b3561861789"
+
+vue@^2.0.1:
+  version "2.5.8"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.8.tgz#f855c1c27255184a82225f4bef225473e8faf15b"
 
 vuex@^2.4.0:
   version "2.4.0"
