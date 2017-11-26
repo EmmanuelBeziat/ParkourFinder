@@ -4,12 +4,17 @@ import axios from 'axios'
 const api = 'http://localhost:3030/spots'
 
 export const state = () => ({
-	markers: null
+	markers: null,
+	map: null
 })
 
 export const mutations = {
 	setMarkers (state, markers) {
 		state.markers = markers
+	},
+
+	getMap (state, map) {
+		state.map = map
 	}
 }
 

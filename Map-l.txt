@@ -1,13 +1,13 @@
 <template>
 	<div class="vue-map-container">
-		<v-map ref="map" :zoom="zoom" :center="initialLocation">
+		<v-map ref="map" :zoom="zoom" :center="center">
 			<v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
 			<v-marker-cluster>
 				<v-marker
 					v-for="(marker, index) in markers"
 					:key="index"
-					:lat-lng="makeCoords(marker.position_lat, marker.position_lng)"
-					:l-click="showSpot(marker.id, marker.slug, marker.position_lat, marker.position_lng)">
+					:lat-lng="makeCoords(marker.location.lat, marker.location.lng)"
+					:l-click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)">
 				</v-marker>
 			</v-marker-cluster>
 		</v-map>
@@ -15,33 +15,30 @@
 </template>
 
 <script>
-
 import Vue2Leaflet from 'vue2-leaflet'
 
 export default {
 	name: 'Map',
 	data () {
 		return {
-			initialLocation: [42.6991088, 2.8694822],
+			center: [42.6991088, 2.8694822],
 			zoom: 5
 		}
 	},
 
+	components: {
+		'v-map': Vue2Leaflet.Map,
+		'v-marker': Vue2Leaflet.Marker,
+		'v-tileLayer': Vue2Leaflet.TileLayer
+	},
+
 	computed: {
-		markers () {
-			return this.$store.state.map.markers
-		}
+		markers () { return this.$store.state.map.markers }
 	},
 
 	created () {
 		this.setCenterMap()
-	},
-
-	components: {
-		'v-map': Vue2Leaflet.Map,
-		'v-tilelayer': Vue2Leaflet.TileLayer,
-		'v-marker': Vue2Leaflet.Marker,
-		'v-marker-cluster': Vue2LeafletMarkerCluster
+		this.storeMap()
 	},
 
 	methods: {
@@ -51,8 +48,8 @@ export default {
 		setCenterMap () {
 			let that = this
 
-			function sucess (position) {
-				that.initialLocation = that.makeCoords(position.coords.latitude, position.coords.longitude)
+			function success (position) {
+				that.center = that.makeCoords(position.coords.latitude, position.coords.longitude)
 				that.zoom = 14
 			}
 
@@ -60,11 +57,11 @@ export default {
 				console.log(`Error ${error.code}: ${error.message}`)
 			}
 
-			if (process.browser && navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(sucess, error)
+			if (process.browser && 'geolocation' in navigator) {
+				navigator.geolocation.getCurrentPosition(success, error)
 			}
 			else {
-				this.initialLocation = [42.6991088, 2.8694822]
+				this.center = [0, 0]
 			}
 		},
 
@@ -80,7 +77,13 @@ export default {
 		 */
 		showSpot (id, slug, lat, lng) {
 			// this.center = this.makeCoords(lat, lng)
-			this.$router.push('/spot/' + id + '-' + slug)
+			this.$router.push('/spot/' + slug)
+		},
+
+		storeMap () {
+			setTimeout(() => {
+				this.$store.commit('map/getMap', this.$refs.map)
+			}, 8000)
 		}
 	}
 }
@@ -89,7 +92,6 @@ export default {
 <style lang="stylus">
 @require '~assets/styles/variables.styl'
 @require '~assets/styles/mixins.styl'
-@import "~leaflet/dist/leaflet.css";
 
 .vue-map-container
 	flex 1

@@ -53,7 +53,6 @@ export default {
 
 	data () {
 		return {
-			imagesPath: 'http://rest.parkourfinder.localhost/images/'
 		}
 	},
 

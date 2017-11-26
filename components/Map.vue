@@ -1,5 +1,5 @@
 <template>
-	<gmap-map :center="center" :zoom="zoom" ref="gmap">
+	<gmap-map :center="center" :zoom="zoom" ref="map">
 		<gmap-cluster :maxZoom="11">
 			<gmap-marker
 				v-for="(marker, index) in markers"
@@ -38,6 +38,7 @@ export default {
 
 	created () {
 		this.setCenterMap()
+		this.storeMap()
 	},
 
 	methods: {
@@ -77,6 +78,10 @@ export default {
 		showSpot (id, slug, lat, lng) {
 			// this.center = this.makeCoords(lat, lng)
 			this.$router.push('/spot/' + slug)
+		},
+
+		storeMap () {
+			this.$store.commit('map/getMap', this.$refs.map)
 		}
 	}
 }
