@@ -144,6 +144,7 @@ export default {
 	border-radius 3px
 	max-height calc(100vh - 56px - 2rem)
 	outline 99rem solid $color-shadow
+	z-index 1000
 
 	@media $mq-desktop
 		right auto
