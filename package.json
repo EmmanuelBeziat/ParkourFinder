@@ -13,6 +13,11 @@
 		"dev-debug": "node --inspect node_modules/.bin/nuxt",
 		"precommit": "npm run lint"
 	},
+	"config": {
+		"nuxt": {
+			"port": "3042"
+		}
+	},
 	"dependencies": {
 		"@nuxtjs/manifest": "^1.7.2",
 		"axios": "^0.16.2",
