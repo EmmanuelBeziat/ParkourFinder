@@ -41,8 +41,8 @@
 import axios from 'axios'
 import removeAccents from 'remove-accents'
 
-// const api = 'http://rest.parkourfinder.localhost/spots'
-const api = 'http://localhost:3030/spots'
+const api = 'https://rest.parkourfinder.com/spots'
+// const api = 'http://localhost:3030/spots'
 
 export default {
 	name: 'spotSingle',
