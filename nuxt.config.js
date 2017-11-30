@@ -32,6 +32,8 @@ module.exports = {
 		]
 	},
 
+	buildDir: '../site',
+
 	css: [
 		'@/assets/icons/css/icons.css',
 		'@/assets/snickles/snickles.css'
