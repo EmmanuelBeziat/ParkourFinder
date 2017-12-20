@@ -29,7 +29,7 @@ export default {
 	padding .5rem 0
 	box-shadow 0 0 5px $color-shadow
 	position relative
-	z-index 10
+	z-index 1000
 
 .header-title
 	margin 0
