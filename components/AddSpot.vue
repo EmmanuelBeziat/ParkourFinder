@@ -5,6 +5,15 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
+Vue.use(VueGoogleMaps, {
+	load: {
+		key: 'AIzaSyDsALDNDN2jhM6JwLP39aVo3rnPyXw-C5A',
+		librairies: 'places'
+	}
+})
+
 export default {
 	name: 'AddSpot',
 

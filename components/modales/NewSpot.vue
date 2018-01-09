@@ -23,11 +23,8 @@
 </template>
 
 <script>
-/*
 import axios from 'axios'
-
-const api = `http://localhost:3030/spots`
-*/
+const api = 'https://rest.parkourfinder.com/spots'
 
 export default {
 	data () {
@@ -59,6 +56,7 @@ export default {
 		},
 
 		sendDatas (values) {
+			const that = this
 			const datas = {
 				title: values.title,
 				description: values.description,
