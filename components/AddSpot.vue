@@ -65,7 +65,6 @@ export default {
 		getCurrentPosition () {
 			if (process.browser && 'geolocation' in navigator) {
 				navigator.geolocation.getCurrentPosition((position) => {
-					console.log(that.$refs)
 					this.getCity(position.coords.latitude, position.coords.longitude).then((datas) => {
 						this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude, city: datas.city, country: datas.country, countryCode: datas.countryCode })
 					})
@@ -146,7 +145,7 @@ export default {
 		background $color-red
 		color $color-white
 
-.dialog-buttons
+.vue-dialog-buttons
 	button
 		border-radius 0
 		flex 1
