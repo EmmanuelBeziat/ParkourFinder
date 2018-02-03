@@ -5,16 +5,19 @@
 			<module-map/>
 			<nuxt/>
 		</main>
+		<ui-modales/>
 	</div>
 </template>
 
 <script>
 import UiHeader from '~/components/ui/Header'
+import UiModales from '~/components/ui/Modales'
 import ModuleMap from '~/components/Map.vue'
 
 export default {
 	components: {
 		UiHeader,
+		UiModales,
 		ModuleMap
 	}
 }

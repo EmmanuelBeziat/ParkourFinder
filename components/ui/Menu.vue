@@ -1,7 +1,7 @@
 <template>
 	<nav class="header-actions">
-		<!--
 		<btn-add-spot/>
+		<!--
 		<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.site.nav.search">
 			<i class="icon-search" aria-hidden="true"></i><div class="sr-only">{{ this.$store.state.lang.site.nav.search }}</div>
 		</button>
@@ -16,13 +16,13 @@
 </template>
 
 <script>
-// import btnAddSpot from '~/components/AddSpot'
+import btnAddSpot from '~/components/AddSpot'
 
 export default {
 	name: 'UiMenu',
 
 	components: {
-		// btnAddSpot
+		btnAddSpot
 	}
 }
 </script>
