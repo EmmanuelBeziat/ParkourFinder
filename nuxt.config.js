@@ -1,7 +1,11 @@
+const pkg = require('./package')
+
 module.exports = {
+	mode: 'universal',
+
 	/*
-	** Headers of the page
-	*/
+	 ** Headers of the page
+	 */
 	head: {
 		htmlAttrs: {
 			lang: 'fr',
@@ -11,35 +15,64 @@ module.exports = {
 		titleTemplate: 'ParkourFinder — %s',
 		meta: [
 			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no' },
-			{ hid: 'description', name: 'description', content: 'A tiny app to help locate and share parkour spots' },
+			{
+				name: 'viewport',
+				content:
+					'width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no'
+			},
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'A tiny app to help locate and share parkour spots'
+			},
 			{ name: 'apple-mobile-web-app-title', content: 'ParkourFinder' },
 			{ name: 'application-name', content: 'ParkourFinder' },
-			{ name: 'msapplication-config', content: '/favicons/browserconfig.xml' },
+			{
+				name: 'msapplication-config',
+				content: '/favicons/browserconfig.xml'
+			},
 			{ name: 'theme-color', content: '#bd1747' }
 		],
 		noScript: [
 			{ innerHTML: 'Javascript est requis pour parcourir ce site.' }
 		],
 		link: [
-			{ rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/apple-touch-icon.png' },
-			{ rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicons/favicon-32x32.png' },
-			{ rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicons/android-chrome-192x192.png' },
-			{ rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicons/favicon-16x16.png' },
+			{
+				rel: 'apple-touch-icon',
+				sizes: '180x180',
+				href: '/favicons/apple-touch-icon.png'
+			},
+			{
+				rel: 'icon',
+				type: 'image/png',
+				sizes: '32x32',
+				href: '/favicons/favicon-32x32.png'
+			},
+			{
+				rel: 'icon',
+				type: 'image/png',
+				sizes: '192x192',
+				href: '/favicons/android-chrome-192x192.png'
+			},
+			{
+				rel: 'icon',
+				type: 'image/png',
+				sizes: '16x16',
+				href: '/favicons/favicon-16x16.png'
+			},
 			{ rel: 'manifest', href: '/favicons/manifest.json' },
-			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bd1747' },
+			{
+				rel: 'mask-icon',
+				href: '/favicons/safari-pinned-tab.svg',
+				color: '#bd1747'
+			},
 			{ rel: 'shortcut icon', href: '/favicons/favicon.ico' }
 		]
 	},
 
-	css: [
-		'@/assets/icons/css/icons.css',
-		'@/assets/snickles/snickles.css'
-	],
-
 	/*
-	** Customize the progress-bar color
-	*/
+	 ** Customize the progress-bar color
+	 */
 	loading: { color: '#bb2b4d' },
 
 	/**
@@ -50,6 +83,19 @@ module.exports = {
 		base: '/'
 	},
 
+	/*
+	 ** Global CSS
+	 */
+	css: ['@/assets/icons/css/icons.css', '@/assets/snickles/snickles.css'],
+
+	/*
+	 ** Plugins to load before mounting the App
+	 */
+	plugins: ['~plugins/vue-filters.js', '~plugins/vue-modal.js'],
+
+	/*
+	 ** Minification options for build
+	 */
 	minify: {
 		removeEmptyAttributes: false,
 		collapseWhitespace: true,
@@ -59,44 +105,45 @@ module.exports = {
 		removeStyleLinkTypeAttributes: true
 	},
 
-	/**
-	 * Plugins
-	 */
-	plugins: [
-		'~plugins/vue-filters.js',
-		'~plugins/vue-modal.js'
-	],
-
-	/**
-	 * Modules
+	/*
+	 ** Nuxt.js modules
 	 */
 	modules: [
+		// Doc: https://github.com/nuxt-community/axios-module#usage
+		'@nuxtjs/axios'
+		// Doc: https://www.npmjs.com/package/@nuxtjs/localtunnel
 		// ['@nuxtjs/localtunnel', { subdomain: 'pkfinder' }],
-		'@nuxtjs/manifest'
 	],
 
-	manifest: {
-		name: 'ParkourFinder',
-		lang: 'fr'
-	},
-
-	/**
-	 * Transition
+	/*
+	 ** Axios module configuration
 	 */
-	transition: {
-		name: 'page',
-		mode: 'out-in'
+	axios: {
+		// See https://github.com/nuxt-community/axios-module#options
 	},
 
 	/*
-	** Build configuration
-	*/
+	 ** Proxy module configuration
+	 */
+	proxy: {
+		/*
+		'/api/': {
+			target: 'https://rest.parkourfinder.com',
+			pathRewrite: { '^/api/': '' }
+		}
+		*/
+	},
+
+	/*
+	 ** Build configuration
+	 */
 	build: {
 		/*
-		** Run ESLINT on save
-		*/
-		extend (config, ctx) {
-			if (ctx.dev && ctx.isClient) {
+		 ** You can extend webpack config here
+		 */
+		extend(config, ctx) {
+			// Run ESLint on save
+			if (ctx.isDev && ctx.isClient) {
 				config.module.rules.push({
 					enforce: 'pre',
 					test: /\.(js|vue)$/,
@@ -104,16 +151,10 @@ module.exports = {
 					exclude: /(node_modules)/
 				})
 			}
-		},
+		}
+	},
 
-		postcss: [
-			require('autoprefixer')
-		],
+	postcss: [require('autoprefixer')],
 
-		vendor: [
-			'axios',
-			'moment',
-			'vue-js-modal'
-		]
-	}
+	vendor: ['moment', 'vue-js-modal']
 }

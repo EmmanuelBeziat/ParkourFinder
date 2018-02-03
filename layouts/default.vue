@@ -1,69 +1,53 @@
 <template>
-	<div class="site">
-		<ui-header/>
-		<main class="main">
-			<module-map/>
-			<nuxt/>
-		</main>
-		<ui-footer/>
-		<ui-modales/>
-	</div>
+  <div>
+    <nuxt/>
+  </div>
 </template>
 
-<script>
-import UiHeader from '~/components/ui/Header'
-import UiFooter from '~/components/ui/Footer'
-import UiModales from '~/components/ui/Modales'
-import ModuleMap from '~/components/Map.vue'
-
-export default {
-	components: {
-		UiHeader,
-		UiFooter,
-		UiModales,
-		ModuleMap
-	},
-
-	head: {
-		htmlAttrs: {
-			// lang: this.$store.state.locale
-		}
-	}
-}
-</script>
-
-
-<style lang="stylus">
-@require '~assets/styles/variables.styl'
-@require '~assets/styles/mixins.styl'
-
-*
-*::before
-*::after
-	box-sizing inherit
-
+<style>
 html
-	box-sizing border-box
-
-body
-	margin 0
-	font 400 $font-size-base/1.5 $font-stack-common
-
-.site
-	min-height 100vh
-	display flex
-	flex-direction column
-	position relative
-
-.main
-	flex 1
-	display flex
-	position relative
-
-@require '~assets/styles/helpers.styl'
-@require '~assets/styles/modules/layout.styl'
-@require '~assets/styles/modules/buttons.styl'
-@require '~assets/styles/modules/tooltips.styl'
-@require '~assets/styles/modules/pages-transitions.styl'
-@require '~assets/styles/modules/forms.styl'
+{
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+*, *:before, *:after
+{
+  box-sizing: border-box;
+  margin: 0;
+}
+.button--green
+{
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 10px 30px;
+}
+.button--green:hover
+{
+  color: #fff;
+  background-color: #3b8070;
+}
+.button--grey
+{
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+.button--grey:hover
+{
+  color: #fff;
+  background-color: #35495e;
+}
 </style>
