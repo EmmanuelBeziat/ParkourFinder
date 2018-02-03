@@ -72,6 +72,7 @@ export default {
 			let that = this
 
 			function success (position) {
+				console.log('hop')
 				that.center = that.makeCoords(
 					position.coords.latitude,
 					position.coords.longitude
@@ -84,7 +85,7 @@ export default {
 			}
 
 			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition(success, error)
+				navigator.geolocation.watchPosition(success, error)
 			} else {
 				this.center = { lat: 0, lng: 0 }
 			}
