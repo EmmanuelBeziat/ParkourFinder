@@ -57,6 +57,10 @@ export default {
 	computed: {
 		markers () {
 			return this.$store.state.map.markers
+		},
+
+		position () {
+			return this.$store.state.position.coords
 		}
 	},
 
@@ -72,12 +76,12 @@ export default {
 			let that = this
 
 			function success (position) {
-				console.log('hop')
 				that.center = that.makeCoords(
 					position.coords.latitude,
 					position.coords.longitude
 				)
 				that.zoom = 14
+				that.$store.commit('position/setPosition', position.coords)
 			}
 
 			function error (error) {
