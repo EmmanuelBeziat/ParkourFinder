@@ -55,7 +55,9 @@ export default {
 	},
 
 	computed: {
-		markers () { return this.$store.state.map.markers }
+		markers () {
+			return this.$store.state.map.markers
+		}
 	},
 
 	created () {
@@ -70,7 +72,10 @@ export default {
 			let that = this
 
 			function success (position) {
-				that.center = that.makeCoords(position.coords.latitude, position.coords.longitude)
+				that.center = that.makeCoords(
+					position.coords.latitude,
+					position.coords.longitude
+				)
 				that.zoom = 14
 			}
 
@@ -80,8 +85,7 @@ export default {
 
 			if (process.browser && 'geolocation' in navigator) {
 				navigator.geolocation.getCurrentPosition(success, error)
-			}
-			else {
+			} else {
 				this.center = { lat: 0, lng: 0 }
 			}
 		},

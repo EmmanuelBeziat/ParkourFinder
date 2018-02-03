@@ -7,23 +7,15 @@ module.exports = {
 	},
 	extends: 'standard',
 	// required to lint *.vue files
-	plugins: [
-		'html'
-	],
+	plugins: ['html'],
 	// add your custom rules here
 	rules: {
-		"indent": [
-			"error",
-			"tab"
-		],
-		"no-console": 0,
-		"no-tabs": 0,
-		"no-undef": 0,
-		"brace-style": 0,
-		"comma-dangle": [
-			"error",
-			"only-multiline"
-		],
+		indent: ['error', 'tab'],
+		'no-console': 0,
+		'no-tabs': 0,
+		'no-undef': 0,
+		'brace-style': 0,
+		'comma-dangle': ['error', 'only-multiline']
 	},
 	globals: {}
 }
