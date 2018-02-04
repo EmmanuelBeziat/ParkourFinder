@@ -10,7 +10,7 @@ export const mutations = {
 		state.markers = markers
 	},
 
-	getMap(state, map) {
+	setMap(state, map) {
 		state.map = map
 	}
 }

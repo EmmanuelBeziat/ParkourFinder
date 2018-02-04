@@ -122,16 +122,18 @@ module.exports = {
 		// See https://github.com/nuxt-community/axios-module#options
 	},
 
+	/**
+	 * Variables environment
+	 * https://fr.nuxtjs.org/api/configuration-env/
+	 */
+	env: {
+	},
+
 	/*
 	 ** Proxy module configuration
 	 */
 	proxy: {
-		/*
-		'/api/': {
-			target: 'https://rest.parkourfinder.com',
-			pathRewrite: { '^/api/': '' }
-		}
-		*/
+		// '/spots/': `https://rest.parkourfinder.com`
 	},
 
 	/*

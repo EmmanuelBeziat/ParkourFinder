@@ -74,14 +74,9 @@ export default {
 				}
 			}
 
-			// Comment on atteint la putain de gmap ?!
-			/*
-			let marker = new google.maps.Marker({
-				position: { lat: datas.location.lat, lng: datas.location.lng },
-				map: '???'
-			})
-			*/
+			// let marker = L.marker([datas.location.lat, datas.location.lng]).addTo(mymap);
 
+			/*
 			that.$axios.post(api, datas, headers)
 				.then(res => {
 					that.closeModal()
@@ -89,6 +84,7 @@ export default {
 				.catch(err => {
 					console.error(err.message)
 				})
+			*/
 		},
 
 		formChange (event) {

@@ -82,6 +82,7 @@ export default {
 				)
 				that.zoom = 14
 				that.$store.commit('position/setPosition', position.coords)
+				// that.$store.commit('map/setMap', that.$refs.map)
 			}
 
 			function error (error) {
@@ -109,10 +110,6 @@ export default {
 			// this.center = this.makeCoords(lat, lng)
 			this.$router.push('/spot/' + slug)
 		},
-
-		storeMap () {
-			this.$store.commit('map/getMap', this.$refs.map)
-		}
 	}
 }
 </script>
