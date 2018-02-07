@@ -127,6 +127,9 @@ module.exports = {
 	 * https://fr.nuxtjs.org/api/configuration-env/
 	 */
 	env: {
+		api: {
+			spots: `https://rest.parkourfinder.com/spots`
+		}
 	},
 
 	/*

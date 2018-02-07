@@ -75,7 +75,8 @@ export default {
 			if (process.browser && 'geolocation' in navigator) {
 				navigator.geolocation.getCurrentPosition((position) => {
 					this.getCity(position.coords.latitude, position.coords.longitude).then((datas) => {
-						this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude, city: datas.city, country: datas.country, countryCode: datas.countryCode })
+						this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude })
+						this.$store.commit('position/setInfos', { city: datas.city , country: datas.country, countryCode: datas.countryCode})
 					})
 				}, (error) => {
 					console.log(`Error ${error.code}: ${error.message}`)

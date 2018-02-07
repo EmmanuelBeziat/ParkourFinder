@@ -23,8 +23,6 @@
 </template>
 
 <script>
-const api = 'https://rest.parkourfinder.com/spots'
-
 export default {
 	data () {
 		return {
@@ -60,10 +58,10 @@ export default {
 				title: values.title,
 				description: values.description,
 				location: {
-					city: this.$store.state.position.coords.city,
-					country: this.$store.state.position.coords.country,
-					lat: this.$store.state.position.coords.lat,
-					lng: this.$store.state.position.coords.lng
+					city: that.$store.state.position.infos.city,
+					country: that.$store.state.position.infos.country,
+					lat: that.$store.state.position.coords.lat,
+					lng: that.$store.state.position.coords.lng
 				}
 			}
 
@@ -74,10 +72,14 @@ export default {
 				}
 			}
 
+			that.$store.commit('map/addMarker', datas);
+
+			that.closeModal()
+
 			// let marker = L.marker([datas.location.lat, datas.location.lng]).addTo(mymap);
 
 			/*
-			that.$axios.post(api, datas, headers)
+			that.$axios.post(process.env.api.spots, datas, headers)
 				.then(res => {
 					that.closeModal()
 				})

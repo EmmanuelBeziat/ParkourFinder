@@ -90,7 +90,7 @@ export default {
 			}
 
 			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.watchPosition(success, error)
+				navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true })
 			} else {
 				this.center = { lat: 0, lng: 0 }
 			}
