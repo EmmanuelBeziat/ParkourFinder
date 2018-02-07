@@ -1,6 +1,5 @@
 export const state = () => ({
-	markers: null,
-	map: null
+	markers: null
 })
 
 export const mutations = {
@@ -10,10 +9,6 @@ export const mutations = {
 
 	addMarker(state, marker) {
 		state.markers.push(marker)
-	},
-
-	setMap(state, map) {
-		state.map = map
 	}
 }
 

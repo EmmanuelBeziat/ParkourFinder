@@ -39,6 +39,7 @@ html
 body
 	margin 0
 	font 400 $font-size-base/1.5 $font-stack-common
+	overflow-x hidden
 
 .app
 	min-height 100vh
@@ -57,4 +58,5 @@ body
 @require '~assets/styles/modules/tooltips.styl'
 @require '~assets/styles/modules/pages-transitions.styl'
 @require '~assets/styles/modules/forms.styl'
+@require '~assets/styles/modules/modales.styl'
 </style>

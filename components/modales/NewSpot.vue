@@ -73,8 +73,10 @@ export default {
 			}
 
 			that.$store.commit('map/addMarker', datas);
+			// this.$root.$emit('addMarker', datas)
 
 			that.closeModal()
+
 
 			// let marker = L.marker([datas.location.lat, datas.location.lng]).addTo(mymap);
 

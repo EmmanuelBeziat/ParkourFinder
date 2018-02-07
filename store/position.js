@@ -8,7 +8,7 @@ export const mutations = {
 		state.coords = position
 	},
 
-	setInfos(state, datas) {
-		state.infos = datas
+	setInfos(state, infos) {
+		state.infos = infos
 	}
 }

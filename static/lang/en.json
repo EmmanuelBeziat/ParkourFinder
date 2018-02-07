@@ -12,7 +12,8 @@
 	"about": {
 		"title": "About",
 		"description": "Description about",
-		"author": "Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>"
+		"author": "Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"button": "Close"
 	},
 	"settings": {
 		"title": "Settings",

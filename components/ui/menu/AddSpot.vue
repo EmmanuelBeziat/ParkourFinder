@@ -72,16 +72,11 @@ export default {
 		},
 
 		getCurrentPosition () {
-			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition((position) => {
-					this.getCity(position.coords.latitude, position.coords.longitude).then((datas) => {
-						this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude })
-						this.$store.commit('position/setInfos', { city: datas.city , country: datas.country, countryCode: datas.countryCode})
-					})
-				}, (error) => {
-					console.log(`Error ${error.code}: ${error.message}`)
-				})
-			}
+			const that = this
+			this.getCity(that.$store.state.position.coords.lat, that.$store.state.position.coords.lng).then((datas) => {
+				this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude })
+				this.$store.commit('position/setInfos', { city: datas.city , country: datas.country, countryCode: datas.countryCode})
+			})
 		},
 
 		getCity (lat, lng) {
@@ -136,27 +131,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="stylus">
-@require '~assets/styles/variables.styl'
-@require '~assets/styles/mixins.styl'
-
-.v--modal-box
-	@media (max-width 400px)
-		max-width calc(100vw - 20px)
-		margin auto
-
-.vue-dialog
-	button:focus
-	button:active
-		outline 0
-
-	button:hover
-		background $color-red
-		color $color-white
-
-.vue-dialog-buttons
-	button
-		border-radius 0
-		flex 1
-</style>

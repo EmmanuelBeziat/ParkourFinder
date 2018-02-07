@@ -64,6 +64,13 @@ export default {
 		}
 	},
 
+	mounted () {
+		this.$root.$on('addMarker', marker => {
+			// console.log(L.redraw())
+			// L.marker([marker.location.lat, marker.location.lng]).addTo(this.$refs.map);
+		})
+	},
+
 	created () {
 		this.setCenterMap()
 	},
@@ -90,7 +97,7 @@ export default {
 			}
 
 			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true })
+				navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true })
 			} else {
 				this.center = { lat: 0, lng: 0 }
 			}
