@@ -5,10 +5,6 @@ export const state = () => ({
 export const mutations = {
 	setMarkers(state, markers) {
 		state.markers = markers
-	},
-
-	addMarker(state, marker) {
-		state.markers.push(marker)
 	}
 }
 

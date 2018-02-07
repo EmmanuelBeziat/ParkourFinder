@@ -64,13 +64,6 @@ export default {
 		}
 	},
 
-	mounted () {
-		this.$root.$on('addMarker', marker => {
-			// console.log(L.redraw())
-			// L.marker([marker.location.lat, marker.location.lng]).addTo(this.$refs.map);
-		})
-	},
-
 	created () {
 		this.setCenterMap()
 	},
@@ -89,7 +82,6 @@ export default {
 				)
 				that.zoom = 14
 				that.$store.commit('position/setPosition', position.coords)
-				// that.$store.commit('map/setMap', that.$refs.map)
 			}
 
 			function error (error) {

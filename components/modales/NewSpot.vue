@@ -68,8 +68,6 @@ export default {
 			that.$axios.setHeader('Content-Type', 'application/json')
 			that.$axios.post(process.env.api.spots, datas)
 				.then(res => {
-					// this.$root.$emit('addMarker', datas)
-					// that.$store.commit('map/addMarker', datas)
 					that.$store.dispatch('map/init')
 					that.closeModal()
 				})
