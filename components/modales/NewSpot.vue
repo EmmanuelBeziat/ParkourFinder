@@ -72,23 +72,16 @@ export default {
 				}
 			}
 
-			that.$store.commit('map/addMarker', datas);
-			// this.$root.$emit('addMarker', datas)
-
-			that.closeModal()
-
-
-			// let marker = L.marker([datas.location.lat, datas.location.lng]).addTo(mymap);
-
-			/*
 			that.$axios.post(process.env.api.spots, datas, headers)
 				.then(res => {
+					// this.$root.$emit('addMarker', datas)
+					// that.$store.commit('map/addMarker', datas)
+					that.$store.dispatch('map/init')
 					that.closeModal()
 				})
 				.catch(err => {
 					console.error(err.message)
 				})
-			*/
 		},
 
 		formChange (event) {

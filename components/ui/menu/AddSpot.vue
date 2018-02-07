@@ -73,8 +73,7 @@ export default {
 
 		getCurrentPosition () {
 			const that = this
-			this.getCity(that.$store.state.position.coords.lat, that.$store.state.position.coords.lng).then((datas) => {
-				this.$store.commit('position/setPosition', { lat: position.coords.latitude, lng: position.coords.longitude })
+			this.getCity(that.$store.state.position.coords.latitude, that.$store.state.position.coords.longitude).then((datas) => {
 				this.$store.commit('position/setInfos', { city: datas.city , country: datas.country, countryCode: datas.countryCode})
 			})
 		},
