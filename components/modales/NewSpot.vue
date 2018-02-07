@@ -60,19 +60,13 @@ export default {
 				location: {
 					city: that.$store.state.position.infos.city,
 					country: that.$store.state.position.infos.country,
-					lat: that.$store.state.position.coords.lat,
-					lng: that.$store.state.position.coords.lng
+					lat: that.$store.state.position.coords.latitude,
+					lng: that.$store.state.position.coords.longitude
 				}
 			}
 
-			const headers = {
-				headers: {
-					// Authorization: 'Bearer {token}',
-					'Content-Type': 'application/json'
-				}
-			}
-
-			that.$axios.post(process.env.api.spots, datas, headers)
+			that.$axios.setHeader('Content-Type', 'application/json')
+			that.$axios.post(process.env.api.spots, datas)
 				.then(res => {
 					// this.$root.$emit('addMarker', datas)
 					// that.$store.commit('map/addMarker', datas)
