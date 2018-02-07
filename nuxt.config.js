@@ -79,8 +79,7 @@ module.exports = {
 	 * Router
 	 */
 	router: {
-		linkActiveClass: '-active',
-		base: '/'
+		linkActiveClass: '-active'
 	},
 
 	/*
