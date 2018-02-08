@@ -129,7 +129,8 @@ module.exports = {
 	env: {
 		api: {
 			spots: `https://rest.parkourfinder.com/spots`
-		}
+		},
+		baseUrl: 'https://www.parkourfinder.com' || 'http://localhost:3042'
 	},
 
 	/*
