@@ -1,7 +1,8 @@
 {
 	"name": "parkourfinder",
 	"version": "1.0.0",
-	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
+	"description":
+		"A tiny web app that helps tracers to locate parkour spots around the world",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": true,
 	"repository": "https://github.com/EmmanuelBeziat/parkourfinder.git",
@@ -15,6 +16,7 @@
 		"dev": "nuxt",
 		"build": "nuxt build",
 		"start": "nuxt start",
+		"pm2": "pm2 start ./node_modules/nuxt/bin/nuxt-start -i max --attach",
 		"generate": "nuxt generate",
 		"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
 		"precommit": "npm run lint"
