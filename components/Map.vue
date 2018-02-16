@@ -2,7 +2,7 @@
 	<div class="vue-map-container">
 		<no-ssr>
 			<v-map ref="map" :zoom="zoom" :center="center">
-				<v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+				<v-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></v-tilelayer>
 				<v-marker-cluster :options="clusterOptions">
 					<v-marker
 						v-for="(marker, index) in markers"
