@@ -4,7 +4,7 @@
 
 > A tiny web app that helps tracers to locate parkour spots around the world
 
-** Currently in alpha stage!**
+**Currently in alpha stage!**
 
 ## Changelogs and updates
 

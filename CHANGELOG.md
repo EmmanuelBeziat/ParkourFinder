@@ -1,4 +1,4 @@
-#v0.1.0 (alpha stage)
+# v0.1.0 (alpha stage)
 
 * Successfully load a map with Leaflet (Yay!)
 * Get spots list from REST api
