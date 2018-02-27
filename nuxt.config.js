@@ -1,4 +1,4 @@
-const pkg = require('./package')
+const pkg = require('./package');
 
 module.exports = {
 	mode: 'universal',
@@ -31,7 +31,8 @@ module.exports = {
 				name: 'msapplication-config',
 				content: '/favicons/browserconfig.xml'
 			},
-			{ name: 'theme-color', content: '#bd1747' }
+			{ name: 'theme-color', content: '#bd1747' },
+			{ name: 'robots', content: 'noindex' }
 		],
 		noScript: [
 			{ innerHTML: 'Javascript est requis pour parcourir ce site.' }
@@ -154,7 +155,7 @@ module.exports = {
 					test: /\.(js|vue)$/,
 					loader: 'eslint-loader',
 					exclude: /(node_modules)/
-				})
+				});
 			}
 		}
 	},
@@ -162,4 +163,4 @@ module.exports = {
 	postcss: [require('autoprefixer')],
 
 	vendor: ['moment', 'vue-js-modal']
-}
+};
