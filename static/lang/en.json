@@ -1,18 +1,21 @@
 {
+	"site": {
+		"nav": {
+			"newspot": "Add a spot",
+			"search": "Search",
+			"about": "About",
+			"settings": "Settings"
+		}
+	},
 	"home": {
 		"title": "Home",
 		"description": "Description home"
 	},
-	"header": {
-		"newspot": "Add new spot",
-		"search": "Search",
-		"about": "About",
-		"settings": "Settings"
-	},
 	"about": {
 		"title": "About",
 		"description": "Description about",
-		"author": "Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"author":
+			"Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
 		"button": "Close"
 	},
 	"settings": {
@@ -43,20 +46,15 @@
 		"newspot": {
 			"success": {
 				"title": "Add a new spot",
-				"description": "Geolocation is enabled. You can add a spot right where you stand.",
-				"buttons": [
-					"Add here",
-					"Add manually",
-					"Cancel"
-				]
+				"description":
+					"Geolocation is enabled. You can add a spot right where you stand.",
+				"buttons": ["Add here", "Add manually", "Cancel"]
 			},
 			"error": {
 				"title": "Add a new spot",
-				"description": "Geolocation is disabled. You still can add a spot manually.",
-				"buttons": [
-					"Add a spot",
-					"Cancel"
-				]
+				"description":
+					"Geolocation is disabled. You still can add a spot manually.",
+				"buttons": ["Add a spot", "Cancel"]
 			},
 			"form": {
 				"title": "Add a new spot",
