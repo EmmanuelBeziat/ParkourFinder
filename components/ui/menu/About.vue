@@ -19,12 +19,19 @@ export default {
 	},
 
 	methods: {
-		about() {
+		about () {
 			this.$modal.show('dialog', {
 				title: this.$store.state.lang.about.title,
 				text: this.$store.state.lang.about.author,
-				buttons: [{ title: this.$store.state.lang.about.button }]
+				buttons: [
+					{ title: this.$store.state.lang.about.buttons[0], handler: () => { reportBug() } },
+					{ title: this.$store.state.lang.about.buttons[1] }
+				]
 			});
+		},
+
+		reportBug () {
+			location.href = 'https://github.com/EmmanuelBeziat/parkourfinder/issues'
 		}
 	}
 };
