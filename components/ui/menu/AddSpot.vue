@@ -44,7 +44,7 @@ export default {
 					text: that.$store.state.lang.modal.newspot.success.description,
 					buttons: [
 						{ title: that.$store.state.lang.modal.newspot.success.buttons[0], handler: () => { this.setMarkerAuto() } },
-						{ title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { setMarkerManually() } },
+						{ title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { this.setMarkerManually() } },
 						{ title: that.$store.state.lang.modal.newspot.success.buttons[2] }
 					]
 				})
@@ -55,15 +55,15 @@ export default {
 					title: that.$store.state.lang.modal.newspot.error.title,
 					text: that.$store.state.lang.modal.newspot.error.description,
 					buttons: [
-						{ title: that.$store.state.lang.modal.newspot.error.buttons[0], handler: () => { setMarkerManually() } },
+						{ title: that.$store.state.lang.modal.newspot.error.buttons[0], handler: () => { this.setMarkerManually() } },
 						{ title: that.$store.state.lang.modal.newspot.error.buttons[1] }
 					]
 				})
 			}
+		},
 
-			function setMarkerManually () {
-				alert('manuel')
-			}
+		setMarkerManually () {
+			alert('manuel')
 		},
 
 		setMarkerAuto () {

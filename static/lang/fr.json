@@ -42,6 +42,9 @@
 			"name": "Groupe :"
 		}
 	},
+	"map": {
+		"toggle": "Activer/désactiver le suivi"
+	},
 	"modal": {
 		"newspot": {
 			"success": {

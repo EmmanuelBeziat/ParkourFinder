@@ -1,8 +1,7 @@
 {
 	"name": "parkourfinder",
 	"version": "1.0.0",
-	"description":
-		"A tiny web app that helps tracers to locate parkour spots around the world",
+	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": true,
 	"repository": "https://github.com/EmmanuelBeziat/parkourfinder.git",
@@ -32,7 +31,7 @@
 		"vue2-google-maps": "^0.8.4",
 		"vue2-leaflet": "^0.0.58",
 		"vue2-leaflet-markercluster": "^1.3.0",
-		"vue2-leaflet-tracksymbol": "^1.0.8"
+		"vue2-leaflet-tracksymbol": "^1.0.10"
 	},
 	"devDependencies": {
 		"@nuxtjs/localtunnel": "^1.0.1",

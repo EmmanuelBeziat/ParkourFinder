@@ -1,7 +1,7 @@
 <template>
 	<div class="vue-map-container">
 		<no-ssr>
-			<v-map ref="map" :zoom="zoom" :center="center">
+			<v-map ref="map" :zoom="zoom" :center="center" v-on:l-zoomstart="toggleWatchPosition(true)" v-on:l-movestart="toggleWatchPosition(true)">
 				<v-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></v-tilelayer>
 				<v-marker-cluster :options="clusterOptions">
 					<v-marker
@@ -11,19 +11,26 @@
 						v-on:l-click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)">
 					</v-marker>
 				</v-marker-cluster>
+				<!-- <v-ais :lat-lng="center" :options="trackerOptions"></v-ais> -->
 			</v-map>
 		</no-ssr>
+
+		<button v-if="!followUser" class="btn btn--icon btn--map" @click="toggleWatchPosition()">
+			<i class="icon-target"></i><span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
+		</button>
 	</div>
 </template>
 
 <script>
 let Vue2Leaflet = {}
 let Vue2LeafletMarkerCluster = {}
+let Vue2LeafletTracksymbol = {}
 
 if (process.browser) {
 	L = require('leaflet')
 	Vue2Leaflet = require('vue2-leaflet')
 	Vue2LeafletMarkerCluster = require('vue2-leaflet-markercluster')
+	Vue2LeafletTracksymbol = require('vue2-leaflet-tracksymbol')
 
 	// eslint-disable-next-line
 	delete L.Icon.Default.prototype._getIconUrl
@@ -40,7 +47,8 @@ export default {
 	data () {
 		return {
 			center: [42.6991088, 2.8694822],
-			zoom: 5,
+			zoom: 6,
+			followUser: false,
 			clusterOptions: {
 				disableClusteringAtZoom: 13
 			}
@@ -49,6 +57,7 @@ export default {
 
 	components: {
 		'v-map': Vue2Leaflet.Map,
+		'v-ais': Vue2LeafletTracksymbol,
 		'v-marker': Vue2Leaflet.Marker,
 		'v-tilelayer': Vue2Leaflet.TileLayer,
 		'v-marker-cluster': Vue2LeafletMarkerCluster
@@ -89,7 +98,12 @@ export default {
 			}
 
 			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true })
+				if (this.followUser) {
+					navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true })
+				}
+				else {
+					navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true })
+				}
 			} else {
 				this.center = { lat: 0, lng: 0 }
 			}
@@ -109,6 +123,19 @@ export default {
 			// this.center = this.makeCoords(lat, lng)
 			this.$router.push('/spot/' + slug)
 		},
+
+		/**
+		 * Toggle watch position
+		 */
+		toggleWatchPosition (value = false) {
+			if (value) {
+				this.followUser = false
+			}
+			else {
+				this.followUser = this.followUser === true ? false : true
+			}
+			this.setCenterMap()
+		}
 	}
 }
 </script>
@@ -123,4 +150,10 @@ export default {
 .vue-map-container
 	flex 1
 	width 100vw
+
+.leaflet-top
+.leaflet-bottom
+.leaflet-right
+.leaflet-left
+	z-index 400
 </style>
