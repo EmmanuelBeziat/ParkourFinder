@@ -35,7 +35,8 @@
 			"close": "Close",
 			"take_picture": "Take a picture",
 			"upload_picture": "Uplaod a picture",
-			"edit": "Edit informations"
+			"edit": "Edit informations",
+			"remove": "Remove"
 		},
 		"infos": {
 			"created": "Created:",
@@ -69,6 +70,13 @@
 				"validate": "Validate",
 				"cancel": "Cancel"
 			}
+		},
+		"removespot": {
+			"title": "Remove a spot",
+			"text":
+				"You are about to remove a spot. This action can’t be undone. Please don’t remove a spot without a valid reason.",
+			"confirm": "Remove",
+			"cancel": "Cancel"
 		}
 	},
 	"error": {

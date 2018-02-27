@@ -32,7 +32,8 @@
 			"close": "Fermer",
 			"take_picture": "Prendre une photo",
 			"upload_picture": "Envoyer une photo",
-			"edit": "Modifier les informations"
+			"edit": "Modifier les informations",
+			"remove": "Supprimer"
 		},
 		"infos": {
 			"created": "Création :",
@@ -69,6 +70,13 @@
 				"validate": "Valider",
 				"cancel": "Annuler"
 			}
+		},
+		"removespot": {
+			"title": "Supprimer un spot",
+			"text":
+				"Vous allez supprimer ce spot. Cette action est irréversible ! Ne supprimez pas un spot sans raison.",
+			"confirm": "Supprimer",
+			"cancel": "Annuler"
 		}
 	},
 	"error": {

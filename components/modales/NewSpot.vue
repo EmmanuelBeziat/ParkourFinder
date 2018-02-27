@@ -1,7 +1,7 @@
 <template>
 	<modal class="vue-dialog" name="new-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
-			<h3 class="dialog-c-title">{{ this.$store.state.lang.modal.newspot.form.title }}</h3>
+			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ this.$store.state.lang.modal.newspot.form.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">

@@ -31,7 +31,7 @@ export default {
 		},
 
 		reportBug () {
-			location.href = 'https://github.com/EmmanuelBeziat/parkourfinder/issues'
+			location.href = 'https://github.com/EmmanuelBeziat/parkourfinder/issues/new'
 		}
 	}
 };

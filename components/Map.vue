@@ -49,9 +49,11 @@ export default {
 			center: [42.6991088, 2.8694822],
 			zoom: 6,
 			followUser: false,
+			watcher: null,
 			clusterOptions: {
 				disableClusteringAtZoom: 13
-			}
+			},
+			trackerOptions: {}
 		}
 	},
 
@@ -99,9 +101,11 @@ export default {
 
 			if (process.browser && 'geolocation' in navigator) {
 				if (this.followUser) {
-					navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true })
+					this.watcher = navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true })
 				}
 				else {
+					navigator.geolocation.clearWatch(this.watcher)
+					this.watcher = null
 					navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true })
 				}
 			} else {

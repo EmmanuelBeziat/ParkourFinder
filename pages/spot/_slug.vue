@@ -25,6 +25,10 @@
 					<i class="icon-edit" aria-hidden="true"></i>
 					<span class="sr-only">{{ this.$store.state.lang.spot.actions.edit }}</span>
 				</button>
+				<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.spot.actions.remove" @click="removeSpot()">
+					<i class="icon-cancel" aria-hidden="true"></i>
+					<span class="sr-only">{{ this.$store.state.lang.spot.actions.remove }}</span>
+				</button>
 
 				<input ref="fileUploader" type="file" accept="image/*;capture=camera" class="sr-only" @change="changeFileUpload()">
 			</div>
@@ -107,12 +111,37 @@ export default {
 
 		editSpot () {
 			alert('Not available')
+		},
+
+		removeSpot () {
+			this.$modal.show('dialog', {
+				title: this.$store.state.lang.modal.removespot.title,
+				text: this.$store.state.lang.modal.removespot.author,
+				buttons: [
+					{ title: this.$store.state.lang.modal.removespot.cancel },
+					{ title: this.$store.state.lang.modal.removespot.confirm, handler: () => { this.confirmRemoveSpot() } }
+				]
+			});
+		},
+
+		confirmRemoveSpot () {
+			const that = this
+			that.$axios.setHeader('Content-Type', 'application/json')
+			that.$axios.delete(`${process.env.api.spots}/${this.spot._id}`)
+				.then(res => {
+					that.$store.dispatch('map/init')
+					that.$modal.hide('dialog')
+					that.$router.push('/')
+				})
+				.catch(err => {
+					alert(err.message)
+				})
 		}
 	},
 
 	head () {
 		return {
-			title: this.spot.name,
+			title:`${this.spot.title}, ${this.spot.location.city} (${this.spot.location.country})`,
 			htmlAttrs: {
 				lang: this.$store.state.locale
 			}
@@ -187,4 +216,8 @@ export default {
 .spot-gallery-img
 	display block
 	max-width 100%
+
+.v--modal-overlay
+	z-index 2000
+
 </style>

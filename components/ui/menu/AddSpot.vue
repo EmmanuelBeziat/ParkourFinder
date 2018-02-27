@@ -39,15 +39,18 @@ export default {
 
 			if (this.geolocation) {
 				that.getCurrentPosition()
+				/*
 				that.$modal.show('dialog', {
 					title: that.$store.state.lang.modal.newspot.success.title,
 					text: that.$store.state.lang.modal.newspot.success.description,
 					buttons: [
 						{ title: that.$store.state.lang.modal.newspot.success.buttons[0], handler: () => { this.setMarkerAuto() } },
-						{ title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { this.setMarkerManually() } },
+						// { title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { this.setMarkerManually() } },
 						{ title: that.$store.state.lang.modal.newspot.success.buttons[2] }
 					]
 				})
+				*/
+				that.setMarkerAuto()
 			}
 
 			else {
