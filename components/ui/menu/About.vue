@@ -8,26 +8,24 @@
 export default {
 	name: 'About',
 
-	data () {
+	data() {
 		return {
 			modal: {}
-		}
+		};
 	},
 
-	created () {
-		this.modal = this.$modal
+	created() {
+		this.modal = this.$modal;
 	},
 
 	methods: {
-		about () {
+		about() {
 			this.$modal.show('dialog', {
 				title: this.$store.state.lang.about.title,
 				text: this.$store.state.lang.about.author,
-				buttons: [
-					{ title: this.$store.state.lang.about.button }
-				]
-			})
+				buttons: [{ title: this.$store.state.lang.about.button }]
+			});
 		}
 	}
-}
+};
 </script>
