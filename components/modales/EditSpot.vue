@@ -1,16 +1,16 @@
 <template>
-	<modal class="vue-dialog" name="new-spot" :delay="250" height="auto" :clickToClose="false">
+	<modal class="vue-dialog" name="edit-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
 			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ this.$store.state.lang.modal.spot.add.form.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
-						<label for="spot-add-title" class="sr-only">{{ this.$store.state.lang.modal.spot.add.form.name }}</label>
-						<input type="text" id="spot-add-title" class="form-control" :placeholder="this.$store.state.lang.modal.spot.add.form.name" required ref="title" @change="formFieldChange">
+						<label for="spot-edit-title" class="sr-only">{{ this.$store.state.lang.modal.spot.add.form.name }}</label>
+						<input type="text" id="spot-edit-title" class="form-control" :placeholder="this.$store.state.lang.modal.spot.add.form.name" required ref="title" @change="formFieldChange">
 					</div>
 					<div class="form-group">
-						<label for="spot-add-description" class="sr-only">{{ this.$store.state.lang.modal.spot.add.form.description }}</label>
-						<textarea id="spot-add-description" class="form-control" :placeholder="this.$store.state.lang.modal.spot.add.form.description" required ref="desc" @change="formFieldChange"></textarea>
+						<label for="spot-edit-description" class="sr-only">{{ this.$store.state.lang.modal.spot.add.form.description }}</label>
+						<textarea id="spot-edit-description" class="form-control" :placeholder="this.$store.state.lang.modal.spot.add.form.description" required ref="desc" @change="formFieldChange"></textarea>
 					</div>
 				</form>
 			</div>
@@ -33,7 +33,7 @@ export default {
 
 	methods: {
 		closeModal() {
-			this.$modal.hide('new-spot');
+			this.$modal.hide('edit-spot');
 		},
 
 		/**
@@ -44,31 +44,26 @@ export default {
 			const that = this;
 			const datas = {
 				title: values.title,
-				description: values.description,
-				location: {
-					city: that.$store.state.position.infos.city,
-					country: that.$store.state.position.infos.country,
-					lat: that.$store.state.position.coords.latitude,
-					lng: that.$store.state.position.coords.longitude
-				}
+				description: values.description
 			};
 
 			that.$axios.setHeader('Content-Type', 'application/json');
 			that.$axios
-				.post(process.env.api.spots, datas)
+				.put(`${process.env.api.spots}/${this.spot._id}`, datas)
 				.then(res => {
 					that.$store.dispatch('map/init');
 					that.closeModal();
 				})
 				.catch(error => {
 					this.$modal.show('dialog', {
-						title: this.$store.state.lang.modal.spot.add.error.title,
-						text: `${this.$store.state.lang.modal.spot.add.error.text}\n\n${
+						title: this.$store.state.lang.modal.spot.edit.error.title,
+						text: `${this.$store.state.lang.modal.spot.edit.error.text}\n\n${
 							error.code
 						}: ${error.message}`,
 						buttons: [
 							{
-								title: this.$store.state.lang.modal.spot.add.error.buttons.close
+								title: this.$store.state.lang.modal.spot.edit.error.buttons
+									.close
 							}
 						]
 					});

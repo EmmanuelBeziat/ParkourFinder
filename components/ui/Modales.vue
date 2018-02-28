@@ -3,15 +3,18 @@
 		<v-dialog/>
 
 		<modale-new-spot/>
+		<modale-edit-spot/>
 	</div>
 </template>
 
 <script>
-import modaleNewSpot from '~/components/modales/NewSpot'
+import modaleNewSpot from '~/components/modales/NewSpot';
+import modaleEditSpot from '~/components/modales/EditSpot';
 
 export default {
 	components: {
-		modaleNewSpot
+		modaleNewSpot,
+		modaleEditSpot
 	}
-}
+};
 </script>
