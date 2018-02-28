@@ -15,6 +15,7 @@
 				</form>
 			</div>
 		</div>
+
 		<div class="vue-dialog-buttons">
 			<button class="vue-dialog-button" @click="closeModal"><i class="icon-left-open" aria-hidden="true"></i> {{ this.$store.state.lang.modal.newspot.form.cancel }}</button>
 			<button class="vue-dialog-button" @click="submitForm">{{ this.$store.state.lang.modal.newspot.form.validate }} <i class="icon-right-open" aria-hidden="true"></i></button>
@@ -31,27 +32,9 @@ export default {
 	},
 
 	methods: {
-		closeModal () {
-			this.$modal.hide('new-spot')
-		},
-
-		submitForm () {
-			const title = this.$refs.title
-			const desc = this.$refs.desc
-
-			this.formValidate(title)
-			this.formValidate(desc)
-
-			if (this.formErrors) {
-				return
-			}
-
-			this.sendDatas({
-				title: title.value,
-				description: desc.value
-			})
-		},
-
+		/**
+		 * Send datas from the form and the store to the API
+		 */
 		sendDatas (values) {
 			const that = this
 			const datas = {
@@ -69,17 +52,24 @@ export default {
 			that.$axios.post(process.env.api.spots, datas)
 				.then(res => {
 					that.$store.dispatch('map/init')
-					that.closeModal()
+					that.$modal.hide('new-spot')
 				})
 				.catch(err => {
 					console.error(err.message)
 				})
 		},
 
+		/**
+		 * Call for form validation when detecting changes in the form fields
+		 */
 		formChange (event) {
 			this.formValidate(event.target)
 		},
 
+		/**
+		 * Form validation
+		 * Check for errors
+		 */
 		formValidate (field) {
 			if (field.value === '' || field.value === undefined) {
 				field.classList.add('has-error')
@@ -89,6 +79,27 @@ export default {
 				field.classList.remove('has-error')
 				this.formErrors = false
 			}
+		},
+
+		/**
+		 * Form submission
+		 * Check for validation
+		 */
+		submitForm () {
+			const title = this.$refs.title
+			const desc = this.$refs.desc
+
+			this.formValidate(title)
+			this.formValidate(desc)
+
+			if (this.formErrors) {
+				return
+			}
+
+			this.sendDatas({
+				title: title.value,
+				description: desc.value
+			})
 		}
 	}
 }
