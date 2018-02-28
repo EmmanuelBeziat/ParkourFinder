@@ -14,60 +14,13 @@ module.exports = {
 		title: '',
 		titleTemplate: 'ParkourFinder — %s',
 		meta: [
-			{ charset: 'utf-8' },
-			{
-				name: 'viewport',
-				content:
-					'width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no'
-			},
-			{
-				hid: 'description',
-				name: 'description',
-				content: 'A tiny app to help locate and share parkour spots'
-			},
-			{ name: 'apple-mobile-web-app-title', content: 'ParkourFinder' },
-			{ name: 'application-name', content: 'ParkourFinder' },
-			{
-				name: 'msapplication-config',
-				content: '/favicons/browserconfig.xml'
-			},
-			{ name: 'theme-color', content: '#bd1747' },
 			{ name: 'robots', content: 'noindex' }
 		],
 		noScript: [
 			{ innerHTML: 'Javascript est requis pour parcourir ce site.' }
 		],
 		link: [
-			{
-				rel: 'apple-touch-icon',
-				sizes: '180x180',
-				href: '/favicons/apple-touch-icon.png'
-			},
-			{
-				rel: 'icon',
-				type: 'image/png',
-				sizes: '32x32',
-				href: '/favicons/favicon-32x32.png'
-			},
-			{
-				rel: 'icon',
-				type: 'image/png',
-				sizes: '192x192',
-				href: '/favicons/android-chrome-192x192.png'
-			},
-			{
-				rel: 'icon',
-				type: 'image/png',
-				sizes: '16x16',
-				href: '/favicons/favicon-16x16.png'
-			},
-			{ rel: 'manifest', href: '/favicons/manifest.json' },
-			{
-				rel: 'mask-icon',
-				href: '/favicons/safari-pinned-tab.svg',
-				color: '#bd1747'
-			},
-			{ rel: 'shortcut icon', href: '/favicons/favicon.ico' }
+			// { rel: 'shortcut icon', href: '/favicons/favicon.ico' }
 		]
 	},
 
@@ -111,9 +64,13 @@ module.exports = {
 	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
-		'@nuxtjs/axios'
+		'@nuxtjs/axios',
 		// Doc: https://www.npmjs.com/package/@nuxtjs/localtunnel
 		// ['@nuxtjs/localtunnel', { subdomain: 'pkfinder' }],
+		// Doc: https://pwa.nuxtjs.org/
+		['@nuxtjs/pwa', {}],
+		// Doc: https://github.com/nuxt-community/modules/tree/master/packages/browserconfig
+		['@nuxtjs/browserconfig', { TileColor: '#bb2b4d' }]
 	],
 
 	/*
@@ -121,6 +78,15 @@ module.exports = {
 	 */
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
+	},
+
+	/*
+	 ** PWA manifest module configuration
+	 */
+	manifest: {
+		name: 'ParkourFinder',
+		theme_color: '#bb2b4d',
+		background_color: '#bb2b4d'
 	},
 
 	/**
