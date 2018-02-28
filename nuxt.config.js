@@ -7,20 +7,47 @@ module.exports = {
 	 ** Headers of the page
 	 */
 	head: {
-		htmlAttrs: {
-			lang: 'fr',
-			prefix: 'og: http://ogp.me/ns#'
-		},
+		htmlAttrs: { lang: 'en', prefix: 'og: http://ogp.me/ns#' },
 		title: '',
 		titleTemplate: 'ParkourFinder — %s',
 		meta: [
-			{ name: 'robots', content: 'noindex' }
+			{ charset: 'utf-8' },
+			{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+			{ name: 'description', content: pkg.description, hid: 'description' },
+			{ name: 'robots', content: 'noindex' },
+			{ name: 'application-name', content: 'Parkour Finder' },
+			{ name: 'format-detection', content: 'telephone-no' },
+
+			// Manifest
+			{ name: 'google-site-verification', content: '' },
+			{ name: 'theme-color', content: '#bd1747' },
+			{ name: 'mobile-web-app-capable', content: 'yes' },
+			{ name: 'msapplication-TileColor', content: '#bb2b4d' },
+
+			{ property: 'og:title', content: 'ParkourFinder', hid: 'og:title' },
+			{ property: 'og:site_name', content: 'ParkourFinder' },
+			{ property: 'og:type', content: 'website' },
+			{ property: 'og:url', content: 'https://www.parkourfinder.com', hid: 'og:url' },
+			{ property: 'og:locale:alternate', content: 'en' },
+			{ property: 'og:image', content: '', hid: 'og:image' },
+			{ property: 'og:description', content: pkg.description, hid: 'og:description' },
+
+			{ name: 'apple-mobile-web-app-capable', content: 'yes' },
+			{ name: 'apple-mobile-web-app-status-bar-style', content: 'white' },
+			{ name: 'apple-mobile-web-app-title', content: 'Parkour Finder' },
 		],
 		noScript: [
 			{ innerHTML: 'Javascript est requis pour parcourir ce site.' }
 		],
 		link: [
-			// { rel: 'shortcut icon', href: '/favicons/favicon.ico' }
+			{ rel: 'shortcut icon', href: '/favicons/favicon.ico' },
+			{ rel: 'apple-favicons-icon', sizes: '180x100', href: '/favicons/apple-favicons-icon.png' },
+			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bb2b4d' },
+			{ rel: 'icon', href: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+			{ rel: 'icon', href: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bd1747' },
+			{ rel: 'manifest', href: '/favicons/manifest.json' },
+			{ rel: 'profile', href: 'http://gmpg.org/xfn/11' }
 		]
 	},
 
@@ -68,7 +95,7 @@ module.exports = {
 		// Doc: https://www.npmjs.com/package/@nuxtjs/localtunnel
 		// ['@nuxtjs/localtunnel', { subdomain: 'pkfinder' }],
 		// Doc: https://pwa.nuxtjs.org/
-		['@nuxtjs/pwa', {}],
+		// ['@nuxtjs/pwa', {}],
 		// Doc: https://github.com/nuxt-community/modules/tree/master/packages/browserconfig
 		['@nuxtjs/browserconfig', { TileColor: '#bb2b4d' }]
 	],
@@ -83,11 +110,12 @@ module.exports = {
 	/*
 	 ** PWA manifest module configuration
 	 */
+	/*
 	manifest: {
 		name: 'ParkourFinder',
 		theme_color: '#bb2b4d',
 		background_color: '#bb2b4d'
-	},
+	}, */
 
 	/**
 	 * Variables environment
