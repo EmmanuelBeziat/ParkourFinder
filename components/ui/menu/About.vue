@@ -8,14 +8,14 @@
 export default {
 	name: 'About',
 
-	data() {
+	data () {
 		return {
 			modal: {}
-		};
+		}
 	},
 
-	created() {
-		this.modal = this.$modal;
+	created () {
+		this.modal = this.$modal
 	},
 
 	methods: {
@@ -27,12 +27,12 @@ export default {
 					{ title: this.$store.state.lang.about.buttons.bug, handler: () => { this.reportBug() } },
 					{ title: this.$store.state.lang.about.buttons.close }
 				]
-			});
+			})
 		},
 
 		reportBug () {
 			location.href = 'https://github.com/EmmanuelBeziat/parkourfinder/issues/new'
 		}
 	}
-};
+}
 </script>

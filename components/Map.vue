@@ -4,11 +4,7 @@
 			<v-map ref="map" :zoom="mapZoomLevel" :center="mapPosition" v-on:l-zoomstart="toggleWatchPosition(true)" v-on:l-movestart="toggleWatchPosition(true)">
 				<v-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></v-tilelayer>
 				<v-marker-cluster :options="clusterOptions">
-					<v-marker
-						v-for="(marker, index) in markers"
-						:key="index"
-						:lat-lng="makeCoords(marker.location.lat, marker.location.lng)"
-						v-on:l-click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)">
+					<v-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" v-on:l-click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)">
 					</v-marker>
 				</v-marker-cluster>
 				<!-- <v-ais :lat-lng="mapPosition" :options="trackerOptions"></v-ais> -->
@@ -16,7 +12,8 @@
 		</no-ssr>
 
 		<button v-if="!followUserPosition" class="btn btn--icon btn--map" @click="toggleWatchPosition()">
-			<i class="icon-target"></i><span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
+			<i class="icon-target"></i>
+			<span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
 		</button>
 	</div>
 </template>
@@ -113,7 +110,7 @@ export default {
 					buttons: [
 						{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
 					]
-				});
+				})
 			}
 
 			/**
@@ -175,9 +172,8 @@ export default {
 <style lang="stylus">
 @require '~assets/styles/variables.styl'
 @require '~assets/styles/mixins.styl'
-
-@import "leaflet/dist/leaflet.css"
-@import "leaflet.markercluster/dist/MarkerCluster.Default.css"
+@import 'leaflet/dist/leaflet.css'
+@import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
 .vue-map-container
 	flex 1

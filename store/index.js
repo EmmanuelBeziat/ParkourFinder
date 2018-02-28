@@ -4,17 +4,17 @@ export const state = () => ({
 })
 
 export const mutations = {
-	setLocale(state, locale) {
+	setLocale (state, locale) {
 		state.locale = locale
 	},
 
-	setLang(state, lang) {
+	setLang (state, lang) {
 		state.lang = lang
 	}
 }
 
 export const actions = {
-	async nuxtServerInit({ dispatch, commit, state }, { req }) {
+	async nuxtServerInit ({ dispatch, commit, state }, { req }) {
 		await dispatch('map/init')
 		// await dispatch('position/init')
 

@@ -1,3 +1,7 @@
+# v0.1.1 (alpha stage)
+
+* Ability to edit spots name and description
+
 # v0.1.0 (alpha stage)
 
 * Successfully load a map with Leaflet (Yay!)

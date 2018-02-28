@@ -73,12 +73,9 @@
 				"form": {
 					"title": "Ajouter un nouveau spot",
 					"name": "Nom du spot",
-					"team": "Team régulière",
 					"description": "Description du spot",
-					"city": "Ville",
-					"country": "Pays",
 					"buttons": {
-						"confirm": "Supprimer",
+						"confirm": "Ajouter",
 						"cancel": "Annuler"
 					}
 				}
@@ -110,8 +107,29 @@
 			},
 			"edit": {
 				"action": {},
-				"success": {},
-				"error": {}
+				"success": {
+					"title": "Spot modifié !",
+					"text": "Les informations du spot ont été modifiées avec succès.",
+					"buttons": {
+						"close": "Fermer"
+					}
+				},
+				"error": {
+					"title": "Une erreur est survenue",
+					"text": "Impossible de modifier le contenu de ce spot",
+					"buttons": {
+						"close": "Fermer"
+					}
+				},
+				"form": {
+					"title": "Modifier un spot",
+					"name": "Nom du spot",
+					"description": "Description du spot",
+					"buttons": {
+						"confirm": "Valider",
+						"cancel": "Annuler"
+					}
+				}
 			},
 			"geolocation": {
 				"error": {

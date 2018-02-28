@@ -4,11 +4,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-	setPosition(state, position) {
+	setPosition (state, position) {
 		state.coords = position
 	},
 
-	setInfos(state, infos) {
+	setInfos (state, infos) {
 		state.infos = infos
 	}
 }

@@ -25,23 +25,23 @@
 
 <script>
 export default {
-	data() {
+	data () {
 		return {
 			formHasErrors: false
-		};
+		}
 	},
 
 	methods: {
-		closeModal() {
-			this.$modal.hide('new-spot');
+		closeModal () {
+			this.$modal.hide('new-spot')
 		},
 
 		/**
 		 * Send datas from the form and the store to the API
 		 * @param values object { title, description, location { city, country, lat, lng } }
 		 */
-		sendDatasToAPI(values) {
-			const that = this;
+		sendDatasToAPI (values) {
+			const that = this
 			const datas = {
 				title: values.title,
 				description: values.description,
@@ -51,35 +51,33 @@ export default {
 					lat: that.$store.state.position.coords.latitude,
 					lng: that.$store.state.position.coords.longitude
 				}
-			};
+			}
 
-			that.$axios.setHeader('Content-Type', 'application/json');
+			that.$axios.setHeader('Content-Type', 'application/json')
 			that.$axios
 				.post(process.env.api.spots, datas)
 				.then(res => {
-					that.$store.dispatch('map/init');
-					that.closeModal();
+					that.$store.dispatch('map/init')
+					that.closeModal()
 				})
 				.catch(error => {
 					this.$modal.show('dialog', {
 						title: this.$store.state.lang.modal.spot.add.error.title,
-						text: `${this.$store.state.lang.modal.spot.add.error.text}\n\n${
-							error.code
-						}: ${error.message}`,
+						text: `${this.$store.state.lang.modal.spot.add.error.text}\n\n${error.code}: ${error.message}`,
 						buttons: [
 							{
 								title: this.$store.state.lang.modal.spot.add.error.buttons.close
 							}
 						]
-					});
-				});
+					})
+				})
 		},
 
 		/**
 		 * Call for form validation when detecting changes in the form fields
 		 */
-		formFieldChange(event) {
-			this.formFieldValidation(event.target);
+		formFieldChange (event) {
+			this.formFieldValidation(event.target)
 		},
 
 		/**
@@ -87,13 +85,13 @@ export default {
 		 * Check for errors
 		 * @param field DOM object — current field being checked
 		 */
-		formFieldValidation(field) {
+		formFieldValidation (field) {
 			if (field.value === '' || field.value === undefined) {
-				field.classList.add('has-error');
-				this.formHasErrors = true;
+				field.classList.add('has-error')
+				this.formHasErrors = true
 			} else {
-				field.classList.remove('has-error');
-				this.formHasErrors = false;
+				field.classList.remove('has-error')
+				this.formHasErrors = false
 			}
 		},
 
@@ -101,22 +99,22 @@ export default {
 		 * Form submission
 		 * Check for validation
 		 */
-		submitForm() {
-			const title = this.$refs.title;
-			const desc = this.$refs.desc;
+		submitForm () {
+			const title = this.$refs.title
+			const desc = this.$refs.desc
 
-			this.formFieldValidation(title);
-			this.formFieldValidation(desc);
+			this.formFieldValidation(title)
+			this.formFieldValidation(desc)
 
 			if (this.formHasErrors) {
-				return;
+				return
 			}
 
 			this.sendDatasToAPI({
 				title: title.value,
 				description: desc.value
-			});
+			})
 		}
 	}
-};
+}
 </script>

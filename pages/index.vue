@@ -6,6 +6,10 @@
 export default {
 	name: 'Home',
 
+	async fetch ({ store, app }) {
+		store.commit('spot/setCurrentSpot', null)
+	},
+
 	head () {
 		return {
 			title: this.$store.state.lang.home.title,

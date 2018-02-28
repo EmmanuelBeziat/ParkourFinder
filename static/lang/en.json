@@ -73,12 +73,9 @@
 				"form": {
 					"title": "Add a new spot",
 					"name": "Spot name",
-					"team": "Usual team",
 					"description": "Spot description",
-					"city": "City",
-					"country": "Country",
 					"buttons": {
-						"confirm": "Remove",
+						"confirm": "Add",
 						"cancel": "Cancel"
 					}
 				}
@@ -110,8 +107,29 @@
 			},
 			"edit": {
 				"action": {},
-				"success": {},
-				"error": {}
+				"success": {
+					"title": "Spot edited!",
+					"text": "The informations of this spot have been successfully edited.",
+					"buttons": {
+						"close": "Close"
+					}
+				},
+				"error": {
+					"title": "An error occured",
+					"text": "Unable to edit the informations of this spot.",
+					"buttons": {
+						"close": "Close"
+					}
+				},
+				"form": {
+					"title": "Edit a spot",
+					"name": "Spot name",
+					"description": "Spot description",
+					"buttons": {
+						"confirm": "Confirm",
+						"cancel": "Cancel"
+					}
+				}
 			},
 			"geolocation": {
 				"error": {
