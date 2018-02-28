@@ -33,7 +33,7 @@ export default {
 
 	methods: {
 		closeModal () {
-			that.$modal.hide('new-spot')
+			this.$modal.hide('new-spot')
 		},
 
 		/**
