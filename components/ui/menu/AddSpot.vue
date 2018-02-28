@@ -81,6 +81,12 @@ export default {
 			})
 		},
 
+		/**
+		 * Get informations about city and country from Google Maps
+		 * @param lat latitude coord
+		 * @param lng longitude coord
+		 * TODO: Change google map for a lighter service
+		 */
 		getCity (lat, lng) {
 			return new Promise((resolve, reject) => {
 				let latlng = new google.maps.LatLng(lat, lng)
