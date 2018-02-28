@@ -6,11 +6,11 @@
 				<form>
 					<div class="form-group">
 						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.name }}</label>
-						<input type="text" id="nom" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.name" required ref="title" @change="formChange">
+						<input type="text" id="nom" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.name" required ref="title" @change="formFieldChange">
 					</div>
 					<div class="form-group">
 						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.description }}</label>
-						<textarea id="description" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.description" required ref="desc" @change="formChange"></textarea>
+						<textarea id="description" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.description" required ref="desc" @change="formFieldChange"></textarea>
 					</div>
 				</form>
 			</div>
@@ -27,19 +27,20 @@
 export default {
 	data () {
 		return {
-			formErrors: false
+			formHasErrors: false
 		}
 	},
 
 	methods: {
 		/**
 		 * Send datas from the form and the store to the API
+		 * @param datas object { title, description, location { city, country, lat, lng } }
 		 */
-		sendDatas (values) {
+		sendDatasToAPI (datas) {
 			const that = this
 			const datas = {
-				title: values.title,
-				description: values.description,
+				title: datas.title,
+				description: datas.description,
 				location: {
 					city: that.$store.state.position.infos.city,
 					country: that.$store.state.position.infos.country,
@@ -54,30 +55,37 @@ export default {
 					that.$store.dispatch('map/init')
 					that.$modal.hide('new-spot')
 				})
-				.catch(err => {
-					console.error(err.message)
+				.catch(error => {
+					this.$modal.show('dialog', {
+						title: this.$store.state.lang.modal.error.title,
+						text: `${this.$store.state.lang.modal.error.text}\n\n${error.code}: ${error.message}`,
+						buttons: [
+							{ title: this.$store.state.lang.modal.error.buttons[0] }
+						]
+					});
 				})
 		},
 
 		/**
 		 * Call for form validation when detecting changes in the form fields
 		 */
-		formChange (event) {
-			this.formValidate(event.target)
+		formFieldChange (event) {
+			this.formFieldValidation(event.target)
 		},
 
 		/**
 		 * Form validation
 		 * Check for errors
+		 * @param field DOM object — current field being checked
 		 */
-		formValidate (field) {
+		formFieldValidation (field) {
 			if (field.value === '' || field.value === undefined) {
 				field.classList.add('has-error')
-				this.formErrors = true
+				this.formHasErrors = true
 			}
 			else {
 				field.classList.remove('has-error')
-				this.formErrors = false
+				this.formHasErrors = false
 			}
 		},
 
@@ -89,14 +97,14 @@ export default {
 			const title = this.$refs.title
 			const desc = this.$refs.desc
 
-			this.formValidate(title)
-			this.formValidate(desc)
+			this.formFieldValidation(title)
+			this.formFieldValidation(desc)
 
-			if (this.formErrors) {
+			if (this.formHasErrors) {
 				return
 			}
 
-			this.sendDatas({
+			this.sendDatasToAPI({
 				title: title.value,
 				description: desc.value
 			})

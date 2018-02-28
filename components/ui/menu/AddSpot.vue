@@ -1,5 +1,5 @@
 <template>
-	<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.site.nav.newspot" @click="newspot()">
+	<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.site.nav.newspot" @click="addSpotManager()">
 		<i class="icon-location" aria-hidden="true"></i><div class="sr-only">{{ this.$store.state.lang.site.nav.newspot }}</div>
 	</button>
 </template>
@@ -34,7 +34,10 @@ export default {
 	},
 
 	methods: {
-		newspot () {
+		/**
+		 * Select the method to add a new spot
+		 */
+		addSpotManager () {
 			const that = this
 
 			if (this.geolocation) {
@@ -44,13 +47,13 @@ export default {
 					title: that.$store.state.lang.modal.newspot.success.title,
 					text: that.$store.state.lang.modal.newspot.success.description,
 					buttons: [
-						{ title: that.$store.state.lang.modal.newspot.success.buttons[0], handler: () => { this.setMarkerAuto() } },
-						// { title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { this.setMarkerManually() } },
+						{ title: that.$store.state.lang.modal.newspot.success.buttons[0], handler: () => { this.addSpotWithGeolocation() } },
+						// { title: that.$store.state.lang.modal.newspot.success.buttons[1], handler: () => { this.addSpotManually() } },
 						{ title: that.$store.state.lang.modal.newspot.success.buttons[2] }
 					]
 				})
 				*/
-				that.setMarkerAuto()
+				that.addSpotWithGeolocation()
 			}
 
 			else {
@@ -58,26 +61,32 @@ export default {
 					title: that.$store.state.lang.modal.newspot.error.title,
 					text: that.$store.state.lang.modal.newspot.error.description,
 					buttons: [
-						{ title: that.$store.state.lang.modal.newspot.error.buttons[0], handler: () => { this.setMarkerManually() } },
+						{ title: that.$store.state.lang.modal.newspot.error.buttons[0], handler: () => { this.addSpotManually() } },
 						{ title: that.$store.state.lang.modal.newspot.error.buttons[1] }
 					]
 				})
 			}
 		},
 
-		setMarkerManually () {
-			alert('manuel')
+		addSpotManually () {
+			// TODO
 		},
 
-		setMarkerAuto () {
+		/**
+		 * Add a spot with automated location information
+		 */
+		addSpotWithGeolocation () {
 			this.$modal.hide('dialog')
 			this.$modal.show('new-spot')
 		},
 
+		/**
+		 * Store the current position informations
+		 */
 		getCurrentPosition () {
 			const that = this
-			this.getCity(that.$store.state.position.coords.latitude, that.$store.state.position.coords.longitude).then((datas) => {
-				this.$store.commit('position/setInfos', { city: datas.city , country: datas.country, countryCode: datas.countryCode})
+			this.getGeocodingInformations(that.$store.state.position.coords.latitude, that.$store.state.position.coords.longitude).then((datas) => {
+				this.$store.commit('position/setInfos', { city: datas.city , country: datas.country, countryCode: datas.countryCode })
 			})
 		},
 
@@ -85,9 +94,10 @@ export default {
 		 * Get informations about city and country from Google Maps
 		 * @param lat latitude coord
 		 * @param lng longitude coord
+		 * @returns promise
 		 * TODO: Change google map for a lighter service
 		 */
-		getCity (lat, lng) {
+		getGeocodingInformations (lat, lng) {
 			return new Promise((resolve, reject) => {
 				let latlng = new google.maps.LatLng(lat, lng)
 				new google.maps.Geocoder().geocode({ 'latLng': latlng }, function (results, status) {

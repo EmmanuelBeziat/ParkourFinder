@@ -77,6 +77,12 @@
 				"Vous allez supprimer ce spot. Cette action est irréversible ! Ne supprimez pas un spot sans raison.",
 			"confirm": "Supprimer",
 			"cancel": "Annuler"
+		},
+		"error": {
+			"title": "Erreur !",
+			"text":
+				"L’action demandée n’a pas pu être effectuée. Si le problème persiste, merci de signaler l’erreur.",
+			"buttons": ["Fermer"]
 		}
 	},
 	"error": {

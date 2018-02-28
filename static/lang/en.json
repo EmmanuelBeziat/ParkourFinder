@@ -77,6 +77,12 @@
 				"You are about to remove a spot. This action can’t be undone. Please don’t remove a spot without a valid reason.",
 			"confirm": "Remove",
 			"cancel": "Cancel"
+		},
+		"error": {
+			"title": "Error!",
+			"text":
+				"The requestion action could not be done. If the issue persist, please report it.",
+			"buttons": ["Close"]
 		}
 	},
 	"error": {
