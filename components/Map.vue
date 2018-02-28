@@ -108,10 +108,10 @@ export default {
 			 */
 			function geolocationError (error) {
 				this.$modal.show('dialog', {
-					title: this.$store.state.lang.modal.error.title,
-					text: `${this.$store.state.lang.modal.error.text}\n\n${error.code}: ${error.message}`,
+					title: this.$store.state.lang.modal.spot.geolocation.error.title,
+					text: `${this.$store.state.lang.modal.spot.geolocation.error.text}\n\n${error.code}: ${error.message}`,
 					buttons: [
-						{ title: this.$store.state.lang.modal.error.buttons[0] }
+						{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
 					]
 				});
 			}

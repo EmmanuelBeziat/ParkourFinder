@@ -100,7 +100,7 @@ export default {
 
 			data.append('image', fileUploader.files[0])
 
-			axios.put('/images', data, config)
+			this.$axios.put('/images', data, config)
 				.then(function (res) {
 					console.log(res.data)
 				})
@@ -115,11 +115,11 @@ export default {
 
 		removeSpot () {
 			this.$modal.show('dialog', {
-				title: this.$store.state.lang.modal.removespot.title,
-				text: this.$store.state.lang.modal.removespot.author,
+				title: this.$store.state.lang.modal.spot.remove.action.title,
+				text: this.$store.state.lang.modal.spot.remove.action.author,
 				buttons: [
-					{ title: this.$store.state.lang.modal.removespot.cancel },
-					{ title: this.$store.state.lang.modal.removespot.confirm, handler: () => { this.confirmRemoveSpot() } }
+					{ title: this.$store.state.lang.modal.spot.remove.action.buttons.cancel },
+					{ title: this.$store.state.lang.modal.spot.remove.action.buttons.confirm, handler: () => { this.confirmRemoveSpot() } }
 				]
 			});
 		},
@@ -132,9 +132,22 @@ export default {
 					that.$store.dispatch('map/init')
 					that.$modal.hide('dialog')
 					that.$router.push('/')
+					that.$modal.show('dialog', {
+						title: that.$store.state.lang.modal.spot.delete.success.title,
+						text: that.$store.state.lang.modal.spot.delete.success.text,
+						buttons: [
+							{ title: that.$store.state.lang.modal.spot.delete.success.buttons.close }
+						]
+					});
 				})
-				.catch(err => {
-					alert(err.message)
+				.catch(error => {
+					that.$modal.show('dialog', {
+						title: that.$store.state.lang.modal.spot.delete.error.title,
+						text: `${that.$store.state.lang.modal.error.text}\n\n${error.code}: ${error.message}`,
+						buttons: [
+							{ title: that.$store.state.lang.modal.spot.delete.error.buttons.close }
+						]
+					});
 				})
 		}
 	},

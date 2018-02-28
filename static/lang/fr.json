@@ -16,7 +16,10 @@
 		"description": "Description à propos",
 		"author":
 			"Codé avec <span class=\"heart\">♥</span> par <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Rendez-vous sur Github</a> pour rapporter un bug, faire des suggestions, dire merci — Suivez-moi sur <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
-		"buttons": ["Signaler un bug", "Fermer"]
+		"buttons": {
+			"bug": "Signaler un bug",
+			"close": "Fermer"
+		}
 	},
 	"settings": {
 		"title": "Paramètres",
@@ -47,42 +50,86 @@
 		"toggle": "Activer/désactiver le suivi"
 	},
 	"modal": {
-		"newspot": {
-			"success": {
-				"title": "Ajouter un nouveau spot",
-				"description":
-					"La géolocalisation est active. Vous pouvez ajouter un spot là où vous vous tenez.",
-				"buttons": ["Ajouter ici", "Ajouter manuellement", "Annuler"]
+		"spot": {
+			"add": {
+				"success": {
+					"title": "Ajouter un nouveau spot",
+					"description":
+						"La géolocalisation est active. Vous pouvez ajouter un spot là où vous vous tenez.",
+					"buttons": {
+						"confirm": "Ajouter ici",
+						"cancel": "Annuler"
+					}
+				},
+				"error": {
+					"title": "Ajouter un nouveau spot",
+					"description":
+						"La géolocalisation n’est pas activée. Vous pouvez toujours ajouter un spot manuellement.",
+					"buttons": {
+						"confirm": "Ajouter un spot",
+						"cancel": "Annuler"
+					}
+				},
+				"form": {
+					"title": "Ajouter un nouveau spot",
+					"name": "Nom du spot",
+					"team": "Team régulière",
+					"description": "Description du spot",
+					"city": "Ville",
+					"country": "Pays",
+					"buttons": {
+						"confirm": "Supprimer",
+						"cancel": "Annuler"
+					}
+				}
 			},
-			"error": {
-				"title": "Ajouter un nouveau spot",
-				"description":
-					"La géolocalisation n’est pas activée. Vous pouvez toujours ajouter un spot manuellement.",
-				"buttons": ["Ajouter un spot", "Annuler"]
+			"remove": {
+				"action": {
+					"title": "Supprimer un spot",
+					"text":
+						"Vous allez supprimer ce spot. Cette action est irréversible ! Ne supprimez pas un spot sans raison.",
+					"buttons": {
+						"confirm": "Supprimer",
+						"cancel": "Annuler"
+					}
+				},
+				"success": {
+					"title": "C’est fait !",
+					"text": "Le spot a bien été supprimé.",
+					"buttons": {
+						"close": "Fermer"
+					}
+				},
+				"error": {
+					"title": "Une erreur est survenue",
+					"text": "Le spot n’a pas pu être supprimé.",
+					"buttons": {
+						"close": "Fermer"
+					}
+				}
 			},
-			"form": {
-				"title": "Ajouter un nouveau spot",
-				"name": "Nom du spot",
-				"team": "Team régulière",
-				"description": "Description du spot",
-				"city": "Ville",
-				"country": "Pays",
-				"validate": "Valider",
-				"cancel": "Annuler"
+			"edit": {
+				"action": {},
+				"success": {},
+				"error": {}
+			},
+			"geolocation": {
+				"error": {
+					"title": "Géolocalisation inactive",
+					"text": "Impossible d’utiliser la géolocalisation.",
+					"buttons": {
+						"close": "Fermer"
+					}
+				}
 			}
-		},
-		"removespot": {
-			"title": "Supprimer un spot",
-			"text":
-				"Vous allez supprimer ce spot. Cette action est irréversible ! Ne supprimez pas un spot sans raison.",
-			"confirm": "Supprimer",
-			"cancel": "Annuler"
 		},
 		"error": {
 			"title": "Erreur !",
 			"text":
 				"L’action demandée n’a pas pu être effectuée. Si le problème persiste, merci de signaler l’erreur.",
-			"buttons": ["Fermer"]
+			"buttons": {
+				"close": "Fermer"
+			}
 		}
 	},
 	"error": {

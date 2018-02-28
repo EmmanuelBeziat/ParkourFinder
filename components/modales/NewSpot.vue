@@ -1,24 +1,24 @@
 <template>
 	<modal class="vue-dialog" name="new-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
-			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ this.$store.state.lang.modal.newspot.form.title }}</h3>
+			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ this.$store.state.lang.modal.spot.add.form.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
-						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.name }}</label>
-						<input type="text" id="nom" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.name" required ref="title" @change="formFieldChange">
+						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.spot.add.form.name }}</label>
+						<input type="text" id="nom" class="form-control" :placeholder="this.$store.state.lang.modal.spot.add.form.name" required ref="title" @change="formFieldChange">
 					</div>
 					<div class="form-group">
-						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.newspot.form.description }}</label>
-						<textarea id="description" class="form-control" :placeholder="this.$store.state.lang.modal.newspot.form.description" required ref="desc" @change="formFieldChange"></textarea>
+						<label for="nom" class="sr-only">{{ this.$store.state.lang.modal.spot.add.form.description }}</label>
+						<textarea id="description" class="form-control" :placeholder="this.$store.state.lang.modal.spot.add.form.description" required ref="desc" @change="formFieldChange"></textarea>
 					</div>
 				</form>
 			</div>
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<button class="vue-dialog-button" @click="closeModal"><i class="icon-left-open" aria-hidden="true"></i> {{ this.$store.state.lang.modal.newspot.form.cancel }}</button>
-			<button class="vue-dialog-button" @click="submitForm">{{ this.$store.state.lang.modal.newspot.form.validate }} <i class="icon-right-open" aria-hidden="true"></i></button>
+			<button class="vue-dialog-button" @click="closeModal"><i class="icon-left-open" aria-hidden="true"></i> {{ this.$store.state.lang.modal.spot.add.form.buttons.cancel }}</button>
+			<button class="vue-dialog-button" @click="submitForm">{{ this.$store.state.lang.modal.spot.add.form.buttons.confirm }} <i class="icon-right-open" aria-hidden="true"></i></button>
 		</div>
 	</modal>
 </template>
@@ -32,15 +32,19 @@ export default {
 	},
 
 	methods: {
+		closeModal () {
+			that.$modal.hide('new-spot')
+		},
+
 		/**
 		 * Send datas from the form and the store to the API
-		 * @param datas object { title, description, location { city, country, lat, lng } }
+		 * @param values object { title, description, location { city, country, lat, lng } }
 		 */
-		sendDatasToAPI (datas) {
+		sendDatasToAPI (values) {
 			const that = this
 			const datas = {
-				title: datas.title,
-				description: datas.description,
+				title: values.title,
+				description: values.description,
 				location: {
 					city: that.$store.state.position.infos.city,
 					country: that.$store.state.position.infos.country,
@@ -53,14 +57,14 @@ export default {
 			that.$axios.post(process.env.api.spots, datas)
 				.then(res => {
 					that.$store.dispatch('map/init')
-					that.$modal.hide('new-spot')
+					that.closeModal()
 				})
 				.catch(error => {
 					this.$modal.show('dialog', {
-						title: this.$store.state.lang.modal.error.title,
-						text: `${this.$store.state.lang.modal.error.text}\n\n${error.code}: ${error.message}`,
+						title: this.$store.state.lang.modal.spot.add.error.title,
+						text: `${this.$store.state.lang.modal.spot.add.error.text}\n\n${error.code}: ${error.message}`,
 						buttons: [
-							{ title: this.$store.state.lang.modal.error.buttons[0] }
+							{ title: this.$store.state.lang.modal.spot.add.error.buttons.close }
 						]
 					});
 				})
