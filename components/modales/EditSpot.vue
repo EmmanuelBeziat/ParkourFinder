@@ -2,7 +2,7 @@
 	<modal v-if="spot !== null" class="vue-dialog" name="edit-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
 			<h3 class="dialog-c-title">
-				<i class="icon-location" aria-hidden="true"></i>{{ this.$store.state.lang.modal.spot.edit.form.title }}</h3>
+				<i class="icon-edit" aria-hidden="true"></i>{{ this.$store.state.lang.modal.spot.edit.form.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
