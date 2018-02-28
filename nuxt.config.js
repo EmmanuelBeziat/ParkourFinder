@@ -40,13 +40,13 @@ module.exports = {
 			{ innerHTML: 'Javascript est requis pour parcourir ce site.' }
 		],
 		link: [
-			{ rel: 'shortcut icon', href: '/favicons/favicon.ico' },
-			{ rel: 'apple-favicons-icon', sizes: '180x100', href: '/favicons/apple-favicons-icon.png' },
-			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bb2b4d' },
-			{ rel: 'icon', href: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-			{ rel: 'icon', href: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bd1747' },
+			{ rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/apple-touch-icon.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicons/favicon-32x32.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicons/android-chrome-192x192.png' },
+			{ rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicons/favicon-16x16.png' },
 			{ rel: 'manifest', href: '/favicons/manifest.json' },
+			{ rel: 'mask-icon', href: '/favicons/safari-pinned-tab.svg', color: '#bd1747' },
+			{ rel: 'shortcut icon', href: '/favicons/favicon.ico' },
 			{ rel: 'profile', href: 'http://gmpg.org/xfn/11' }
 		]
 	},
