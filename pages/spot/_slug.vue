@@ -86,15 +86,24 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * update the store witht the current consulted spot
+		 */
 		setCurrentSpot () {
 			this.$store.commit('spot/setCurrentSpot', this.spot)
 		},
 
+		/**
+		 * ask for upload picture
+		 */
 		uploadPicture () {
 			const fileUploader = this.$refs.fileUploader
 			fileUploader.click()
 		},
 
+		/**
+		 * Prepare image content for upload
+		 */
 		changeFileUpload () {
 			const fileUploader = this.$refs.fileUploader
 			let data = new FormData()
@@ -123,10 +132,16 @@ export default {
 				})
 		},
 
+		/**
+		 * Call for edit modal
+		 */
 		editSpot () {
 			this.$modal.show('edit-spot')
 		},
 
+		/**
+		 * show confirmation popin when remove is asked
+		 */
 		removeSpot () {
 			this.$modal.show('dialog', {
 				title: this.$store.state.lang.modal.spot.remove.action.title,
@@ -145,6 +160,9 @@ export default {
 			})
 		},
 
+		/**
+		 * Remove spot from API
+		 */
 		confirmRemoveSpot () {
 			const that = this
 			that.$axios.setHeader('Content-Type', 'application/json')
@@ -153,15 +171,6 @@ export default {
 					that.$store.dispatch('map/init')
 					that.$modal.hide('dialog')
 					that.$router.push('/')
-					that.$modal.show('dialog', {
-						title: that.$store.state.lang.modal.spot.delete.success.title,
-						text: that.$store.state.lang.modal.spot.delete.success.text,
-						buttons: [
-							{
-								title: that.$store.state.lang.modal.spot.delete.success.buttons.close
-							}
-						]
-					})
 				})
 				.catch(error => {
 					that.$modal.show('dialog', {
