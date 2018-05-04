@@ -2,7 +2,7 @@
 	<header class="header">
 		<div class="container-fluid flex">
 			<h1 class="header-title">
-				<nuxt-link to="/">Parkour<span>Finder</span></nuxt-link>
+				<nuxt-link to="/">Parkour<span>Finder</span><span class="version-stage">alpha</span></nuxt-link>
 			</h1>
 
 			<ui-menu/>
@@ -58,6 +58,10 @@ export default {
 		display inline-block
 		transform translateY(0.225em)
 
+	.version-stage
+		font 400 rem(12px)/1 $font-stack-common
+		transform translateY(6px) rotate(8deg)
+		display inline-block
 
 .header-actions
 	margin-left auto

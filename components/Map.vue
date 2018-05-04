@@ -4,7 +4,7 @@
 			<l-map ref="map" :zoom="mapZoomLevel" :center="mapPosition" @zoomstart="toggleWatchPosition(true)" @movestart="toggleWatchPosition(true)">
 				<l-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tilelayer>
 				<l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" @click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)"></l-marker>
-				<!-- <v-ais :lat-lng="mapPosition" :options="trackerOptions"></v-ais> -->
+				<!-- <l-ais :lat-lng="mapPosition" :options="trackerOptions"></l-ais> -->
 			</l-map>
 		</no-ssr>
 
@@ -20,7 +20,7 @@
  * Leaflet can only be loaded on client side
  */
 let V2L = {}
-let V2LMarkerCluster = {}
+// let V2LMarkerCluster = {}
 let V2LTracksymbol = {}
 
 if (process.browser) {
@@ -57,7 +57,7 @@ export default {
 
 	components: {
 		'l-map': V2L.LMap,
-		'v-ais': V2LTracksymbol,
+		'l-ais': V2LTracksymbol,
 		'l-marker': V2L.LMarker,
 		'l-tilelayer': V2L.LTileLayer,
 		// 'l-marker-cluster': V2LMarkerCluster
