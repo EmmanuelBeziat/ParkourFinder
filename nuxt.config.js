@@ -14,12 +14,11 @@ module.exports = {
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
 			{ name: 'description', content: pkg.description, hid: 'description' },
-			{ name: 'robots', content: 'noindex' },
 			{ name: 'application-name', content: 'Parkour Finder' },
 			{ name: 'format-detection', content: 'telephone-no' },
 
 			// Manifest
-			{ name: 'google-site-verification', content: '' },
+			{ name: 'google-site-verification', content: 'ftvkmQUTo3mElVv0FrEpFlnhpZZjyyPVEv49HAOua6w' },
 			{ name: 'theme-color', content: '#bd1747' },
 			{ name: 'mobile-web-app-capable', content: 'yes' },
 			{ name: 'msapplication-TileColor', content: '#bb2b4d' },

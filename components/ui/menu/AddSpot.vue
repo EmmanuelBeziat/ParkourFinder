@@ -6,13 +6,6 @@
 
 <script>
 import Vue from 'vue'
-import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
-Vue.use(VueGoogleMaps, {
-	load: {
-		key: 'AIzaSyDsALDNDN2jhM6JwLP39aVo3rnPyXw-C5A',
-		librairies: 'places'
-	}
-})
 
 export default {
 	name: 'AddSpot',
@@ -84,8 +77,10 @@ export default {
 		 * Store the current position informations
 		 */
 		getCurrentPosition () {
-			const that = this
-			this.getGeocodingInformations(that.$store.state.position.coords.latitude, that.$store.state.position.coords.longitude).then((datas) => {
+			const lat = this.$store.state.position.coords.latitude
+			const lng = this.$store.state.position.coords.longitude
+
+			this.getGeocodingInformations(lat, lng).then((datas) => {
 				this.$store.commit('position/setInfos', {
 					city: datas.city,
 					country: datas.country,
@@ -103,49 +98,24 @@ export default {
 		 */
 		getGeocodingInformations (lat, lng) {
 			return new Promise((resolve, reject) => {
-				let latlng = new google.maps.LatLng(lat, lng)
-				new google.maps.Geocoder().geocode({ 'latLng': latlng }, function (results, status) {
-					if (status === google.maps.GeocoderStatus.OK) {
-						if (results[1]) {
-							let country = null
-							let countryCode = null
-							let city = null
-							let c
-							let lc
-							let component
-
-							for (let r = 0, rl = results.length; r < rl; r += 1) {
-								let result = results[r]
-
-								if (!city && result.types[0] === 'locality') {
-									for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
-										component = result.address_components[c]
-
-										if (component.types[0] === 'locality') {
-											city = component.long_name
-											break
-										}
-									}
-								}
-								else if (!country && result.types[0] === 'country') {
-									country = result.address_components[0].long_name
-									countryCode = result.address_components[0].short_name
-								}
-
-								if (city && country) {
-									break
-								}
-							}
-
-							resolve({
-								city: city,
-								country: country,
-								countryCode: countryCode
-							})
-						}
-						else {
-							reject(google.maps.GeocoderStatus)
-						}
+				this.$axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`).then((res) => {
+					if (res.data.status === 200) {
+						resolve({
+							city: res.data.address.county,
+							country: res.data.address.country,
+							countryCode: res.data.address.country_code
+							/*
+							cityDistrict: res.data.address.city_district // pais 13e arrondissement
+							suburbs: res.data.address.suburbs // quartier de la gare
+							postcode: res.data.address.postcode
+							service: res.data.address.service // aire de la lozère
+							state: res.data.address.state // occitanie
+							neighbourhood: res.data.address.state // residence du park
+							*/
+						})
+					}
+					else {
+						reject(res.data.status)
 					}
 				})
 			})

@@ -1,14 +1,11 @@
 <template>
 	<div class="vue-map-container">
 		<no-ssr>
-			<v-map ref="map" :zoom="mapZoomLevel" :center="mapPosition" v-on:l-zoomstart="toggleWatchPosition(true)" v-on:l-movestart="toggleWatchPosition(true)">
-				<v-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></v-tilelayer>
-				<v-marker-cluster :options="clusterOptions">
-					<v-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" v-on:l-click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)">
-					</v-marker>
-				</v-marker-cluster>
+			<l-map ref="map" :zoom="mapZoomLevel" :center="mapPosition" @zoomstart="toggleWatchPosition(true)" @movestart="toggleWatchPosition(true)">
+				<l-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tilelayer>
+				<l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" @click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)"></l-marker>
 				<!-- <v-ais :lat-lng="mapPosition" :options="trackerOptions"></v-ais> -->
-			</v-map>
+			</l-map>
 		</no-ssr>
 
 		<button v-if="!followUserPosition" class="btn btn--icon btn--map" @click="toggleWatchPosition()">
@@ -22,15 +19,15 @@
 /**
  * Leaflet can only be loaded on client side
  */
-let Vue2Leaflet = {}
-let Vue2LeafletMarkerCluster = {}
-let Vue2LeafletTracksymbol = {}
+let V2L = {}
+let V2LMarkerCluster = {}
+let V2LTracksymbol = {}
 
 if (process.browser) {
 	L = require('leaflet')
-	Vue2Leaflet = require('vue2-leaflet')
-	Vue2LeafletMarkerCluster = require('vue2-leaflet-markercluster')
-	Vue2LeafletTracksymbol = require('vue2-leaflet-tracksymbol')
+	V2L = require('vue2-leaflet')
+	// V2LMarkerCluster = require('vue2-leaflet-markercluster')
+	V2LTracksymbol = require('vue2-leaflet-tracksymbol')
 
 	// eslint-disable-next-line
 	delete L.Icon.Default.prototype._getIconUrl
@@ -59,11 +56,11 @@ export default {
 	},
 
 	components: {
-		'v-map': Vue2Leaflet.Map,
-		'v-ais': Vue2LeafletTracksymbol,
-		'v-marker': Vue2Leaflet.Marker,
-		'v-tilelayer': Vue2Leaflet.TileLayer,
-		'v-marker-cluster': Vue2LeafletMarkerCluster
+		'l-map': V2L.LMap,
+		'v-ais': V2LTracksymbol,
+		'l-marker': V2L.LMarker,
+		'l-tilelayer': V2L.LTileLayer,
+		// 'l-marker-cluster': V2LMarkerCluster
 	},
 
 	computed: {
