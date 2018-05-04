@@ -84,40 +84,63 @@ export default {
 				this.$store.commit('position/setInfos', {
 					city: datas.city,
 					country: datas.country,
-					countryCode: datas.countryCode
+					countryCode: datas.countryCode,
+					complementary: datas.complementary
 				})
 			})
 		},
 
 		/**
-		 * Get informations about city and country from Google Maps
+		 * Get informations about city and country from OpenStretmaps via Nomatim
 		 * @param lat latitude coord
 		 * @param lng longitude coord
 		 * @returns promise
-		 * TODO: Change google map for a lighter service
 		 */
 		getGeocodingInformations (lat, lng) {
 			return new Promise((resolve, reject) => {
-				this.$axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`).then((res) => {
-					if (res.data.status === 200) {
+				this.$axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`).then(res => {
+					if (res.status === 200) {
+						let complementary = []
+						let city = null
+
+						if (res.data.address.service !== undefined) complementary.push(res.data.address.service)
+						if (res.data.address.road !== undefined) complementary.push(res.data.address.road)
+						if (res.data.address.suburb !== undefined) complementary.push(res.data.address.suburb)
+						if (res.data.address.city_district !== undefined) complementary.push(res.data.address.city_district)
+						if (res.data.address.neighbourhood !== undefined) complementary.push(res.data.address.neighbourhood)
+						if (res.data.address.village !== undefined) complementary.push(res.data.address.village)
+						if (res.data.address.town !== undefined) complementary.push(res.data.address.town)
+						if (res.data.address.city !== undefined) complementary.push(res.data.address.city)
+						if (res.data.address.state !== undefined) complementary.push(res.data.address.state)
+						if (res.data.address.country !== undefined) complementary.push(res.data.address.country)
+
+						if (res.data.address.city !== undefined) {
+							city = res.data.address.city
+						}
+						else if (res.data.address.town !== undefined) {
+							city = res.data.address.town
+						}
+						else if (res.data.address.village !== undefined) {
+							city = res.data.address.village
+						}
+						else {
+							city = res.data.address.county
+						}
+
 						resolve({
-							city: res.data.address.county,
+							city: city,
 							country: res.data.address.country,
-							countryCode: res.data.address.country_code
-							/*
-							cityDistrict: res.data.address.city_district // pais 13e arrondissement
-							suburbs: res.data.address.suburbs // quartier de la gare
-							postcode: res.data.address.postcode
-							service: res.data.address.service // aire de la lozère
-							state: res.data.address.state // occitanie
-							neighbourhood: res.data.address.state // residence du park
-							*/
+							countryCode: res.data.address.country_code,
+							complementary: complementary.join(', ')
 						})
 					}
 					else {
-						reject(res.data.status)
+						reject(res.status)
 					}
 				})
+					.catch(error => {
+						reject(error)
+					})
 			})
 		}
 	}

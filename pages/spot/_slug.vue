@@ -6,6 +6,9 @@
 				<i class="icon-cancel" aria-hidden="true"></i>
 				<span class="sr-only">Close</span>
 			</nuxt-link>
+			<div class="spot-location-infos" v-if="spot.location.complementary">
+				<i class="icon-location" aria-hidden="true"></i> {{ spot.location.complementary }}
+			</div>
 		</header>
 
 		<div class="spot-body">
@@ -225,10 +228,13 @@ export default {
 		min-width rem(320px)
 		max-width rem(980px)
 
+.spot-header
+	margin-bottom 1rem
+
 .spot-title
-	margin 0
+	margin 0 0 10px
 	color $color-red
-	font 400 $font-size-heading-1 / 1.25 $font-stack-heading
+	font 400 $font-size-heading-1 / 1 $font-stack-heading
 
 .btn.spot-close
 	position absolute
@@ -236,6 +242,10 @@ export default {
 	top 1rem
 	padding 0
 	font-size $font-size-heading-3
+
+.spot-location-infos
+	margin-bottom 1rem
+	font-style italic
 
 .spot-complementary
 	padding-top 1rem

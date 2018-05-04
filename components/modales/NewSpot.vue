@@ -49,7 +49,8 @@ export default {
 					city: that.$store.state.position.infos.city,
 					country: that.$store.state.position.infos.country,
 					lat: that.$store.state.position.coords.latitude,
-					lng: that.$store.state.position.coords.longitude
+					lng: that.$store.state.position.coords.longitude,
+					complementary: that.$store.state.position.infos.complementary
 				}
 			}
 

@@ -9,7 +9,7 @@ module.exports = {
 	head: {
 		htmlAttrs: { lang: 'en', prefix: 'og: http://ogp.me/ns#' },
 		title: '',
-		titleTemplate: 'ParkourFinder (alpha) — %s',
+		titleTemplate: `ParkourFinder (alpha v${pkg.version}) — %s`,
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
