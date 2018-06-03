@@ -3,9 +3,9 @@ const pkg = require('./package');
 module.exports = {
 	mode: 'universal',
 
-	buildDir: '../nuxt',
+	buildDir: '../site',
 	build: {
-		publicPath: '../nuxt/dist/'
+		publicPath: '../site/dist/'
 	},
 
 	/*
