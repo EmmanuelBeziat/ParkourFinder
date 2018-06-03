@@ -3,6 +3,11 @@ const pkg = require('./package');
 module.exports = {
 	mode: 'universal',
 
+	buildDir: '_nuxt',
+	build: {
+		publicPath: '/_nuxt/dist/'
+	},
+
 	/*
 	 ** Headers of the page
 	 */
