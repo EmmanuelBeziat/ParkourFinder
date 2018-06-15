@@ -1,17 +1,17 @@
 <template>
 	<div class="vue-map-container">
 		<no-ssr>
-			<l-map ref="map" :zoom="mapZoomLevel" :center="mapPosition" @zoomstart="toggleWatchPosition(true)" @movestart="toggleWatchPosition(true)">
-				<l-tilelayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tilelayer>
+			<l-map ref="map" :zoom="mapZoomLevel" :center="mapPositionStart" @zoomstart="toggleWatchPosition(true)" @movestart="toggleWatchPosition(true)">
+				<l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
 				<l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" @click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)"></l-marker>
-				<!-- <l-ais :lat-lng="mapPosition" :options="trackerOptions"></l-ais> -->
+				<!-- <l-ais :lat-lng="currentPosition" :options="trackerOptions"></l-ais> -->
 			</l-map>
 		</no-ssr>
 
-		<button v-if="!followUserPosition" class="btn btn--icon btn--map" @click="toggleWatchPosition()">
+		<!-- <button v-if="!followUserPosition" class="btn btn--icon btn--map" @click="toggleWatchPosition()">
 			<i class="icon-target"></i>
 			<span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
-		</button>
+		</button> -->
 	</div>
 </template>
 
@@ -19,14 +19,16 @@
 /**
  * Leaflet can only be loaded on client side
  */
+
+/*
 let V2L = {}
-// let V2LMarkerCluster = {}
+let V2LMarkerCluster = {}
 let V2LTracksymbol = {}
 
 if (process.browser) {
 	L = require('leaflet')
 	V2L = require('vue2-leaflet')
-	// V2LMarkerCluster = require('vue2-leaflet-markercluster')
+	 V2LMarkerCluster = require('vue2-leaflet-markercluster')
 	V2LTracksymbol = require('vue2-leaflet-tracksymbol')
 
 	// eslint-disable-next-line
@@ -39,29 +41,43 @@ if (process.browser) {
 		shadowUrl: require('~/assets/img/map/marker-shadow.png')
 	})
 }
-
+*/
 export default {
 	name: 'Map',
 	data () {
 		return {
-			mapPosition: [42.6991088, 2.8694822],
+			currentPosition: [0, 0],
+			mapPositionStart: [42.6991088, 2.8694822],
 			mapZoomLevel: 6,
 			followUserPosition: false,
 			watcher: null,
 			clusterOptions: {
 				disableClusteringAtZoom: 13
 			},
-			trackerOptions: {}
+			trackerOptions: {
+				trackId: 123,
+				fill: true,
+				fillColor: '#00ffff',
+				fillOpacity: 1.0,
+				stroke: true,
+				color: '#000000',
+				opacity: 1.0,
+				weight: 1.0,
+				speed: 1, // meter per second
+				course: 1.0, // radians
+				heading: 1.0, // radians
+				size: 24,
+				data: { name: 'Boat 2', custom: 'other info' }
+			}
 		}
 	},
 
+	/*
 	components: {
-		'l-map': V2L.LMap,
-		'l-ais': V2LTracksymbol,
-		'l-marker': V2L.LMarker,
-		'l-tilelayer': V2L.LTileLayer,
+		'l-ais': Vue2LeafletTracksymbol,
 		// 'l-marker-cluster': V2LMarkerCluster
 	},
+	*/
 
 	computed: {
 		markers () {
@@ -74,14 +90,15 @@ export default {
 	},
 
 	created () {
-		this.setMapCenter()
+		this.getCurrentCoords()
+		this.getMapCenter()
 	},
 
 	methods: {
 		/**
 		 * Define the center position of the map if geolocation is available or not
 		 */
-		setMapCenter () {
+		getCurrentCoords () {
 			let that = this
 
 			/**
@@ -89,7 +106,7 @@ export default {
 			 * Set map position and zoom level
 			 */
 			function geolocationSuccess (position) {
-				that.mapPosition = that.makeCoords(
+				that.currentPosition = that.makeCoords(
 					position.coords.latitude,
 					position.coords.longitude
 				)
@@ -115,16 +132,47 @@ export default {
 			 * If not, set a default position
 			 */
 			if (process.browser && 'geolocation' in navigator) {
-				if (this.followUserPosition) {
-					this.watcher = navigator.geolocation.watchPosition(geolocationSuccess, geolocationError, { enableHighAccuracy: true })
-				}
-				else {
-					navigator.geolocation.clearWatch(this.watcher)
-					this.watcher = null
-					navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { enableHighAccuracy: true })
-				}
+				navigator.geolocation.watchPosition(geolocationSuccess, geolocationError, { enableHighAccuracy: true })
 			} else {
-				this.mapPosition = { lat: 0, lng: 0 }
+				this.currentPosition = { lat: 0, lng: 0 }
+			}
+		},
+
+		getMapCenter () {
+			let that = this
+
+			/**
+			 * Store the current position location
+			 * Set map position and zoom level
+			 */
+			function geolocationSuccess (position) {
+				that.mapPositionStart = that.makeCoords(
+					position.coords.latitude,
+					position.coords.longitude
+				)
+			}
+
+			/**
+			 * show error modal when geolocation couldn't happen
+			 */
+			function geolocationError (error) {
+				this.$modal.show('dialog', {
+					title: this.$store.state.lang.modal.spot.geolocation.error.title,
+					text: `${this.$store.state.lang.modal.spot.geolocation.error.text}\n\n${error.code}: ${error.message}`,
+					buttons: [
+						{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
+					]
+				})
+			}
+
+			/**
+			 * Check if geolocation from browser is available
+			 * If not, set a default position
+			 */
+			if (process.browser && 'geolocation' in navigator) {
+				navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { enableHighAccuracy: true })
+			} else {
+				this.mapPositionStart = { lat: 0, lng: 0 }
 			}
 		},
 
@@ -160,7 +208,7 @@ export default {
 			else {
 				this.followUserPosition = this.followUserPosition === true ? false : true
 			}
-			this.setMapCenter()
+			this.getCurrentCoords()
 		}
 	}
 }

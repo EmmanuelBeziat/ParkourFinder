@@ -1,12 +1,9 @@
-const pkg = require('./package');
+const pkg = require('./package')
 
 module.exports = {
 	mode: 'universal',
 
 	buildDir: '../site',
-	build: {
-		publicPath: '../site/dist/'
-	},
 
 	/*
 	 ** Headers of the page
@@ -76,7 +73,11 @@ module.exports = {
 	/*
 	 ** Plugins to load before mounting the App
 	 */
-	plugins: ['~plugins/vue-filters.js', '~plugins/vue-modal.js'],
+	plugins: [
+		'~plugins/vue-filters.js',
+		'~plugins/vue-modal.js',
+		// { src: '~plugins/map.js', ssr: false }
+	],
 
 	/*
 	 ** Minification options for build
@@ -101,7 +102,9 @@ module.exports = {
 		// Doc: https://pwa.nuxtjs.org/
 		// ['@nuxtjs/pwa', {}],
 		// Doc: https://github.com/nuxt-community/modules/tree/master/packages/browserconfig
-		['@nuxtjs/browserconfig', { TileColor: '#bb2b4d' }]
+		['@nuxtjs/browserconfig', { TileColor: '#bb2b4d' }],
+		// Doc: https://github.com/schlunsen/nuxt-leaflet
+		'nuxt-leaflet'
 	],
 
 	/*
@@ -145,7 +148,12 @@ module.exports = {
 		/*
 		 ** You can extend webpack config here
 		 */
-		extend(config, ctx) {
+		extend (config, ctx) {
+			if (!ctx.isDev) {
+				publicPath: '../site/dist/'
+			}
+
+			/*
 			// Run ESLint on save
 			if (ctx.isDev && ctx.isClient) {
 				config.module.rules.push({
@@ -153,12 +161,13 @@ module.exports = {
 					test: /\.(js|vue)$/,
 					loader: 'eslint-loader',
 					exclude: /(node_modules)/
-				});
+				})
 			}
+			/*/
 		}
 	},
 
 	postcss: [require('autoprefixer')],
 
 	vendor: ['moment', 'vue-js-modal']
-};
+}
