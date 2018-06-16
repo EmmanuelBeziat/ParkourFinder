@@ -1,3 +1,9 @@
+# v0.2.0 (alpha stage)
+
+* Now showing the user current position with a custom marker
+* Markers are clustered for a better view at low zoom level
+* Button now get user back at his position
+
 # v0.1.1 (alpha stage)
 
 * Ability to edit spots name and description

@@ -76,7 +76,7 @@ module.exports = {
 	plugins: [
 		'~plugins/vue-filters.js',
 		'~plugins/vue-modal.js',
-		// { src: '~plugins/map.js', ssr: false }
+		{ src: '~plugins/map.js', ssr: false }
 	],
 
 	/*
@@ -166,8 +166,7 @@ module.exports = {
 			/*/
 		}
 	},
-
-	postcss: [require('autoprefixer')],
+	postcss: [require('autoprefixer'), require('css-mqpacker')],
 
 	vendor: ['moment', 'vue-js-modal']
 }

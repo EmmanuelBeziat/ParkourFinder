@@ -1,34 +1,33 @@
 <template>
 	<div class="vue-map-container">
 		<no-ssr>
-			<l-map ref="map" :zoom="mapZoomLevel" :center="mapPositionStart" @zoomstart="toggleWatchPosition(true)" @movestart="toggleWatchPosition(true)">
+			<l-map ref="map" :zoom="leafmap.zoom" :center="leafmap.center">
 				<l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
-				<l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" @click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)"></l-marker>
-				<!-- <l-ais :lat-lng="currentPosition" :options="trackerOptions"></l-ais> -->
+				<l-marker key="user" :lat-lng="user.currentPosition" :icon="user.icon"></l-marker>
+				<l-marker-cluster :options="clusterOptions">
+					<l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" @click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)"></l-marker>
+				</l-marker-cluster>
 			</l-map>
 		</no-ssr>
 
-		<!-- <button v-if="!followUserPosition" class="btn btn--icon btn--map" @click="toggleWatchPosition()">
+		<button class="btn btn--icon btn--map" @click="flyToCenter()">
 			<i class="icon-target"></i>
 			<span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
-		</button> -->
+		</button>
 	</div>
 </template>
 
 <script>
-/**
- * Leaflet can only be loaded on client side
- */
-
 /*
 let V2L = {}
 let V2LMarkerCluster = {}
 let V2LTracksymbol = {}
-
+*/
 if (process.browser) {
-	L = require('leaflet')
+	const L = require('leaflet')
+	/*
 	V2L = require('vue2-leaflet')
-	 V2LMarkerCluster = require('vue2-leaflet-markercluster')
+	V2LMarkerCluster = require('vue2-leaflet-markercluster')
 	V2LTracksymbol = require('vue2-leaflet-tracksymbol')
 
 	// eslint-disable-next-line
@@ -40,44 +39,26 @@ if (process.browser) {
 		iconUrl: require('~/assets/img/map/marker-icon.png'),
 		shadowUrl: require('~/assets/img/map/marker-shadow.png')
 	})
+	*/
 }
-*/
+//*/
 export default {
 	name: 'Map',
 	data () {
 		return {
-			currentPosition: [0, 0],
-			mapPositionStart: [42.6991088, 2.8694822],
-			mapZoomLevel: 6,
-			followUserPosition: false,
-			watcher: null,
+			user: {
+				currentPosition: this.makeCoords(0, 0),
+				icon: null
+			},
+			leafmap: {
+				center: this.makeCoords(42.6991088, 2.8694822),
+				zoom: 6
+			},
 			clusterOptions: {
 				disableClusteringAtZoom: 13
 			},
-			trackerOptions: {
-				trackId: 123,
-				fill: true,
-				fillColor: '#00ffff',
-				fillOpacity: 1.0,
-				stroke: true,
-				color: '#000000',
-				opacity: 1.0,
-				weight: 1.0,
-				speed: 1, // meter per second
-				course: 1.0, // radians
-				heading: 1.0, // radians
-				size: 24,
-				data: { name: 'Boat 2', custom: 'other info' }
-			}
 		}
 	},
-
-	/*
-	components: {
-		'l-ais': Vue2LeafletTracksymbol,
-		// 'l-marker-cluster': V2LMarkerCluster
-	},
-	*/
 
 	computed: {
 		markers () {
@@ -90,89 +71,91 @@ export default {
 	},
 
 	created () {
-		this.getCurrentCoords()
-		this.getMapCenter()
+		this.setUserPosition()
+		this.setMapCenter()
 	},
 
 	methods: {
 		/**
-		 * Define the center position of the map if geolocation is available or not
+		 * Set users's cursor position
 		 */
-		getCurrentCoords () {
-			let that = this
-
-			/**
-			 * Store the current position location
-			 * Set map position and zoom level
-			 */
-			function geolocationSuccess (position) {
-				that.currentPosition = that.makeCoords(
-					position.coords.latitude,
-					position.coords.longitude
-				)
-				that.mapZoomLevel = 14
-				that.$store.commit('position/setPosition', position.coords)
-			}
-
-			/**
-			 * show error modal when geolocation couldn't happen
-			 */
-			function geolocationError (error) {
-				this.$modal.show('dialog', {
-					title: this.$store.state.lang.modal.spot.geolocation.error.title,
-					text: `${this.$store.state.lang.modal.spot.geolocation.error.text}\n\n${error.code}: ${error.message}`,
-					buttons: [
-						{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
-					]
+		setUserPosition () {
+			this.getUserPosition(true, { enableHighAccuracy: true })
+				.then(position => {
+					if (position.coords) {
+						this.user.currentPosition = this.makeCoords(position.coords.latitude, position.coords.longitude)
+						this.user.icon = L.icon({
+							iconRetinaUrl: require('~/assets/img/map/user-icon-2x.png'),
+							iconUrl: require('~/assets/img/map/user-icon.png'),
+							iconSize: [26, 26],
+							shadowUrl: require('~/assets/img/map/user-shadow.png'),
+							shadowSize: [26, 26],
+    						shadowAnchor: [14, 10]
+						})
+						this.$store.commit('position/setPosition', position.coords)
+					}
+					else {
+						console.log('Geolocation is not supported by this browser.')
+					}
 				})
-			}
-
-			/**
-			 * Check if geolocation from browser is available
-			 * If not, set a default position
-			 */
-			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.watchPosition(geolocationSuccess, geolocationError, { enableHighAccuracy: true })
-			} else {
-				this.currentPosition = { lat: 0, lng: 0 }
-			}
+				.catch(error => {
+					this.$modal.show('dialog', {
+						title: this.$store.state.lang.modal.spot.geolocation.error.title,
+						text: `${this.$store.state.lang.modal.spot.geolocation.error.text}\n\n${error.code}: ${error.message}`,
+						buttons: [
+							{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
+						]
+					})
+				})
 		},
 
-		getMapCenter () {
-			let that = this
-
-			/**
-			 * Store the current position location
-			 * Set map position and zoom level
-			 */
-			function geolocationSuccess (position) {
-				that.mapPositionStart = that.makeCoords(
-					position.coords.latitude,
-					position.coords.longitude
-				)
-			}
-
-			/**
-			 * show error modal when geolocation couldn't happen
-			 */
-			function geolocationError (error) {
-				this.$modal.show('dialog', {
-					title: this.$store.state.lang.modal.spot.geolocation.error.title,
-					text: `${this.$store.state.lang.modal.spot.geolocation.error.text}\n\n${error.code}: ${error.message}`,
-					buttons: [
-						{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
-					]
+		/**
+		 * Change the map position and zoom
+		 */
+		setMapCenter () {
+			this.getUserPosition(false, { enableHighAccuracy: true })
+				.then(position => {
+					if (position.coords) {
+						this.leafmap.center = this.makeCoords(position.coords.latitude, position.coords.longitude)
+						this.leafmap.zoom = 14
+					}
+					else {
+						console.log('Geolocation is not supported by this browser.')
+					}
 				})
-			}
+				.catch(error => {
+					this.$modal.show('dialog', {
+						title: this.$store.state.lang.modal.spot.geolocation.error.title,
+						text: `${this.$store.state.lang.modal.spot.geolocation.error.text}\n\n${error.code}: ${error.message}`,
+						buttons: [
+							{ title: this.$store.state.lang.modal.spot.geolocation.error.buttons.close }
+						]
+					})
+				})
+		},
 
-			/**
-			 * Check if geolocation from browser is available
-			 * If not, set a default position
-			 */
+		/**
+		 * Get user's location by geolocation
+		 * @param watcher { boolean } if set to true, use watchPosition instead of getCurrentPosition
+		 * @param options { object } settings for navigator.geolocation methods
+		 */
+		getUserPosition (watcher, options) {
 			if (process.browser && 'geolocation' in navigator) {
-				navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { enableHighAccuracy: true })
-			} else {
-				this.mapPositionStart = { lat: 0, lng: 0 }
+				if (watcher === true) {
+					return new Promise((resolve, reject) => {
+						navigator.geolocation.watchPosition(resolve, reject, options)
+					})
+				}
+				else {
+					return new Promise((resolve, reject) => {
+						navigator.geolocation.getCurrentPosition(resolve, reject, options)
+					})
+				}
+			}
+			else {
+				return new Promise(
+					resolve => resolve({})
+				)
 			}
 		},
 
@@ -193,22 +176,14 @@ export default {
 		 * @param lng longitude coord
 		 */
 		showSpot (id, slug, lat, lng) {
-			// this.mapPosition = this.makeCoords(lat, lng)
 			this.$router.push(`/spot/${slug}`)
 		},
 
 		/**
-		 * Toggle watch position
-		 * @param stopWatchingUserPosition (default: false)
+		 * Bring back the map to current user position
 		 */
-		toggleWatchPosition (stopWatchingUserPosition = false) {
-			if (stopWatchingUserPosition) {
-				this.followUserPosition = false
-			}
-			else {
-				this.followUserPosition = this.followUserPosition === true ? false : true
-			}
-			this.getCurrentCoords()
+		flyToCenter () {
+			this.$refs.map.mapObject.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
 		}
 	}
 }

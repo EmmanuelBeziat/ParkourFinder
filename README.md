@@ -1,6 +1,6 @@
 # parkourfinder
 
-![version](https://img.shields.io/badge/version-0.1.0-brightgreen.svg?style=flat-square)
+![version](https://img.shields.io/badge/version-0.2.0-brightgreen.svg?style=flat-square)
 
 > A tiny web app that helps tracers to locate parkour spots around the world
 
