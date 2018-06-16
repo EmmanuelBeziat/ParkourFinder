@@ -18,30 +18,10 @@
 </template>
 
 <script>
-/*
-let V2L = {}
-let V2LMarkerCluster = {}
-let V2LTracksymbol = {}
-*/
 if (process.browser) {
 	const L = require('leaflet')
-	/*
-	V2L = require('vue2-leaflet')
-	V2LMarkerCluster = require('vue2-leaflet-markercluster')
-	V2LTracksymbol = require('vue2-leaflet-tracksymbol')
-
-	// eslint-disable-next-line
-	delete L.Icon.Default.prototype._getIconUrl
-
-	// eslint-disable-next-line
-	L.Icon.Default.mergeOptions({
-		iconRetinaUrl: require('~/assets/img/map/marker-icon-2x.png'),
-		iconUrl: require('~/assets/img/map/marker-icon.png'),
-		shadowUrl: require('~/assets/img/map/marker-shadow.png')
-	})
-	*/
 }
-//*/
+
 export default {
 	name: 'Map',
 	data () {
