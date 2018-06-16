@@ -31,7 +31,7 @@ export default {
 				icon: null
 			},
 			leafmap: {
-				center: this.makeCoords(42.6991088, 2.8694822),
+				center: [42.6991088, 2.8694822],
 				zoom: 6
 			},
 			clusterOptions: {
@@ -100,6 +100,8 @@ export default {
 						this.leafmap.zoom = 14
 					}
 					else {
+						this.leafmap.center = this.makeCoords(48.866667, 2.333333)
+						this.leafmap.zoom = 6
 						console.log('Geolocation is not supported by this browser.')
 					}
 				})
