@@ -3,7 +3,7 @@
 		<no-ssr>
 			<l-map ref="map" :zoom="leafmap.zoom" :center="leafmap.center">
 				<l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
-				<l-marker key="user" :lat-lng="user.currentPosition" :icon="user.icon"></l-marker>
+				<!-- <l-marker key="user" :lat-lng="user.currentPosition" :icon="user.icon"></l-marker> -->
 				<l-marker-cluster :options="clusterOptions">
 					<l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="makeCoords(marker.location.lat, marker.location.lng)" @click="showSpot(marker._id, marker.slug, marker.location.lat, marker.location.lng)"></l-marker>
 				</l-marker-cluster>
@@ -70,8 +70,20 @@ export default {
 							iconSize: [26, 26],
 							shadowUrl: require('~/assets/img/map/user-shadow.png'),
 							shadowSize: [26, 26],
-    						shadowAnchor: [14, 10]
+							shadowAnchor: [14, 10]
 						})
+						let userMarker = L.marker(this.user.currentPosition, {
+							icon: this.user.icon,
+							zIndexOffset: 1000
+						})
+						let userZone = L.circle(this.user.currentPosition, 5).addTo(this.$refs.map.mapObject)
+						this.$refs.map.mapObject.on('locationfound', (e) => {
+							userMarker.setLatLng(e.latlng)
+							userZone.setLatLng(e.latlng)
+							userZone.setRadius(e.accuracy / 2)
+						})
+						this.$refs.map.mapObject.locate({ watch: true })
+						userMarker.setLatLng(this.user.currentPosition).addTo(this.$refs.map.mapObject)
 						this.$store.commit('position/setPosition', position.coords)
 					}
 					else {
