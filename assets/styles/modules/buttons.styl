@@ -1,5 +1,5 @@
 .btn
-	transition .25s ease
+	transition .25s ease-in-out
 	box-shadow none
 	outline none
 	background $color-white
@@ -45,8 +45,8 @@
 	text-align center
 	border-radius 50%
 	position absolute
-	color $color-white
-	background $color-red
+	color $color-red
+	background $color-grey
 	bottom 1rem
 	right 1rem
 	position absolute
@@ -55,5 +55,16 @@
 	text-shadow 1px 1px 0 $color-shadow
 
 	&:hover
-		background $color-white
+		background darken($color-white, 10%)
 		color $color-red
+
+	&:active
+		transform scale(.95)
+		transition .05s ease-out
+
+	&.is-locked
+		background $color-red
+		color $color-white
+		&:hover
+			background darken($color-red, 10%)
+			color $color-white

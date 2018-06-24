@@ -10,7 +10,7 @@
 			</l-map>
 		</no-ssr>
 
-		<button v-if="!leafmap.locked" class="btn btn--icon btn--map" @click="flyToCenter()">
+		<button class="btn btn--icon btn--map" v-bind:class="{'is-locked': leafmap.locked }" @click="lockView()">
 			<i class="icon-target"></i>
 			<span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
 		</button>
@@ -83,9 +83,8 @@ export default {
 							userZone.setRadius(e.accuracy / 2)
 							this.user.currentPosition = this.makeCoords(e.latlng.lat, e.latlng.lng)
 							this.$store.commit('position/setPosition', { latitude: e.latlng.lat, longitude: e.latlng.lng })
-							this.leafmap.center = this.makeCoords(e.latlng.lat, e.latlng.lng)
 						})
-						this.$refs.map.mapObject.locate({ watch: true })
+						this.$refs.map.mapObject.locate({ watch: true, setView: false })
 						userMarker.setLatLng(this.user.currentPosition).addTo(this.$refs.map.mapObject)
 					}
 					else {
@@ -178,20 +177,16 @@ export default {
 		/**
 		 * Bring back the map to current user position and enable the view following user position
 		 */
-		flyToCenter () {
-			console.log(this.leafmap.locked)
-			this.leafmap.locked = true
-			console.log(this.leafmap.locked)
-			this.$refs.map.mapObject.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
-			this.$refs.map.mapObject.locate({ watch: true, setView: true })
-		},
-
-		/**
-		 * Disable the view to follow user position
-		 */
-		unlockFollow () {
-			this.leafmap.locked = false
-			this.$refs.map.mapObject.locate({ watch: true, setView: false })
+		lockView () {
+			if (this.leafmap.locked) {
+				this.leafmap.locked = false
+				this.$refs.map.mapObject.locate({ watch: true, setView: true })
+			}
+			else {
+				this.leafmap.locked = true
+				this.$refs.map.mapObject.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
+				this.$refs.map.mapObject.locate({ watch: true, setView: false })
+			}
 		}
 	}
 }
