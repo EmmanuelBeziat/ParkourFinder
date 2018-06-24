@@ -1,7 +1,7 @@
 <template>
 	<div class="vue-map-container">
 		<no-ssr>
-			<l-map ref="map" :zoom="leafmap.zoom" :center="leafmap.center">
+			<l-map ref="map" :zoom="leafmap.zoom" :center="leafmap.center" @mouseup="unlockFollow()">
 				<l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
 				<!-- <l-marker key="user" :lat-lng="user.currentPosition" :icon="user.icon"></l-marker> -->
 				<l-marker-cluster :options="clusterOptions">
@@ -10,7 +10,7 @@
 			</l-map>
 		</no-ssr>
 
-		<button class="btn btn--icon btn--map" @click="flyToCenter()">
+		<button v-if="!leafmap.locked" class="btn btn--icon btn--map" @click="flyToCenter()">
 			<i class="icon-target"></i>
 			<span class="sr-only">{{ this.$store.state.lang.map.toggle }}</span>
 		</button>
@@ -31,8 +31,9 @@ export default {
 				icon: null
 			},
 			leafmap: {
-				center: [42.6991088, 2.8694822],
-				zoom: 6
+				center: [48.866667, 2.333333],
+				zoom: 6,
+				locked: false
 			},
 			clusterOptions: {
 				disableClusteringAtZoom: 13
@@ -63,7 +64,6 @@ export default {
 			this.getUserPosition(true, { enableHighAccuracy: true })
 				.then(position => {
 					if (position.coords) {
-						this.user.currentPosition = this.makeCoords(position.coords.latitude, position.coords.longitude)
 						this.user.icon = L.icon({
 							iconRetinaUrl: require('~/assets/img/map/user-icon-2x.png'),
 							iconUrl: require('~/assets/img/map/user-icon.png'),
@@ -81,10 +81,12 @@ export default {
 							userMarker.setLatLng(e.latlng)
 							userZone.setLatLng(e.latlng)
 							userZone.setRadius(e.accuracy / 2)
+							this.user.currentPosition = this.makeCoords(e.latlng.lat, e.latlng.lng)
+							this.$store.commit('position/setPosition', { latitude: e.latlng.lat, longitude: e.latlng.lng })
+							this.leafmap.center = this.makeCoords(e.latlng.lat, e.latlng.lng)
 						})
 						this.$refs.map.mapObject.locate({ watch: true })
 						userMarker.setLatLng(this.user.currentPosition).addTo(this.$refs.map.mapObject)
-						this.$store.commit('position/setPosition', position.coords)
 					}
 					else {
 						console.log('Geolocation is not supported by this browser.')
@@ -174,10 +176,22 @@ export default {
 		},
 
 		/**
-		 * Bring back the map to current user position
+		 * Bring back the map to current user position and enable the view following user position
 		 */
 		flyToCenter () {
+			console.log(this.leafmap.locked)
+			this.leafmap.locked = true
+			console.log(this.leafmap.locked)
 			this.$refs.map.mapObject.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
+			this.$refs.map.mapObject.locate({ watch: true, setView: true })
+		},
+
+		/**
+		 * Disable the view to follow user position
+		 */
+		unlockFollow () {
+			this.leafmap.locked = false
+			this.$refs.map.mapObject.locate({ watch: true, setView: false })
 		}
 	}
 }

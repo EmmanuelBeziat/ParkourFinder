@@ -1,3 +1,9 @@
+# v0.3.1 (alpha stage)
+
+* Debugging marker for user current position, now following correctly
+* Radius of precision shown on the marker
+* Button now get the view back to the position and enable the automatic trackview
+
 # v0.2.0 (alpha stage)
 
 * Now showing the user current position with a custom marker
