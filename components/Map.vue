@@ -1,7 +1,7 @@
 <template>
 	<div class="vue-map-container">
 		<no-ssr>
-			<l-map ref="map" :zoom="leafmap.zoom" :center="leafmap.center" @mouseup="unlockFollow()">
+			<l-map ref="map" :zoom="leafmap.zoom" :center="leafmap.center">
 				<l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
 				<!-- <l-marker key="user" :lat-lng="user.currentPosition" :icon="user.icon"></l-marker> -->
 				<l-marker-cluster :options="clusterOptions">
