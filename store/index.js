@@ -23,7 +23,7 @@ export const actions = {
 			const userLang = process.BROWSER_BUILD
 				? navigator.language
 				: req.headers['accept-language'].split('-')[0]
-			commit('setLocale', userLang)
+			commit('setLocale', userLang.split(',')[0])
 
 			// Get content lang
 			commit('setLang', require(`~/static/lang/${state.locale}.json`))

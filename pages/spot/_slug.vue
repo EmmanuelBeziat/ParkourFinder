@@ -32,7 +32,7 @@
 					<span class="sr-only">{{ this.$store.state.lang.spot.actions.edit }}</span>
 				</button>
 				<button class="btn btn--icon" :data-tooltip="this.$store.state.lang.spot.actions.remove" @click="removeSpot()">
-					<i class="icon-cancel" aria-hidden="true"></i>
+					<i class="icon-trash" aria-hidden="true"></i>
 					<span class="sr-only">{{ this.$store.state.lang.spot.actions.remove }}</span>
 				</button>
 

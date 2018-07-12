@@ -76,19 +76,19 @@ export default {
 							icon: this.user.icon,
 							zIndexOffset: 1000
 						})
-						let userZone = L.circle(this.user.currentPosition, 5).addTo(this.$refs.map.mapObject)
 						this.$refs.map.mapObject.on('locationfound', (e) => {
 							userMarker.setLatLng(e.latlng)
 							userZone.setLatLng(e.latlng)
 							userZone.setRadius(e.accuracy / 2)
-							this.user.currentPosition = this.makeCoords(e.latlng.lat, e.latlng.lng)
 							this.$store.commit('position/setPosition', { latitude: e.latlng.lat, longitude: e.latlng.lng })
+							this.user.currentPosition = this.makeCoords(e.latlng.lat, e.latlng.lng)
 						})
+						let userZone = L.circle(this.user.currentPosition, 5).addTo(this.$refs.map.mapObject)
 						this.$refs.map.mapObject.locate({ watch: true, setView: false })
 						userMarker.setLatLng(this.user.currentPosition).addTo(this.$refs.map.mapObject)
 					}
 					else {
-						console.log('Geolocation is not supported by this browser.')
+						// console.log('Geolocation is not supported by this browser.')
 					}
 				})
 				.catch(error => {
@@ -115,7 +115,7 @@ export default {
 					else {
 						this.leafmap.center = this.makeCoords(48.866667, 2.333333)
 						this.leafmap.zoom = 6
-						console.log('Geolocation is not supported by this browser.')
+						// console.log('Geolocation is not supported by this browser.')
 					}
 				})
 				.catch(error => {

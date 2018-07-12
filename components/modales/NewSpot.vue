@@ -58,7 +58,8 @@ export default {
 			that.$axios
 				.post(process.env.api.spots, datas)
 				.then(res => {
-					that.$store.dispatch('map/init')
+					console.log(res.data)
+					that.$store.commit('map/addMarker', res.data)
 					that.closeModal()
 				})
 				.catch(error => {
