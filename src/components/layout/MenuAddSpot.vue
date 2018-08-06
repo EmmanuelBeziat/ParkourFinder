@@ -99,49 +99,50 @@ export default {
 		 */
 		getGeocodingInformations (lat, lng) {
 			return new Promise((resolve, reject) => {
-				Vue.axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`).then(res => {
-					if (res.status === 200) {
-						let complementary = []
-						let city = null
+				Vue.axios
+					.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`).then(res => {
+						if (res.status === 200) {
+							let complementary = []
+							let city = null
 
-						if (res.data.address.service !== undefined) complementary.push(res.data.address.service)
-						if (res.data.address.road !== undefined) complementary.push(res.data.address.road)
-						if (res.data.address.suburb !== undefined) complementary.push(res.data.address.suburb)
-						if (res.data.address.city_district !== undefined) complementary.push(res.data.address.city_district)
-						if (res.data.address.neighbourhood !== undefined) complementary.push(res.data.address.neighbourhood)
-						if (res.data.address.village !== undefined) complementary.push(res.data.address.village)
-						if (res.data.address.town !== undefined) complementary.push(res.data.address.town)
-						if (res.data.address.city !== undefined) complementary.push(res.data.address.city)
-						if (res.data.address.state !== undefined) complementary.push(res.data.address.state)
-						if (res.data.address.country !== undefined) complementary.push(res.data.address.country)
+							if (res.data.address.service !== undefined) complementary.push(res.data.address.service)
+							if (res.data.address.road !== undefined) complementary.push(res.data.address.road)
+							if (res.data.address.suburb !== undefined) complementary.push(res.data.address.suburb)
+							if (res.data.address.city_district !== undefined) complementary.push(res.data.address.city_district)
+							if (res.data.address.neighbourhood !== undefined) complementary.push(res.data.address.neighbourhood)
+							if (res.data.address.village !== undefined) complementary.push(res.data.address.village)
+							if (res.data.address.town !== undefined) complementary.push(res.data.address.town)
+							if (res.data.address.city !== undefined) complementary.push(res.data.address.city)
+							if (res.data.address.state !== undefined) complementary.push(res.data.address.state)
+							if (res.data.address.country !== undefined) complementary.push(res.data.address.country)
 
-						if (res.data.address.city !== undefined) {
-							city = res.data.address.city
-						}
-						else if (res.data.address.town !== undefined) {
-							city = res.data.address.town
-						}
-						else if (res.data.address.village !== undefined) {
-							city = res.data.address.village
+							if (res.data.address.city !== undefined) {
+								city = res.data.address.city
+							}
+							else if (res.data.address.town !== undefined) {
+								city = res.data.address.town
+							}
+							else if (res.data.address.village !== undefined) {
+								city = res.data.address.village
+							}
+							else {
+								city = res.data.address.county
+							}
+
+							resolve({
+								city: city,
+								country: res.data.address.country,
+								countryCode: res.data.address.country_code,
+								complementary: complementary.join(', ')
+							})
 						}
 						else {
-							city = res.data.address.county
+							reject(res.status)
 						}
-
-						resolve({
-							city: city,
-							country: res.data.address.country,
-							countryCode: res.data.address.country_code,
-							complementary: complementary.join(', ')
-						})
-					}
-					else {
-						reject(res.status)
-					}
-				})
-				.catch(error => {
-					reject(error)
-				})
+					})
+					.catch(error => {
+						reject(error)
+					})
 			})
 		}
 	}
