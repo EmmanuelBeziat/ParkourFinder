@@ -14,8 +14,7 @@
 	"about": {
 		"title": "À propos",
 		"description": "Description à propos",
-		"author":
-			"Codé avec <span class=\"heart\">♥</span> par <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Rendez-vous sur Github</a> pour rapporter un bug, faire des suggestions, dire merci — Suivez-moi sur <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"author": "Codé avec <span class=\"heart\">♥</span> par <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Rendez-vous sur Github</a> pour rapporter un bug, faire des suggestions, dire merci — Suivez-moi sur <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
 		"buttons": {
 			"bug": "Signaler un bug",
 			"close": "Fermer"
@@ -54,8 +53,7 @@
 			"add": {
 				"success": {
 					"title": "Ajouter un nouveau spot",
-					"description":
-						"La géolocalisation est active. Vous pouvez ajouter un spot là où vous vous tenez.",
+					"description": "La géolocalisation est active. Vous pouvez ajouter un spot là où vous vous tenez.",
 					"buttons": {
 						"confirm": "Ajouter ici",
 						"cancel": "Annuler"
@@ -63,8 +61,7 @@
 				},
 				"error": {
 					"title": "Ajouter un nouveau spot",
-					"description":
-						"La géolocalisation n’est pas activée. Vous pouvez toujours ajouter un spot manuellement.",
+					"description": "La géolocalisation n’est pas activée. Vous pouvez toujours ajouter un spot manuellement.",
 					"buttons": {
 						"confirm": "Ajouter un spot",
 						"cancel": "Annuler"
@@ -83,8 +80,7 @@
 			"remove": {
 				"action": {
 					"title": "Supprimer un spot",
-					"text":
-						"Vous allez supprimer ce spot. Cette action est irréversible ! Ne supprimez pas un spot sans raison.",
+					"text": "Vous allez supprimer ce spot. Cette action est irréversible ! Ne supprimez pas un spot sans raison.",
 					"buttons": {
 						"confirm": "Supprimer",
 						"cancel": "Annuler"
@@ -143,8 +139,7 @@
 		},
 		"error": {
 			"title": "Erreur !",
-			"text":
-				"L’action demandée n’a pas pu être effectuée. Si le problème persiste, merci de signaler l’erreur.",
+			"text": "L’action demandée n’a pas pu être effectuée. Si le problème persiste, merci de signaler l’erreur.",
 			"buttons": {
 				"close": "Fermer"
 			}

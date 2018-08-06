@@ -1,3 +1,7 @@
+# v0.4.0 (alpha stage)
+
+* Switched from nuxt to vue vanilla, for better perfs and less code.
+
 # v0.3.1 (alpha stage)
 
 * Debugging marker for user current position, now following correctly
