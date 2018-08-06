@@ -1,0 +1,159 @@
+{
+	"site": {
+		"nav": {
+			"newspot": "Add a spot",
+			"search": "Search",
+			"about": "About",
+			"settings": "Settings"
+		}
+	},
+	"home": {
+		"title": "Home",
+		"description": "Description home"
+	},
+	"about": {
+		"title": "About",
+		"description": "Description about",
+		"author":
+			"Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"buttons": {
+			"bug": "Report a bug",
+			"close": "Close"
+		}
+	},
+	"settings": {
+		"title": "Settings",
+		"description": "Description settings",
+		"lang": {
+			"title": "Language:",
+			"en": "English",
+			"fr": "French"
+		}
+	},
+	"map": {
+		"toggle": "Toggle follow"
+	},
+	"spot": {
+		"actions": {
+			"close": "Close",
+			"take_picture": "Take a picture",
+			"upload_picture": "Uplaod a picture",
+			"edit": "Edit informations",
+			"remove": "Remove"
+		},
+		"infos": {
+			"created": "Created:",
+			"edited": "Last edited:"
+		},
+		"team": {
+			"name": "Team:"
+		}
+	},
+	"modal": {
+		"spot": {
+			"add": {
+				"success": {
+					"title": "Add a new spot",
+					"description":
+						"Geolocation is enabled. You can add a new spot right where you’re standing!",
+					"buttons": {
+						"confirm": "Add here",
+						"cancel": "Cancel"
+					}
+				},
+				"error": {
+					"title": "Add a new spot",
+					"description":
+						"Geolocation is disabled. You can add a new spot by pinning it manually on the map.",
+					"buttons": {
+						"confirm": "Add a spot",
+						"cancel": "Cancel"
+					}
+				},
+				"form": {
+					"title": "Add a new spot",
+					"name": "Spot name",
+					"description": "Spot description",
+					"buttons": {
+						"confirm": "Add",
+						"cancel": "Cancel"
+					}
+				}
+			},
+			"remove": {
+				"action": {
+					"title": "Remove a spot",
+					"text":
+						"You’re about to permanently remove a spot. This action can’t be undone. Please use this function carefully.",
+					"buttons": {
+						"confirm": "Remove",
+						"cancel": "Cancel"
+					}
+				},
+				"success": {
+					"title": "It’s done!",
+					"text": "The spot has been successfully removed.",
+					"buttons": {
+						"close": "Close"
+					}
+				},
+				"error": {
+					"title": "An error occured",
+					"text": "The spot couldn’t be removed.",
+					"buttons": {
+						"close": "Close"
+					}
+				}
+			},
+			"edit": {
+				"action": {},
+				"success": {
+					"title": "Spot edited!",
+					"text": "The informations of this spot have been successfully edited.",
+					"buttons": {
+						"close": "Close"
+					}
+				},
+				"error": {
+					"title": "An error occured",
+					"text": "Unable to edit the informations of this spot.",
+					"buttons": {
+						"close": "Close"
+					}
+				},
+				"form": {
+					"title": "Edit a spot",
+					"name": "Spot name",
+					"description": "Spot description",
+					"buttons": {
+						"confirm": "Confirm",
+						"cancel": "Cancel"
+					}
+				}
+			},
+			"geolocation": {
+				"error": {
+					"title": "Geolocation disabled",
+					"text": "Unable to use geolocation.",
+					"buttons": {
+						"close": "Close"
+					}
+				}
+			}
+		},
+		"error": {
+			"title": "Error!",
+			"text":
+				"The requested action couldn’t be done. If this issue persists, please report it.",
+			"buttons": {
+				"close": "Close"
+			}
+		}
+	},
+	"error": {
+		"404": {
+			"title": "Page not found",
+			"text": ""
+		}
+	}
+}
