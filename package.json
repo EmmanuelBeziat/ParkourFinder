@@ -9,7 +9,7 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"pm2": "pm2 start npm --name 'pkf-live' -- start",
+		"pm2": "pm2 startOrRestart npm --name 'pkf-live' -- start",
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
