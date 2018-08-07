@@ -1,3 +1,7 @@
+# v0.4.1 (alpha stage)
+
+* Refactoring code for better readability
+
 # v0.4.0 (alpha stage)
 
 * Switched from nuxt to vue vanilla, for better perfs and less code.

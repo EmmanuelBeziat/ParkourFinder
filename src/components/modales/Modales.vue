@@ -2,19 +2,19 @@
 	<div class="modales">
 		<v-dialog />
 
-		<modale-new-spot />
-		<modale-edit-spot />
+		<ModaleSpotNew />
+		<ModaleSpotEdit />
 	</div>
 </template>
 
 <script>
-import modaleNewSpot from '@/components/modales/NewSpot';
-import modaleEditSpot from '@/components/modales/EditSpot';
+import ModaleSpotNew from '@/components/modales/spots/New';
+import ModaleSpotEdit from '@/components/modales/spots/Edit';
 
 export default {
 	components: {
-		modaleNewSpot,
-		modaleEditSpot
+		ModaleSpotNew,
+		ModaleSpotEdit
 	}
 };
 </script>

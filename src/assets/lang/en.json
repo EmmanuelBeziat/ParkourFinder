@@ -5,7 +5,8 @@
 			"search": "Search",
 			"about": "About",
 			"settings": "Settings"
-		}
+		},
+		"loading": "Loading"
 	},
 	"home": {
 		"title": "Home",
@@ -14,8 +15,7 @@
 	"about": {
 		"title": "About",
 		"description": "Description about",
-		"author":
-			"Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"author": "Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
 		"buttons": {
 			"bug": "Report a bug",
 			"close": "Close"
@@ -54,8 +54,7 @@
 			"add": {
 				"success": {
 					"title": "Add a new spot",
-					"description":
-						"Geolocation is enabled. You can add a new spot right where you’re standing!",
+					"description": "Geolocation is enabled. You can add a new spot right where you’re standing!",
 					"buttons": {
 						"confirm": "Add here",
 						"cancel": "Cancel"
@@ -63,8 +62,7 @@
 				},
 				"error": {
 					"title": "Add a new spot",
-					"description":
-						"Geolocation is disabled. You can add a new spot by pinning it manually on the map.",
+					"description": "Geolocation is disabled. You can add a new spot by pinning it manually on the map.",
 					"buttons": {
 						"confirm": "Add a spot",
 						"cancel": "Cancel"
@@ -83,8 +81,7 @@
 			"remove": {
 				"action": {
 					"title": "Remove a spot",
-					"text":
-						"You’re about to permanently remove a spot. This action can’t be undone. Please use this function carefully.",
+					"text": "You’re about to permanently remove a spot. This action can’t be undone. Please use this function carefully.",
 					"buttons": {
 						"confirm": "Remove",
 						"cancel": "Cancel"
@@ -143,8 +140,7 @@
 		},
 		"error": {
 			"title": "Error!",
-			"text":
-				"The requested action couldn’t be done. If this issue persists, please report it.",
+			"text": "The requested action couldn’t be done. If this issue persists, please report it.",
 			"buttons": {
 				"close": "Close"
 			}

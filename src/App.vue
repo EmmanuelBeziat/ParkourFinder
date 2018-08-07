@@ -1,24 +1,24 @@
 <template>
 	<div id="app" class="app">
-		<LayoutHeader/>
+		<LayoutHeader />
 		<main class="main">
-			<LeafMap/>
+			<Map />
 			<transition name="slide-fade">
-				<router-view/>
+				<router-view />
 			</transition>
 		</main>
-		<Modales/>
+		<Modales />
 	</div>
 </template>
 
 <script>
-import LeafMap from '@/components/Map'
+import Map from '@/components/map/Map'
 import LayoutHeader from '@/components/layout/Header'
 import Modales from '@/components/modales/Modales'
 
 export default {
 	components: {
-		LeafMap,
+		Map,
 		LayoutHeader,
 		Modales
 	}
@@ -65,13 +65,13 @@ html
 body
 	margin 0
 	font 400 var(--font-size-base)/1.5 var(--font-stack-common)
-	overflow-x hidden
 
 .app
 	min-height 100vh
 	display grid
 	grid-template-rows auto 1fr
 	position relative
+	overflow-x hidden
 
 .main
 	flex 1

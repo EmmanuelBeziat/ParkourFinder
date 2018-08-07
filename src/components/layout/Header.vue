@@ -6,16 +6,16 @@
 			</h1>
 
 			<nav class="header-actions">
-				<MenuAddSpot/>
-				<MenuAbout/>
+				<MenuAddSpot />
+				<MenuAbout />
 			</nav>
 		</div>
 	</header>
 </template>
 
 <script>
-import MenuAddSpot from '@/components/layout/MenuAddSpot'
-import MenuAbout from '@/components/layout/MenuAbout'
+import MenuAddSpot from '@/components/layout/menu/AddSpot'
+import MenuAbout from '@/components/layout/menu/About'
 
 export default {
 	name: 'Header',

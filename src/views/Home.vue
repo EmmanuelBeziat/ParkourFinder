@@ -1,6 +1,5 @@
 <template>
-	<div class="home">
-	</div>
+	<div class="home" />
 </template>
 
 <script>
@@ -11,7 +10,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .home
 	height 0
 	width 0
