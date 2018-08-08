@@ -23,20 +23,20 @@
 
 		<footer class="spot-complementary">
 			<div class="spot-actions">
-				<button class="btn btn--icon" :data-tooltip="texts.actions.upload_picture" @click="uploadPicture()">
+				<button class="btn btn--icon" :data-tooltip="texts.actions.upload_picture" @click="buttonUpload()">
 					<i class="icon-picture" aria-hidden="true"></i>
 					<span class="sr-only">{{ texts.actions.upload_picture }}</span>
 				</button>
-				<button class="btn btn--icon" :data-tooltip="texts.actions.edit" @click="editSpot()">
+				<button class="btn btn--icon" :data-tooltip="texts.actions.edit" @click="buttonEdit()">
 					<i class="icon-edit" aria-hidden="true"></i>
 					<span class="sr-only">{{ texts.actions.edit }}</span>
 				</button>
-				<button class="btn btn--icon" :data-tooltip="texts.actions.remove" @click="removeSpot()">
+				<button class="btn btn--icon" :data-tooltip="texts.actions.remove" @click="buttonRemove()">
 					<i class="icon-trash" aria-hidden="true"></i>
 					<span class="sr-only">{{ texts.actions.remove }}</span>
 				</button>
 
-				<input ref="fileUploader" type="file" accept="image/*capture=camera" class="sr-only" @change="changeFileUpload()">
+				<input class="sr-only" ref="fileUploader" type="file" accept="image/*capture=camera" multiple @change="inputChangePicture()">
 			</div>
 
 			<div class="spot-infos">
@@ -52,96 +52,33 @@
 </template>
 
 <script>
-import Vue from 'vue'
-
 export default {
-	props: ['spot', 'texts'],
+	props: ['spot'],
+
+	data () {
+		return {
+			texts: this.$store.state.languages.lang.spot
+		}
+	},
 
 	methods: {
 		/**
 		 * ask for upload picture
 		 */
-		uploadPicture () {
-			const fileUploader = this.$refs.fileUploader
-			fileUploader.click()
+		buttonUpload () {
+			this.$refs.fileUploader.click()
 		},
 
-		/**
-		 * Prepare image content for upload
-		 */
-		changeFileUpload () {
-			const fileUploader = this.$refs.fileUploader
-			let data = new FormData()
-			let config = {
-				headers: { 'content-type': 'multipart/form-data' },
-				onUploadProgress: function (progressEvent) {
-					let percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total)
-					console.log(percentCompleted)
-				}
-			}
-			// Abort if no file
-			if (!fileUploader.files.length) {
-				return
-			}
-			data.append('image', fileUploader.files[0])
-			axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
-			Vue.axios.post('https://rest.parkourfinder.com/medias', data)
-				.then(function (res) {
-					console.log(res.data)
-				})
-				.catch(function (err) {
-					console.log(err.message)
-				})
+		inputChangePicture () {
+			this.$emit('uploadPicture', event.target.files)
 		},
 
-		/**
-		 * Call for edit modal
-		 */
-		editSpot () {
-			this.$modal.show('edit-spot')
+		buttonEdit () {
+			this.$emit('editSpot')
 		},
 
-		/**
-		 * show confirmation popin when remove is asked
-		 */
-		removeSpot () {
-			this.$modal.show('dialog', {
-				title: this.$store.state.languages.lang.modal.spot.remove.action.title,
-				text: this.$store.state.languages.lang.modal.spot.remove.action.author,
-				buttons: [
-					{
-						title: this.$store.state.languages.lang.modal.spot.remove.action.buttons.cancel
-					},
-					{
-						title: this.$store.state.languages.lang.modal.spot.remove.action.buttons.confirm,
-						handler: () => {
-							this.confirmRemoveSpot()
-						}
-					}
-				]
-			})
-		},
-
-		/**
-		 * Remove spot from API
-		 */
-		confirmRemoveSpot () {
-			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-			Vue.axios.delete(`https://rest.parkourfinder.com/spots/${this.spot._id}`)
-				.then(() => {
-					this.$store.commit('spots/removeSpot', this.spot)
-					this.$modal.hide('dialog')
-					this.$router.push('/')
-				})
-				.catch(error => {
-					this.$modal.show('dialog', {
-						title: this.$store.state.languages.lang.modal.spot.remove.error.title,
-						text: `${this.$store.state.languages.lang.modal.error.text}\n\n${error.code}: ${error.message}`,
-						buttons: [{
-							title: this.$store.state.languages.lang.modal.spot.remove.error.buttons.close
-						}]
-					})
-				})
+		buttonRemove () {
+			this.$emit('removeSpot')
 		}
 	}
 }

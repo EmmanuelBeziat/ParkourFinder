@@ -2,17 +2,17 @@
 	<modal v-if="spot !== null" class="vue-dialog" name="edit-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
 			<h3 class="dialog-c-title">
-				<i class="icon-edit" aria-hidden="true"></i>{{ this.$store.state.languages.lang.modal.spot.edit.form.title }}</h3>
+				<i class="icon-edit" aria-hidden="true"></i>{{ texts.form.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
-						<label for="spot-edit-title" class="sr-only">{{ this.$store.state.languages.lang.modal.spot.edit.form.name }}</label>
-						<input type="text" id="spot-edit-title" class="form-control" :placeholder="this.$store.state.languages.lang.modal.spot.edit.form.name" :value="spot.title" required ref="title" @change="formFieldChange">
+						<label for="spot-edit-title" class="sr-only">{{ texts.form.name }}</label>
+						<input type="text" id="spot-edit-title" class="form-control" :placeholder="texts.form.name" :value="spot.title" required ref="title" @change="formFieldChange">
 					</div>
 
 					<div class="form-group">
-						<label for="spot-edit-description" class="sr-only">{{ this.$store.state.languages.lang.modal.spot.edit.form.description }}</label>
-						<textarea id="spot-edit-description" class="form-control" :placeholder="this.$store.state.languages.lang.modal.spot.edit.form.description" :value="spot.description" required ref="desc" @change="formFieldChange"></textarea>
+						<label for="spot-edit-description" class="sr-only">{{ texts.form.description }}</label>
+						<textarea id="spot-edit-description" class="form-control" :placeholder="texts.form.description" :value="spot.description" required ref="desc" @change="formFieldChange"></textarea>
 					</div>
 				</form>
 			</div>
@@ -20,9 +20,9 @@
 
 		<div class="vue-dialog-buttons">
 			<button class="vue-dialog-button" @click="closeModal">
-				<i class="icon-left-open" aria-hidden="true"></i> {{ this.$store.state.languages.lang.modal.spot.edit.form.buttons.cancel }}
+				<i class="icon-left-open" aria-hidden="true"></i> {{ texts.form.buttons.cancel }}
 			</button>
-			<button class="vue-dialog-button" @click="submitForm">{{ this.$store.state.languages.lang.modal.spot.edit.form.buttons.confirm }}
+			<button class="vue-dialog-button" @click="submitForm">{{ texts.form.buttons.confirm }}
 				<i class="icon-right-open" aria-hidden="true"></i>
 			</button>
 		</div>
@@ -36,6 +36,7 @@ export default {
 	data () {
 		return {
 			formHasErrors: false,
+			texts: this.$store.state.languages.lang.modal.spot.edit
 		}
 	},
 
@@ -68,10 +69,10 @@ export default {
 				})
 				.catch(error => {
 					this.$modal.show('dialog', {
-						title: this.$store.state.languages.lang.modal.spot.edit.error.title,
-						text: `${this.$store.state.languages.lang.modal.spot.edit.error.text}\n\n${error.code}: ${error.message}`,
+						title: this.texts.error.title,
+						text: `${this.texts.error.text}\n\n${error.code}: ${error.message}`,
 						buttons: [
-							{ title: this.$store.state.languages.lang.modal.spot.edit.error.buttons.close }
+							{ title: this.texts.error.buttons.close }
 						]
 					})
 				})

@@ -1,24 +1,24 @@
 <template>
 	<modal class="vue-dialog" name="new-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
-			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ this.$store.state.languages.lang.modal.spot.add.form.title }}</h3>
+			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ texts.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
-						<label for="spot-add-title" class="sr-only">{{ this.$store.state.languages.lang.modal.spot.add.form.name }}</label>
-						<input type="text" id="spot-add-title" class="form-control" :placeholder="this.$store.state.languages.lang.modal.spot.add.form.name" required ref="title" @change="formFieldChange">
+						<label for="spot-add-title" class="sr-only">{{ texts.name }}</label>
+						<input type="text" id="spot-add-title" class="form-control" :placeholder="texts.name" required ref="title" @change="formFieldChange">
 					</div>
 					<div class="form-group">
-						<label for="spot-add-description" class="sr-only">{{ this.$store.state.languages.lang.modal.spot.add.form.description }}</label>
-						<textarea id="spot-add-description" class="form-control" :placeholder="this.$store.state.languages.lang.modal.spot.add.form.description" required ref="desc" @change="formFieldChange"></textarea>
+						<label for="spot-add-description" class="sr-only">{{ texts.description }}</label>
+						<textarea id="spot-add-description" class="form-control" :placeholder="texts.description" required ref="desc" @change="formFieldChange"></textarea>
 					</div>
 				</form>
 			</div>
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<button class="vue-dialog-button" @click="closeModal"><i class="icon-left-open" aria-hidden="true"></i> {{ this.$store.state.languages.lang.modal.spot.add.form.buttons.cancel }}</button>
-			<button class="vue-dialog-button" @click="submitForm">{{ this.$store.state.languages.lang.modal.spot.add.form.buttons.confirm }} <i class="icon-right-open" aria-hidden="true"></i></button>
+			<button class="vue-dialog-button" @click="closeModal"><i class="icon-left-open" aria-hidden="true"></i> {{ texts.buttons.cancel }}</button>
+			<button class="vue-dialog-button" @click="submitForm">{{ texts.buttons.confirm }} <i class="icon-right-open" aria-hidden="true"></i></button>
 		</div>
 	</modal>
 </template>
@@ -29,7 +29,8 @@ import axios from 'axios'
 export default {
 	data () {
 		return {
-			formHasErrors: false
+			formHasErrors: false,
+			texts: this.$store.state.languages.lang.modal.spot.add.form
 		}
 	},
 
