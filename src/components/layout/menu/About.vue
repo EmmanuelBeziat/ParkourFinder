@@ -23,8 +23,8 @@ export default {
 				title: this.$store.state.languages.lang.about.title,
 				text: `<div class="app-ver">version: ${this.$store.state.app.version} (alpha)</div>${this.$store.state.languages.lang.about.author}`,
 				buttons: [
-					{ title: this.$store.state.languages.lang.about.buttons.bug, handler: () => { this.reportBug() } },
-					{ title: this.$store.state.languages.lang.about.buttons.close }
+					{ title: `<i class="icon-bug" aria-hidden="true"></i> ${this.$store.state.languages.lang.about.buttons.bug}`, handler: () => { this.reportBug() } },
+					{ title: `<i class="icon-cancel" aria-hidden="true"></i> ${this.$store.state.languages.lang.about.buttons.close}` }
 				]
 			})
 		},

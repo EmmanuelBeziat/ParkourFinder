@@ -20,10 +20,10 @@
 
 		<div class="vue-dialog-buttons">
 			<button class="vue-dialog-button" @click="closeModal">
-				<i class="icon-left-open" aria-hidden="true"></i> {{ texts.form.buttons.cancel }}
+				<i class="icon-cancel" aria-hidden="true"></i> {{ texts.form.buttons.cancel }}
 			</button>
-			<button class="vue-dialog-button" @click="submitForm">{{ texts.form.buttons.confirm }}
-				<i class="icon-right-open" aria-hidden="true"></i>
+			<button class="vue-dialog-button" @click="submitForm">
+				<i class="icon-ok" aria-hidden="true"></i> {{ texts.form.buttons.confirm }}
 			</button>
 		</div>
 	</modal>

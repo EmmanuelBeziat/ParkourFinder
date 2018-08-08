@@ -17,8 +17,12 @@
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<button class="vue-dialog-button" @click="closeModal"><i class="icon-left-open" aria-hidden="true"></i> {{ texts.buttons.cancel }}</button>
-			<button class="vue-dialog-button" @click="submitForm">{{ texts.buttons.confirm }} <i class="icon-right-open" aria-hidden="true"></i></button>
+			<button class="vue-dialog-button" @click="closeModal">
+				<i class="icon-cancel" aria-hidden="true"></i> {{ texts.buttons.cancel }}
+			</button>
+			<button class="vue-dialog-button" @click="submitForm">
+				<i class="icon-ok" aria-hidden="true"></i> {{ texts.buttons.confirm }}
+			</button>
 		</div>
 	</modal>
 </template>

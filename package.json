@@ -3,7 +3,7 @@
 	"version": "0.4.2",
 	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
-	"private": true,
+	"private": false,
 	"repository": "https://github.com/EmmanuelBeziat/parkourfinder.git",
 	"license": "MIT",
 	"scripts": {
