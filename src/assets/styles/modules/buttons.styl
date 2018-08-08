@@ -2,37 +2,37 @@
 	transition .25s ease-in-out
 	box-shadow none
 	outline none
-	background $color-white
-	border 1px solid $color-red
-	color $color-red
+	background var(--color-background)
+	border 1px solid var(--color-primary)
+	color var(--color-primary)
 	padding 1em 2em
 	cursor pointer
 	border-radius .15em
-	font-family $font-stack-common
+	font-family var(--font-stack-common)
 
 	&:hover
-		background $color-red
-		text-shadow 1px 1px 0 $color-shadow
-		color $color-white
+		background var(--color-primary)
+		text-shadow 1px 1px 0 var(--shadow)
+		color var(--color-background)
 	&:active
-		background darken($color-red, 15%)
-		text-shadow 1px 1px 0 $color-shadow
+		background var(--color-primary-alt)
+		text-shadow 1px 1px 0 var(--shadow)
 
 .btn + .btn
 	margin-left 5px
 
 .btn--primary
-	background $color-red
-	color $color-white
+	background var(--color-primary)
+	color var(--color-background)
 
 .btn--icon
 	padding .25em
 	font-size 1.25rem
 
 .btn[disabled]
-	color $color-shadow !important
-	border-color $color-shadow !important
-	background darken($color-white, 5%) !important
+	color var(--shadow) !important
+	border-color var(--shadow) !important
+	background darken(white, 5%) !important
 	text-shadow none !important
 	cursor not-allowed
 
@@ -44,27 +44,28 @@
 	line-height 1em
 	text-align center
 	border-radius 50%
-	position absolute
-	color $color-red
-	background $color-grey
+	position fixed
+	color var(--color-primary)
+	background darken(white, 5%)
 	bottom 1rem
 	right 1rem
 	position absolute
 	z-index 410
-	box-shadow 2px 2px 4px $color-shadow
-	text-shadow 1px 1px 0 $color-shadow
+	box-shadow 2px 2px 4px var(--shadow)
+	text-shadow 1px 1px 0 var(--shadow)
 
 	&:hover
-		background darken($color-white, 10%)
-		color $color-red
+		background var(--color-background)
+		color var(--color-primary)
 
 	&:active
 		transform scale(.95)
 		transition .05s ease-out
 
 	&.is-locked
-		background $color-red
-		color $color-white
+		background var(--color-primary)
+		color var(--color-background)
+		border 2px solid var(--color-background)
 		&:hover
-			background darken($color-red, 10%)
-			color $color-white
+			background var(--color-primary-alt)
+			color var(--color-background)

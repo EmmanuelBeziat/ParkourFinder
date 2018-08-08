@@ -1,6 +1,6 @@
 <template>
 	<header class="header">
-		<div class="container-fluid flex">
+		<div class="container-fluid flex flex-spaced">
 			<h1 class="header-title">
 				<router-link to="/">Parkour<span>Finder</span><span class="version-stage">alpha</span></router-link>
 			</h1>
@@ -69,8 +69,6 @@ export default {
 		display inline-block
 
 .header-actions
-	margin-left auto
-
 	.btn
 		position relative
 </style>

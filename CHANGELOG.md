@@ -1,3 +1,7 @@
+# v0.4.2 (alpha stage)
+
+* Position and tracking fixed
+
 # v0.4.1 (alpha stage)
 
 * Refactoring code for better readability

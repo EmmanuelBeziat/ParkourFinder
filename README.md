@@ -1,7 +1,5 @@
 # ParkourFinder
 
-![version](https://img.shields.io/badge/version-0.4.0-brightgreen.svg?style=flat-square)
-
 ![PKF logo](public/icon-alt.png)
 
 > A tiny web app that helps tracers to locate parkour spots around the world

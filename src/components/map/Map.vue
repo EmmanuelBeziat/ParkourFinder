@@ -1,6 +1,6 @@
 <template>
 	<div id="map" class="pkf-map">
-		<LMap ref="map" @ready="initMap" @locationfound="locationFound" @movestart="moveStart" :options="map.options">
+		<LMap ref="map" @ready="initMap" @locationfound="locationFound" :options="map.options">
 			<LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			<LMarkerClusterGroup :options="map.clusterOptions">
 				<LMarker v-for="(spot, index) in spots" :key="index" :latlng="[spot.location.lat, spot.location.lng]" @click="showSpot(spot.slug)" />
@@ -11,7 +11,7 @@
 			<LCircle :latlng="user.position" :options="user.zone" />
 		</LMap>
 
-		<button class="btn btn--icon btn--map is-locked" v-if="map.fullyLoaded && !map.locked" @click="lockView()">
+		<button v-if="map.fullyLoaded" class="btn btn--icon btn--map" :class="{ 'is-locked': map.locked }" @click="lockView()">
 			<i class="icon-target" aria-hidden="true"></i>
 			<span class="sr-only">{{ this.$store.state.languages.lang.map.toggle }}</span>
 		</button>
@@ -73,37 +73,34 @@ export default {
 
 	methods: {
 		initMap () {
-			// let userZone = L.circle(this.user.currentPosition, 5).addTo(this.$refs.map.mapObject)
-			// userMarker.setLatLng(this.user.currentPosition).addTo(this.$refs.map.mapObject)
-			this.$refs.map.layer.locate({ watch: true, setView: false })
+			this.$refs.map.layer.locate({ watch: true, setView: false, enableHighAccuracy: true })
 		},
 
 		locationFound (e) {
 			this.user.zone.radius = e.accuracy / 2
 			this.user.position = [e.latlng.lat, e.latlng.lng]
 			this.$store.commit('position/setPosition', { latitude: e.latlng.lat, longitude: e.latlng.lng })
-			this.$refs.map.layer.setView(this.user.position, 14)
-			this.map.fullyLoaded = true
+
+			// Fires only the first time
+			if (!this.map.fullyLoaded) {
+				this.$refs.map.layer.setView(this.user.position, 15)
+				this.map.fullyLoaded = true
+			}
 		},
 
 		showSpot (slug) {
 			this.$router.push(`/spot/${slug}`)
 		},
 
-		moveStart () {
-			this.map.locked = false
-			this.$refs.map.layer.locate({ watch: true, setView: false })
-		},
-
 		lockView () {
 			if (this.map.locked) {
 				this.map.locked = false
-				this.$refs.map.layer.locate({ watch: true, setView: false })
+				this.$refs.map.layer.locate({ watch: true, setView: false, enableHighAccuracy: true })
 			}
 			else {
 				this.map.locked = true
-				this.$refs.map.layer.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude], 15, { animate: true, duration: 1, noMoveStart: true })
-				this.$refs.map.layer.locate({ watch: true, setView: true })
+				this.$refs.map.layer.locate({ watch: true, setView: true, enableHighAccuracy: true })
+				this.$refs.map.layer.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
 			}
 		}
 	}

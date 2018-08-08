@@ -67,11 +67,12 @@ body
 	font 400 var(--font-size-base)/1.5 var(--font-stack-common)
 
 .app
-	min-height 100vh
+	height 100vh
+	max-width 100vw
 	display grid
 	grid-template-rows auto 1fr
 	position relative
-	overflow-x hidden
+	overflow hidden
 
 .main
 	flex 1
