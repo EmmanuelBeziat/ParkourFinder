@@ -29,6 +29,10 @@ export default {
 		Loader
 	},
 
+	created () {
+		this.fetchSpot()
+	},
+
 	validate ({ params }) {
 		return isNaN(params.slug)
 	},
