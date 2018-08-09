@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import IconButton from '@/components/spot/Button'
+import IconButton from '@/components/buttons/IconButton'
 
 export default {
 	props: ['spot'],

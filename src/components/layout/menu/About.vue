@@ -1,10 +1,10 @@
 <template>
-	<button class="btn btn--icon" :data-tooltip="this.$store.state.languages.lang.site.nav.about" @click="showAbout()">
-		<i class="icon-help" aria-hidden="true"></i><div class="sr-only">{{ this.$store.state.languages.lang.site.nav.about }}</div>
-	</button>
+	<IconButton icon="icon-help" :text="this.$store.state.languages.lang.site.nav.about" @action="showAbout()" />
 </template>
 
 <script>
+import IconButton from '@/components/buttons/IconButton'
+
 export default {
 	name: 'About',
 
@@ -13,8 +13,13 @@ export default {
 			modal: {}
 		}
 	},
+
 	created () {
 		this.modal = this.$modal
+	},
+
+	components: {
+		IconButton
 	},
 
 	methods: {

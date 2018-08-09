@@ -37,10 +37,6 @@ export default {
 		'$route': 'fetchData'
 	},
 
-	created () {
-		this.fetchSpot()
-	},
-
 	methods: {
 		fetchSpot () {
 			this.error = this.post = null

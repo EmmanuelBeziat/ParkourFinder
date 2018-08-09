@@ -4,6 +4,8 @@ const state = {
 	infos: null,
 }
 
+const getters = {}
+
 // Mutations
 const mutations = {
 	setPosition (state, position) {
@@ -18,5 +20,6 @@ const mutations = {
 export default {
 	namespaced: true,
 	state,
+	getters,
 	mutations
 }

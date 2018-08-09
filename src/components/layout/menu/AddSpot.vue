@@ -1,11 +1,11 @@
 <template>
-	<button class="btn btn--icon" :data-tooltip="this.$store.state.languages.lang.site.nav.newspot" @click="addSpotManager()">
-		<i class="icon-location" aria-hidden="true"></i><div class="sr-only">{{ this.$store.state.languages.lang.site.nav.newspot }}</div>
-	</button>
+	<IconButton icon="icon-location" :text="this.$store.state.languages.lang.site.nav.newspot" @action="addSpotManager()" />
 </template>
 
 <script>
 import Vue from 'vue'
+import IconButton from '@/components/buttons/IconButton'
+
 
 export default {
 	name: 'AddSpot',
@@ -16,8 +16,8 @@ export default {
 		}
 	},
 
-	created () {
-		// this.modal = this.$modal
+	components: {
+		IconButton
 	},
 
 	computed: {
