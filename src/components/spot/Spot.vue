@@ -23,19 +23,9 @@
 
 		<footer class="spot-complementary">
 			<div class="spot-actions">
-				<button class="btn btn--icon" :data-tooltip="texts.actions.upload_picture" @click="buttonUpload()">
-					<i class="icon-picture" aria-hidden="true"></i>
-					<span class="sr-only">{{ texts.actions.upload_picture }}</span>
-				</button>
-				<button class="btn btn--icon" :data-tooltip="texts.actions.edit" @click="buttonEdit()">
-					<i class="icon-edit" aria-hidden="true"></i>
-					<span class="sr-only">{{ texts.actions.edit }}</span>
-				</button>
-				<button class="btn btn--icon" :data-tooltip="texts.actions.remove" @click="buttonRemove()">
-					<i class="icon-trash" aria-hidden="true"></i>
-					<span class="sr-only">{{ texts.actions.remove }}</span>
-				</button>
-
+				<!-- <IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="buttonUpload()" /> -->
+				<IconButton icon="icon-edit" :text="texts.actions.edit" @action="buttonEdit()" />
+				<IconButton icon="icon-trash" :text="texts.actions.remove" @action="buttonRemove()" />
 				<input class="sr-only" ref="fileUploader" type="file" accept="image/*capture=camera" multiple @change="inputChangePicture()">
 			</div>
 
@@ -52,6 +42,8 @@
 </template>
 
 <script>
+import IconButton from '@/components/spot/Button'
+
 export default {
 	props: ['spot'],
 
@@ -59,6 +51,10 @@ export default {
 		return {
 			texts: this.$store.state.languages.lang.spot
 		}
+	},
+
+	components: {
+		IconButton
 	},
 
 	methods: {

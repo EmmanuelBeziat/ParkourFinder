@@ -33,6 +33,7 @@ export default {
 			if (navigator.geolocation) {
 				this.getCurrentPosition()
 
+				/*
 				this.$modal.show('dialog', {
 					title: this.$store.state.languages.lang.modal.spot.add.success.title,
 					text: this.$store.state.languages.lang.modal.spot.add.success.description,
@@ -42,6 +43,7 @@ export default {
 						{ title: this.$store.state.languages.lang.modal.spot.add.success.buttons[2] }
 					]
 				})
+				*/
 				this.addSpotWithGeolocation()
 			}
 
