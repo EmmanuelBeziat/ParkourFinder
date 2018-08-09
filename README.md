@@ -1,6 +1,6 @@
 # ParkourFinder
 
-![PKF logo](public/icon-alt.png)
+![PKF logo](public/branding/icon-alt.png)
 
 > A tiny web app that helps tracers to locate parkour spots around the world
 
