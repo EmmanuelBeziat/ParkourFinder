@@ -23,10 +23,9 @@
 
 		<footer class="spot-complementary">
 			<div class="spot-actions">
-				<!-- <IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="buttonUpload()" /> -->
+				<IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="buttonPicture()" />
 				<IconButton icon="icon-edit" :text="texts.actions.edit" @action="buttonEdit()" />
 				<IconButton icon="icon-trash" :text="texts.actions.remove" @action="buttonRemove()" />
-				<input class="sr-only" ref="fileUploader" type="file" accept="image/*capture=camera" multiple @change="inputChangePicture()">
 			</div>
 
 			<div class="spot-infos">
@@ -58,15 +57,8 @@ export default {
 	},
 
 	methods: {
-		/**
-		 * ask for upload picture
-		 */
-		buttonUpload () {
-			this.$refs.fileUploader.click()
-		},
-
-		inputChangePicture () {
-			this.$emit('uploadPicture', event.target.files)
+		buttonPicture () {
+			this.$emit('uploadPicture')
 		},
 
 		buttonEdit () {

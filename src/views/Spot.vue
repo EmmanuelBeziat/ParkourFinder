@@ -2,7 +2,7 @@
 	<section class="spot">
 		<Loader v-if="loading" />
 		<Error v-if="error" :message="error" />
-		<Spot v-if="spot" :spot="spot" @uploadPicture="mediaUpload($event)" @removeSpot="removeSpot" @editSpot="editSpot" />
+		<Spot v-if="spot" :spot="spot" @uploadPicture="mediaUpload()" @removeSpot="removeSpot()" @editSpot="editSpot()" />
 	</section>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 		return {
 			loading: false,
 			spot: null,
-			error: null
+			error: null,
 		}
 	},
 
@@ -73,35 +73,8 @@ export default {
 		/**
 		 * Prepare image content for upload
 		 */
-		mediaUpload (files) {
-			// Abort if no file
-			if (!files.length) {
-				return
-			}
-			console.log(files)
-			/*
-			Array.from(files).forEach((file) => {
-			})
-			const fileUploader = this.$refs.fileUploader
-			let data = new FormData()
-			let config = {
-				headers: { 'content-type': 'multipart/form-data' },
-				onUploadProgress: function (progressEvent) {
-					let percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total)
-					console.log(percentCompleted)
-				}
-			}
-
-			data.append('image', fileUploader.files[0])
-			axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
-			Vue.axios.post('https://rest.parkourfinder.com/medias', data)
-				.then(function (res) {
-					console.log(res.data)
-				})
-				.catch(function (err) {
-					console.log(err.message)
-				})
-			*/
+		mediaUpload () {
+			this.$modal.show('spot-pictures')
 		},
 
 		/**

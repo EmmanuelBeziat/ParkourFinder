@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Vue from 'vue'
 
 export default {
 	data () {
@@ -60,8 +60,8 @@ export default {
 				}
 			}
 
-			axios.defaults.headers.post['Content-Type'] = 'application/json'
-			axios.post('https://rest.parkourfinder.com/spots', datas)
+			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
+			Vue.axios.post('https://rest.parkourfinder.com/spots', datas)
 				.then(res => {
 					// this.$store.commit('spots/addSpot', res.data)
 					this.$store.dispatch('spots/init')

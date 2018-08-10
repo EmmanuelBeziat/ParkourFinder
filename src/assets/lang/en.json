@@ -136,6 +136,16 @@
 						"close": "Close"
 					}
 				}
+			},
+			"pictures": {
+				"title": "Send pictures",
+				"text": "Send pictures of the spot so other tracers can see what it has to offer.",
+				"formats": "Allowed file formats:",
+				"cta": "Choose pictures",
+				"buttons": {
+					"confirm": "Send",
+					"cancel": "Cancel"
+				}
 			}
 		},
 		"error": {
