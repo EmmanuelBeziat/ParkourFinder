@@ -8,15 +8,15 @@
 	padding .5em 0
 	font-size rem(16px)
 	border none
-	border-bottom 1px solid $color-shadow
+	border-bottom 1px solid var(--shadow)
 	transition .25s ease
 
 	&:focus
-		border-color $color-red
+		border-color var(--color-primary)
 		outline 0
 
 	&.has-error
-		border-color $color-red
+		border-color var(--color-primary)
 
 		&::placeholder
-			color $color-red
+			color var(--color-primary)
