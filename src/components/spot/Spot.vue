@@ -23,7 +23,7 @@
 
 		<footer class="spot-complementary">
 			<div class="spot-actions">
-				<!-- <IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="buttonPicture()" /> -->
+				<IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="buttonPicture()" />
 				<IconButton icon="icon-edit" :text="texts.actions.edit" @action="buttonEdit()" />
 				<IconButton icon="icon-trash" :text="texts.actions.remove" @action="buttonRemove()" />
 			</div>

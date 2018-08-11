@@ -1,5 +1,5 @@
 <template>
-	<IconButton icon="icon-location" :text="this.$store.state.languages.lang.site.nav.newspot" @action="addSpotManager()" />
+	<IconButton v-if="position" icon="icon-location" :text="this.$store.state.languages.lang.site.nav.newspot" @action="addSpotManager()" />
 </template>
 
 <script>
@@ -75,8 +75,10 @@ export default {
 		 * Store the current position informations
 		 */
 		getCurrentPosition () {
+			console.log('get current pos')
 			const success = pos => {
 				this.getGeocodingInformations(pos.coords.latitude, pos.coords.longitude).then((datas) => {
+					console.log(datas)
 					this.$store.commit('position/setInfos', {
 						city: datas.city,
 						country: datas.country,
@@ -90,7 +92,7 @@ export default {
 				console.warn(`${err.code}: ${err.message}`)
 			}
 
-			navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true, timeout: 2500 })
+			navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true, maximumAge: Infinity, timeout: 2500 })
 		},
 
 		/**

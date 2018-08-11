@@ -49,7 +49,7 @@ export default {
 			Vue.axios.get(`https://rest.parkourfinder.com/spots/${this.$route.params.slug}`)
 				.then(response => {
 					this.spot = response.data
-					this.$store.commit('spots/setCurrentSpot', this.spot)
+					this.setCurrentSpot()
 				})
 				.catch(err => {
 					this.error = err
