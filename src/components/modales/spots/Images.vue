@@ -76,18 +76,16 @@ export default {
 				fd.append(picture.name, picture)
 			})
 
-			/*
 			Vue.axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
-			Vue.axios.post('https://rest.parkourfinder.com/medias, fd)
-				.then(res) {
+			Vue.axios.post('https://rest.parkourfinder.com/medias', fd)
+				.then(res => {
 					console.log(res)
 					this.reset()
 					this.closeModal()
-				}
-				.catch(error) {
+				})
+				.catch(error => {
 					console.error(error)
-				}
-			*/
+				})
 		},
 
 		/**

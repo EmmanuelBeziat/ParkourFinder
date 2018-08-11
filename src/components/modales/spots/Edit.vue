@@ -64,7 +64,7 @@ export default {
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
 			Vue.axios.put(`https://rest.parkourfinder.com/spots/${this.spot._id}`, datas)
 				.then(() => {
-					this.$store.dispatch('map/init')
+					this.$store.dispatch('spots/init')
 					this.closeModal()
 				})
 				.catch(error => {
