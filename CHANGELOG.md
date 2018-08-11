@@ -1,3 +1,7 @@
+# v0.4.3 (alpha stage)
+
+* The app now check if it has access to user’s position before showing the "add a new spot" button
+
 # v0.4.2 (alpha stage)
 
 * Position and tracking fixed
