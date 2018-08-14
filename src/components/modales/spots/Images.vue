@@ -40,12 +40,14 @@
 
 <script>
 import Vue from 'vue'
+import encodeImageURI from 'encode-image-uri'
 
 export default {
 	data () {
 		return {
 			pictures: [],
 			picturesPreview: [],
+			picturesURI: [],
 			texts: this.$store.state.languages.lang.modal.spot.pictures
 		}
 	},
@@ -65,27 +67,24 @@ export default {
 		reset () {
 			this.pictures = []
 			this.picturesPreview = []
+			this.picturesURI = []
 		},
 
 		/**
 		 * Send the files to be stored
 		 */
 		upload () {
-			let fd = new FormData()
 			this.pictures.forEach((picture, i) => {
-				fd.append(picture.name, picture)
+				Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
+				Vue.axios.post('http://localhost:3030/medias', { filename: picture.name, uri: this.picturesURI[i] })
+					.then(res => {
+						this.reset()
+						this.closeModal()
+					})
+					.catch(error => {
+						console.error(error)
+					})
 			})
-
-			Vue.axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
-			Vue.axios.post('https://rest.parkourfinder.com/medias', fd)
-				.then(res => {
-					console.log(res)
-					this.reset()
-					this.closeModal()
-				})
-				.catch(error => {
-					console.error(error)
-				})
 		},
 
 		/**
@@ -111,6 +110,11 @@ export default {
 			Array.from(fileList).forEach(file => {
 				this.pictures.push(file)
 				this.picturesPreview.push(URL.createObjectURL(file))
+				encodeImageURI(URL.createObjectURL(file), (err, uri) => {
+					if (!err) {
+						this.picturesURI.push(uri)
+					}
+				})
 			})
 		}
 	}
