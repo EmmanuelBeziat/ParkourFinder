@@ -89,7 +89,7 @@ export default {
 				data.newMedias.push({ filename: picture.name, uri: this.picturesURI[index] })
 			})
 
-			Vue.axios.put(`http://localhost:3030/spots/${spot._id}`, data)
+			Vue.axios.put(`https://rest.parkourfinder.com/spots/${spot._id}`, data)
 				.then(() => {
 					this.$store.dispatch('spots/init')
 					this.reset()
