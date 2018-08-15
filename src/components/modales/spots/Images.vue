@@ -41,6 +41,7 @@
 <script>
 import Vue from 'vue'
 import encodeImageURI from 'encode-image-uri'
+import resizeBase64 from 'resize-base64'
 
 export default {
 	data () {
@@ -74,17 +75,35 @@ export default {
 		 * Send the files to be stored
 		 */
 		upload () {
-			this.pictures.forEach((picture, i) => {
-				Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-				Vue.axios.post('http://localhost:3030/medias', { filename: picture.name, uri: this.picturesURI[i] })
-					.then(res => {
-						this.reset()
-						this.closeModal()
-					})
-					.catch(error => {
-						console.error(error)
-					})
+			const spot = this.$store.state.spots.currentSpot
+			const data = {
+				title: spot.title,
+				location: spot.location,
+				description: spot.description,
+				team: spot.team,
+				medias: spot.medias,
+				newMedias: []
+			}
+
+			this.pictures.forEach((picture, index) => {
+				data.newMedias.push({ filename: picture.name, uri: this.picturesURI[index] })
 			})
+
+			Vue.axios.put(`http://localhost:3030/spots/${spot._id}`, data)
+				.then(() => {
+					this.$store.dispatch('spots/init')
+					this.reset()
+					this.closeModal()
+				})
+				.catch(error => {
+					this.$modal.show('dialog', {
+						title: this.texts.error.title,
+						text: `${this.texts.error.text}\n\n${error.code}: ${error.message}`,
+						buttons: [
+							{ title: this.texts.error.buttons.close }
+						]
+					})
+				})
 		},
 
 		/**
@@ -107,13 +126,16 @@ export default {
 				return
 			}
 
+			if (fileList.lenght > 4) {
+				alert('')
+				return
+			}
+
 			Array.from(fileList).forEach(file => {
 				this.pictures.push(file)
 				this.picturesPreview.push(URL.createObjectURL(file))
-				encodeImageURI(URL.createObjectURL(file), (err, uri) => {
-					if (!err) {
-						this.picturesURI.push(uri)
-					}
+				encodeImageURI(file).then(uri => {
+					this.picturesURI.push(uri)
 				})
 			})
 		}

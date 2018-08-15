@@ -36,7 +36,6 @@ const mutations = {
 	},
 
 	addSpot (state, spot) {
-		console.log(spot)
 		state.spots.push(spot)
 	},
 

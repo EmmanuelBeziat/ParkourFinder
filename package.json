@@ -9,12 +9,11 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build --modern",
-		"pm2": "pm2 startOrRestart npm --name 'pkf-live' -- start",
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
-		"encode-image-uri": "^1.0.3",
+		"encode-image-uri": "^2.0.0",
 		"moment": "^2.22.2",
 		"register-service-worker": "^1.5.1",
 		"vue": "^2.5.16",

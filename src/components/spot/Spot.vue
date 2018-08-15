@@ -15,8 +15,8 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a href="#" class="spot-gallery-item" v-for="picture in spot.pictures" :key="picture.src">
-					<img class="spot-gallery-img" :src="picture.src" :alt="picture.title">
+				<a href="#" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index">
+					<img class="spot-gallery-img" :src="picture" alt="">
 				</a>
 			</div>
 		</div>
