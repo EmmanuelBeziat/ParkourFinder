@@ -15,7 +15,7 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a href="#" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index">
+				<a href="#" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index" @click.prevent>
 					<img class="spot-gallery-img" :src="picture" alt="">
 				</a>
 			</div>
@@ -136,7 +136,15 @@ export default {
 
 .spot-gallery-item
 	margin 5px
-	width calc(100% / 5 - 10px)
+	width calc(100% / 2 - 10px)
+	padding 4px
+	border 1px solid var(--shadow)
+
+	@media $mq-tablet
+		width calc(100% / 4 - 10px)
+
+	&:hover
+		transform scale(1.05)
 
 .spot-gallery-img
 	display block

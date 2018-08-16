@@ -142,6 +142,8 @@
 				"text": "Send pictures of the spot so other tracers can see what it has to offer.",
 				"formats": "Allowed file formats:",
 				"cta": "Choose pictures",
+				"upload_max": "You can’t upload more than 4 images at once.",
+				"files_max": "Each spot can have a maximum than 4 images.",
 				"buttons": {
 					"confirm": "Send",
 					"cancel": "Cancel"

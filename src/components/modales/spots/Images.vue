@@ -15,6 +15,8 @@
 					</div>
 				</div>
 
+				<div class="warning" v-if="warning">{{ warning }}</div>
+
 				<form enctype="multipart/form-data" novalidate>
 					<div class="cta-images">
 						<button type="button" class="btn btn--lg btn--primary" @click="$refs.fileUploader.click()">
@@ -41,7 +43,7 @@
 <script>
 import Vue from 'vue'
 import encodeImageURI from 'encode-image-uri'
-import resizeBase64 from 'resize-base64'
+// import resizeBase64 from 'resize-base64'
 
 export default {
 	data () {
@@ -49,6 +51,7 @@ export default {
 			pictures: [],
 			picturesPreview: [],
 			picturesURI: [],
+			warning: false,
 			texts: this.$store.state.languages.lang.modal.spot.pictures
 		}
 	},
@@ -59,6 +62,7 @@ export default {
 
 	methods: {
 		closeModal () {
+			this.reset()
 			this.$modal.hide('spot-pictures')
 		},
 
@@ -121,17 +125,24 @@ export default {
 		 * @param fileList Object fileList
 		 */
 		onChangeInput (fileList) {
+			const list = Array.from(fileList)
+
 			// Abort if field is empty
-			if (!fileList.length) {
+			if (!list.length) {
 				return
 			}
 
-			if (fileList.lenght > 4) {
-				alert('')
+			if (list.length > 4) {
+				alert(this.texts.upload_max)
 				return
 			}
 
-			Array.from(fileList).forEach(file => {
+			if ((list.length + this.$store.state.spots.currentSpot.medias.length) > 4) {
+				alert(this.texts.files_max)
+				return
+			}
+
+			list.forEach(file => {
 				this.pictures.push(file)
 				this.picturesPreview.push(URL.createObjectURL(file))
 				encodeImageURI(file).then(uri => {

@@ -1,3 +1,8 @@
+# v0.5.3 (alpha stage)
+
+* You can now upload up to 4 pictures for each spot
+* Pictures are shown in the spot modal (still need a refresh)
+
 # v0.4.3 (alpha stage)
 
 * The app now check if it has access to user’s position before showing the "add a new spot" button

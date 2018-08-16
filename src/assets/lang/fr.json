@@ -142,6 +142,8 @@
 				"text": "Envoyez des photos du spot pour que les autres traceurs puissent se faire une idée du spot.",
 				"formats": "Formats autorisés :",
 				"cta": "Choisir des images",
+				"upload_max": "Vous ne pouvez pas envoyer plus de 4 images à la fois.",
+				"files_max": "Chaque spot peut contenir un maximum de 4 images.",
 				"buttons": {
 					"confirm": "Envoyer",
 					"cancel": "Annuler"
