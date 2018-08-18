@@ -131,24 +131,61 @@ export default {
 
 .spot-gallery
 	display flex
-	flex-wrap wrap
 	margin 1rem -5px 0
 
 .spot-gallery-item
-	margin 5px
-	width calc(100% / 2 - 10px)
-	padding 4px
-	border 1px solid var(--shadow)
+	max-height 180px
+	border 4px solid var(--color-background)
+	outline 1px solid var(--shadow)
+	overflow hidden
+	flex 1
+	position relative
+	margin 0 5px
 
-	@media $mq-tablet
-		width calc(100% / 4 - 10px)
+	/* &::before
+		content ""
+		position absolute
+		left 0
+		right 0
+		top 0
+		bottom 0
+		background alpha(white, 50%)
+		z-index 4
+		opacity 0
+		visibility hidden
+		transition .25s ease-in
+
+	&::after
+		font-family var(--font-stack-icons)
+		content "\e811"
+		position absolute
+		left 50%
+		top 50%
+		transform translate(-50%, -50%)
+		font-size 4rem
+		color var(--color-primary)
+		z-index 5
+		opacity 0
+		visibility hidden
+		transition .45s ease-out */
 
 	&:hover
-		transform scale(1.05)
+		.spot-gallery-img
+			transform scale(1.05)
+
+		/*
+		&::before
+		&::after
+			opacity 1
+			visibility visible
+			transition .25s ease-in */
 
 .spot-gallery-img
 	display block
 	max-width 100%
+	object-fit cover
+	object-position 50% 50%
+	transition .25s ease-in-out
 
 .v--modal-overlay
 	z-index 2000

@@ -1,6 +1,6 @@
 {
 	"name": "parkourfinder",
-	"version": "0.5.3",
+	"version": "0.5.4",
 	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": false,
@@ -15,7 +15,7 @@
 		"axios": "^0.18.0",
 		"encode-image-uri": "^2.0.0",
 		"moment": "^2.22.2",
-		"register-service-worker": "^1.5.1",
+		"register-service-worker": "^1.5.2",
 		"vue": "^2.5.16",
 		"vue-axios": "^2.1.2",
 		"vue-head": "^2.0.12",
@@ -25,10 +25,10 @@
 		"vuex": "^3.0.1"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "^3.0.0-rc.10",
-		"@vue/cli-plugin-eslint": "^3.0.0-rc.10",
-		"@vue/cli-plugin-pwa": "^3.0.0-rc.10",
-		"@vue/cli-service": "^3.0.0-rc.10",
+		"@vue/cli-plugin-babel": "^3.0.1",
+		"@vue/cli-plugin-eslint": "^3.0.1",
+		"@vue/cli-plugin-pwa": "^3.0.1",
+		"@vue/cli-service": "^3.0.1",
 		"stylus": "^0.54.5",
 		"stylus-loader": "^3.0.2",
 		"vue-template-compiler": "^2.5.16"

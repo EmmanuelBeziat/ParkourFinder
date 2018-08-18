@@ -1,3 +1,7 @@
+# v0.5.4 (alpha stage)
+
+* Better view of images on spots
+
 # v0.5.3 (alpha stage)
 
 * You can now upload up to 4 pictures for each spot
