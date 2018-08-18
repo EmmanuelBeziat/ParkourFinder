@@ -77,23 +77,34 @@ export default {
 @require '~@/assets/styles/mixins.styl'
 
 .spot
-	position absolute
-	left 1rem
-	top 1rem
-	right 1rem
 	background var(--color-background)
 	padding 1rem
 	box-shadow 0 0 5px var(--shadow)
 	border-radius 3px
-	max-height calc(100vh - 56px - 2rem)
 	outline 99rem solid var(--shadow)
 	z-index 1000
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
 
 	@media $mq-desktop
+		position absolute
+		left 1rem
+		top 1rem
+		right 1rem
+		bottom auto
+		max-height calc(100vh - 56px - 2rem)
 		right auto
 		width 50vw
 		min-width rem(320px)
 		max-width rem(980px)
+
+.spot-content-loaded
+	display grid
+	grid-template-rows auto 1fr auto
+	height 100%
 
 .spot-header
 	margin-bottom 1rem
@@ -113,6 +124,9 @@ export default {
 .spot-location-infos
 	margin-bottom 1rem
 	font-style italic
+
+.spot-body
+	overflow-y auto
 
 .spot-complementary
 	padding-top 1rem
