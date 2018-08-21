@@ -1,6 +1,6 @@
 {
 	"name": "parkourfinder",
-	"version": "0.5.4",
+	"version": "0.5.5",
 	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": false,
@@ -16,6 +16,7 @@
 		"encode-image-uri": "^2.0.0",
 		"moment": "^2.22.2",
 		"register-service-worker": "^1.5.2",
+		"remove-accents": "^0.4.2",
 		"vue": "^2.5.16",
 		"vue-axios": "^2.1.2",
 		"vue-head": "^2.0.12",

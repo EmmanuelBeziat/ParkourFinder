@@ -1,7 +1,7 @@
 <template>
 	<div class="spot-content-loaded">
 		<header class="spot-header">
-			<h1 class="spot-title">{{ spot.title }}</h1>
+			<h1 class="spot-title">{{ spot.title | normalize }}</h1>
 			<router-link to="/" class="spot-close btn">
 				<i class="icon-cancel" aria-hidden="true"></i>
 				<span class="sr-only">Close</span>

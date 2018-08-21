@@ -1,3 +1,7 @@
+# v0.5.5 (alpha stage)
+
+* Titles are now normalized so they don't show a blank character when using a special char
+
 # v0.5.4 (alpha stage)
 
 * Better view of images on spots
