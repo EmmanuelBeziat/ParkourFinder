@@ -4,7 +4,7 @@
 			<h1 class="spot-title">{{ spot.title | normalize }}</h1>
 			<router-link to="/" class="spot-close btn">
 				<i class="icon-cancel" aria-hidden="true"></i>
-				<span class="sr-only">Close</span>
+				<span class="sr-only">Fermer</span>
 			</router-link>
 			<div class="spot-location-infos" v-if="spot.location.complementary">
 				<i class="icon-location" aria-hidden="true"></i> {{ spot.location.complementary }}
@@ -23,9 +23,9 @@
 
 		<footer class="spot-complementary">
 			<div class="spot-actions">
-				<IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="buttonPicture()" />
-				<IconButton icon="icon-edit" :text="texts.actions.edit" @action="buttonEdit()" />
-				<IconButton icon="icon-trash" :text="texts.actions.remove" @action="buttonRemove()" />
+				<IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="$emit('uploadPicture')" />
+				<IconButton icon="icon-edit" :text="texts.actions.edit" @action="$emit('editSpot')" />
+				<IconButton icon="icon-trash" :text="texts.actions.remove" @action="$emit('removeSpot')" />
 			</div>
 
 			<div class="spot-infos">
@@ -55,54 +55,12 @@ export default {
 	components: {
 		IconButton
 	},
-
-	methods: {
-		buttonPicture () {
-			this.$emit('uploadPicture')
-		},
-
-		buttonEdit () {
-			this.$emit('editSpot')
-		},
-
-		buttonRemove () {
-			this.$emit('removeSpot')
-		}
-	}
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @require '~@/assets/styles/variables.styl'
 @require '~@/assets/styles/mixins.styl'
-
-.spot
-	background var(--color-background)
-	padding 1rem
-	box-shadow 0 0 5px var(--shadow)
-	border-radius 3px
-	outline 99rem solid var(--shadow)
-	z-index 1000
-	position fixed
-	top 0
-	left 0
-	right 0
-	bottom 0
-	min-width rem(320px)
-
-	@media $mq-tablet
-		position absolute
-		left 1rem
-		top 1rem
-		right 1rem
-		bottom auto
-		max-height calc(100vh - 56px - 2rem)
-		right auto
-		width 80vw
-		max-width rem(980px)
-
-	@media $mq-desktop
-		width 50vw
 
 .spot-content-loaded
 	display grid

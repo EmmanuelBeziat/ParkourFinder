@@ -21,6 +21,11 @@
 			"close": "Fermer"
 		}
 	},
+	"search": {
+		"placeholder": "Entrez une ville, un pays…",
+		"search": "Rechercher",
+		"close": "Fermer"
+	},
 	"settings": {
 		"title": "Paramètres",
 		"description": "Description paramètres",

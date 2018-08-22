@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scope>
 .app-ver
 	margin-bottom 1em
 </style>

@@ -7,22 +7,35 @@
 
 			<nav class="header-actions">
 				<MenuAddSpot />
+				<MenuSearch @action="showSearch = !showSearch" />
 				<MenuAbout />
 			</nav>
 		</div>
+
+		<Search :class="{ 'is-active': showSearch }" @close="showSearch = false" />
 	</header>
 </template>
 
 <script>
 import MenuAddSpot from '@/components/layout/menu/AddSpot'
 import MenuAbout from '@/components/layout/menu/About'
+import MenuSearch from '@/components/layout/menu/Search'
+import Search from '@/components/search/Search'
 
 export default {
 	name: 'Header',
 
+	data () {
+		return {
+			showSearch: false
+		}
+	},
+
 	components: {
 		MenuAddSpot,
 		MenuAbout,
+		MenuSearch,
+		Search
 	}
 }
 </script>
@@ -36,7 +49,7 @@ export default {
 	padding 0.5rem 0
 	box-shadow 0 0 5px var(--shadow)
 	position relative
-	z-index 1000
+	z-index 2000
 
 .header-title
 	margin 0

@@ -3,6 +3,7 @@
 		<LayoutHeader />
 		<main class="main">
 			<Map />
+
 			<transition name="slide-fade">
 				<router-view />
 			</transition>

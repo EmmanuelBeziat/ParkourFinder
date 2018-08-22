@@ -11,10 +11,7 @@
 			<LCircle :latlng="user.position" :options="user.zone" />
 		</LMap>
 
-		<button v-if="map.fullyLoaded" class="btn btn--icon btn--map" :class="{ 'is-locked': map.locked }" @click="lockView()">
-			<i class="icon-target" aria-hidden="true"></i>
-			<span class="sr-only">{{ this.$store.state.languages.lang.map.toggle }}</span>
-		</button>
+		<ButtonLock v-if="map.fullyLoaded" @action="lockView()" :class="{ 'is-locked': map.locked }" />
 	</div>
 </template>
 
@@ -22,6 +19,8 @@
 import Vue from 'vue'
 import VueLeaflet from 'vue-leaflet'
 import 'vue-leaflet/dist/vue-leaflet.css'
+
+import ButtonLock from '@/components/map/ButtonLock'
 
 Vue.use(VueLeaflet)
 
@@ -59,6 +58,10 @@ export default {
 				}
 			}
 		}
+	},
+
+	components: {
+		ButtonLock
 	},
 
 	computed: {

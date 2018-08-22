@@ -21,6 +21,11 @@
 			"close": "Close"
 		}
 	},
+	"Search": {
+		"placeholder": "Search for a city, a country…",
+		"search": "Search",
+		"close": "Close"
+	},
 	"settings": {
 		"title": "Settings",
 		"description": "Description settings",

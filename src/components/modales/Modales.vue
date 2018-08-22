@@ -24,5 +24,5 @@ export default {
 
 <style lang="stylus" scoped>
 .modales
-	z-index 1000
+	z-index 2010
 </style>

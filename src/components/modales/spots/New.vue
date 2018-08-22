@@ -17,18 +17,15 @@
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<button class="vue-dialog-button" @click="closeModal">
-				<i class="icon-cancel" aria-hidden="true"></i> {{ texts.buttons.cancel }}
-			</button>
-			<button class="vue-dialog-button" @click="submitForm">
-				<i class="icon-ok" aria-hidden="true"></i> {{ texts.buttons.confirm }}
-			</button>
+			<ModalButton icon="icon-cancel" :text="texts.buttons.cancel" @action="closeModal" />
+			<ModalButton icon="icon-ok" :text="texts.buttons.confirm" @action="submitForm" />
 		</div>
 	</modal>
 </template>
 
 <script>
 import Vue from 'vue'
+import ModalButton from '@/components/buttons/ModalButton'
 
 export default {
 	data () {
@@ -36,6 +33,10 @@ export default {
 			formHasErrors: false,
 			texts: this.$store.state.languages.lang.modal.spot.add.form
 		}
+	},
+
+	components: {
+		ModalButton
 	},
 
 	methods: {

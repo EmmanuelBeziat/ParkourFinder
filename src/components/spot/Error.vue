@@ -12,6 +12,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '~@/assets/styles/variables.styl'
+@require '~@/assets/styles/mixins.styl'
+
 .title
 	color var(--color-primary)
 	font 400 2.5em/1.5 var(--font-stack-heading)

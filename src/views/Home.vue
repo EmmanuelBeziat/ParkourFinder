@@ -11,6 +11,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@require '~@/assets/styles/variables.styl'
+@require '~@/assets/styles/mixins.styl'
+
 .home
 	height 0
 	width 0

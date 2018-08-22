@@ -93,10 +93,10 @@ export default {
 				text: this.$store.state.languages.lang.modal.spot.remove.action.author,
 				buttons: [
 					{
-						title: this.$store.state.languages.lang.modal.spot.remove.action.buttons.cancel
+						title: `<i class="icon-cancel" aria-hidden="true"></i> ${this.$store.state.languages.lang.modal.spot.remove.action.buttons.cancel}`
 					},
 					{
-						title: this.$store.state.languages.lang.modal.spot.remove.action.buttons.confirm,
+						title: `<i class="icon-trash" aria-hidden="true"></i> ${this.$store.state.languages.lang.modal.spot.remove.action.buttons.confirm}`,
 						handler: () => {
 							this.confirmRemoveSpot()
 						}
@@ -129,3 +129,36 @@ export default {
 	}
 }
 </script>
+
+<style lang="stylus" scoped>
+@require '~@/assets/styles/variables.styl'
+@require '~@/assets/styles/mixins.styl'
+
+.spot
+	background var(--color-background)
+	padding 1rem
+	box-shadow 0 0 5px var(--shadow)
+	outline 99rem solid var(--shadow)
+	border-radius 3px
+	z-index 2005
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	min-width rem(320px)
+
+	@media $mq-tablet
+		position absolute
+		left 1rem
+		top 1rem
+		right 1rem
+		bottom auto
+		max-height calc(100vh - 56px - 2rem)
+		right auto
+		width 80vw
+		max-width rem(980px)
+
+	@media $mq-desktop
+		width 50vw
+</style>
