@@ -15,8 +15,8 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a href="#" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index" @click.prevent>
-					<img class="spot-gallery-img" :src="picture" alt="">
+				<a :href="picture[index]" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index" @click.prevent>
+					<img class="spot-gallery-img" :src="picture[index].replace('.com/', '.com/min/')" alt="">
 				</a>
 			</div>
 		</div>
@@ -88,8 +88,9 @@ export default {
 	left 0
 	right 0
 	bottom 0
+	min-width rem(320px)
 
-	@media $mq-desktop
+	@media $mq-tablet
 		position absolute
 		left 1rem
 		top 1rem
@@ -97,9 +98,11 @@ export default {
 		bottom auto
 		max-height calc(100vh - 56px - 2rem)
 		right auto
-		width 50vw
-		min-width rem(320px)
+		width 80vw
 		max-width rem(980px)
+
+	@media $mq-desktop
+		width 50vw
 
 .spot-content-loaded
 	display grid
@@ -111,7 +114,7 @@ export default {
 
 .spot-title
 	margin 0 0 10px
-	color $color-red
+	color var(--color-primary)
 	font 400 var(--font-size-heading-1)/1 var(--font-stack-heading)
 
 .btn.spot-close
@@ -144,17 +147,20 @@ export default {
 	font italic rem(12px)/1.25 var(--font-stack-common)
 
 .spot-gallery
-	display flex
-	margin 1rem -5px 0
+	display grid
+	grid-gap 5px
+	grid-template-columns 1fr 1fr
+	margin 1rem 0
+
+	@media $mq-tablet
+		grid-template-columns 1fr 1fr 1fr 1fr
 
 .spot-gallery-item
 	max-height 180px
-	border 4px solid var(--color-background)
-	outline 1px solid var(--shadow)
+	padding 4px
+	border 1px solid var(--shadow)
 	overflow hidden
-	flex 1
 	position relative
-	margin 0 5px
 
 	/* &::before
 		content ""
@@ -184,8 +190,8 @@ export default {
 		transition .45s ease-out */
 
 	&:hover
-		.spot-gallery-img
-			transform scale(1.05)
+		border-color var(--color-primary)
+		transition color .2s ease-in
 
 		/*
 		&::before
