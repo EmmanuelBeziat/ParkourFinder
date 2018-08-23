@@ -1,3 +1,7 @@
+# v0.6.0 (alpha stage)
+
+* The search engine is now part of the app. It can show you any city in the world, with autocomplete, so you can check the spots in the city of your choice.
+
 # v0.5.5 (alpha stage)
 
 * Titles are now normalized so they don't show a blank character when using a special char
