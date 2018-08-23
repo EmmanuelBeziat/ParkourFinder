@@ -4,7 +4,11 @@ const state = {
 	infos: null,
 }
 
-const getters = {}
+const getters = {
+	getMapView: state => {
+		return state.mapView
+	}
+}
 
 // Mutations
 const mutations = {
@@ -14,6 +18,10 @@ const mutations = {
 
 	setInfos (state, infos) {
 		state.infos = infos
+	},
+
+	setMapView (state, coords) {
+		state.mapView = coords
 	}
 }
 

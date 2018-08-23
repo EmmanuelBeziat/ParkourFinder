@@ -4,16 +4,18 @@ import Vuex from 'vuex'
 // Modules
 import app from '@/store/modules/app.js'
 import spots from '@/store/modules/spots.js'
-import languages from '@/store/modules/languages.js'
+import search from '@/store/modules/search.js'
 import position from '@/store/modules/position.js'
+import languages from '@/store/modules/languages.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	modules: {
 		app,
-		languages,
 		spots,
-		position
+		search,
+		position,
+		languages,
 	},
 })

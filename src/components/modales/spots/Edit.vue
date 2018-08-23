@@ -2,7 +2,8 @@
 	<modal v-if="spot !== null" class="vue-dialog" name="edit-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
 			<h3 class="dialog-c-title">
-				<i class="icon-edit" aria-hidden="true"></i>{{ texts.form.title }}</h3>
+				<i class="icon-edit" aria-hidden="true"></i>{{ texts.form.title }}
+			</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
@@ -12,25 +13,22 @@
 
 					<div class="form-group">
 						<label for="spot-edit-description" class="sr-only">{{ texts.form.description }}</label>
-						<textarea id="spot-edit-description" class="form-control" :placeholder="texts.form.description" :value="spot.description" required ref="desc" @change="formFieldChange"></textarea>
+						<textarea id="spot-edit-description" class="form-control" :placeholder="texts.form.description" :value="spot.description" required ref="desc" @change="formFieldChange" />
 					</div>
 				</form>
 			</div>
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<button class="vue-dialog-button" @click="closeModal">
-				<i class="icon-cancel" aria-hidden="true"></i> {{ texts.form.buttons.cancel }}
-			</button>
-			<button class="vue-dialog-button" @click="submitForm">
-				<i class="icon-ok" aria-hidden="true"></i> {{ texts.form.buttons.confirm }}
-			</button>
+			<ModalButton icon="icon-cancel" :text="texts.buttons.cancel" @action="closeModal" />
+			<ModalButton icon="icon-ok" :text="texts.buttons.confirm" @action="submitForm" />
 		</div>
 	</modal>
 </template>
 
 <script>
 import Vue from 'vue'
+import ModalButton from '@/components/buttons/ModalButton'
 
 export default {
 	data () {
@@ -44,6 +42,10 @@ export default {
 		spot () {
 			return this.$store.state.spots.currentSpot
 		}
+	},
+
+	components: {
+		ModalButton
 	},
 
 	methods: {

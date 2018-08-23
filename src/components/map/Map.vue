@@ -43,7 +43,7 @@ export default {
 				fullyLoaded: false,
 				locked: false,
 				options: {
-					attributionControl: false
+					attributionControl: false,
 				},
 				userIcon: {
 					iconRetinaUrl: require('@/assets/img/map/user-icon-2x.png'),
@@ -58,6 +58,17 @@ export default {
 				}
 			}
 		}
+	},
+
+	mounted () {
+		this.$store.subscribe((mutation, state) => {
+			let coords = this.$store.state.search.search
+			if (mutation.type === 'search/setSearch' && coords !== null) {
+				this.map.locked = false
+				this.$refs.map.layer.locate({ watch: true, setView: false, enableHighAccuracy: true })
+				this.$refs.map.layer.setView([coords.latlng.lat, coords.latlng.lng], 14)
+			}
+		})
 	},
 
 	components: {
@@ -105,7 +116,7 @@ export default {
 				this.$refs.map.layer.locate({ watch: true, setView: true, enableHighAccuracy: true })
 				this.$refs.map.layer.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
 			}
-		}
+		},
 	}
 }
 </script>
