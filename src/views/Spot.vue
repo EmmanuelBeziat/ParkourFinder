@@ -138,7 +138,7 @@ export default {
 	background var(--color-background)
 	padding 1rem
 	box-shadow 0 0 5px var(--shadow)
-	outline 99rem solid var(--shadow)
+	outline 200rem solid var(--shadow)
 	border-radius 3px
 	z-index 2005
 	position fixed
