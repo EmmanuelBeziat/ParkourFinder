@@ -28,7 +28,7 @@
 								<Progress :value="progress" max="100" />
 								<div class="progress-message">
 									<span class="progress-current" v-if="!progressFail">{{ texts.progress }} ({{ progress - 1 }}%)</span>
-									<span class="progress-fail" v-if="progressFail">{{ texts.fail }}</span>
+									<span class="progress-fail" v-else>{{ texts.fail }}</span>
 								</div>
 							</div>
 						</transition>
@@ -126,9 +126,7 @@ export default {
 					this.closeModal()
 					this.$store.dispatch('spots/init')
 				})
-				.catch(error => {
-					this.progressFail = true
-				})
+				.catch(error => console.log(error))
 		},
 
 		/**
