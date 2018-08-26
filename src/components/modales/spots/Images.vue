@@ -89,6 +89,7 @@ export default {
 			this.pictures = []
 			this.picturesPreview = []
 			this.picturesURI = []
+			this.progress = null
 		},
 
 		/**
@@ -116,17 +117,17 @@ export default {
 
 			Vue.axios.put(`https://rest.parkourfinder.com/spots/${spot._id}`, data, config)
 				.then(() => {
-					this.$modal.show('dialog', {
+					/* this.$modal.show('dialog', {
 						title: this.texts.success,
 						text: `<div class="global-success"><i class="icon-ok" aria-hidden="true"></i></div>`,
 						buttons: [
 							{ title: this.texts.error.buttons.close }
 						]
-					})
-					this.closeModal()
+					}) */
 					this.$store.dispatch('spots/init')
 				})
 				.catch(error => console.log(error))
+				.then(() => this.closeModal())
 		},
 
 		/**
