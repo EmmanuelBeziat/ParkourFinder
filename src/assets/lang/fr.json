@@ -149,6 +149,9 @@
 				"cta": "Choisir des images",
 				"upload_max": "Vous ne pouvez pas envoyer plus de 4 images à la fois.",
 				"files_max": "Chaque spot peut contenir un maximum de 4 images.",
+				"progress": "Transfert en cours…",
+				"fail": "Transfert échoué",
+				"success": "Transfert complété",
 				"buttons": {
 					"confirm": "Envoyer",
 					"cancel": "Annuler"

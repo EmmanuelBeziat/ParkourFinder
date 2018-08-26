@@ -20,8 +20,8 @@
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<ModalButton icon="icon-cancel" :text="texts.buttons.cancel" @action="closeModal" />
-			<ModalButton icon="icon-ok" :text="texts.buttons.confirm" @action="submitForm" />
+			<ModalButton icon="icon-cancel" :text="texts.form.buttons.cancel" @action="closeModal" />
+			<ModalButton icon="icon-ok" :text="texts.form.buttons.confirm" @action="submitForm" />
 		</div>
 	</modal>
 </template>

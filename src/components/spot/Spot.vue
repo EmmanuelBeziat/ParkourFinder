@@ -15,8 +15,8 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a :href="picture[index]" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index" @click.prevent>
-					<img class="spot-gallery-img" :src="picture[index].replace('.com/', '.com/min/')" alt="">
+				<a :href="picture" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index">
+					<img class="spot-gallery-img" :src="picture[0].replace('.com/', '.com/min/')" :alt="spot.title">
 				</a>
 			</div>
 		</div>
@@ -164,7 +164,4 @@ export default {
 	object-fit cover
 	object-position 50% 50%
 	transition .25s ease-in-out
-
-.v--modal-overlay
-	z-index 2000
 </style>

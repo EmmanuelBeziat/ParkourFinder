@@ -1,3 +1,7 @@
+# v0.6.1 (alpha stage)
+
+* Upload progress and confirmation for images
+
 # v0.6.0 (alpha stage)
 
 * The search engine is now part of the app. It can show you any city in the world, with autocomplete, so you can check the spots in the city of your choice.

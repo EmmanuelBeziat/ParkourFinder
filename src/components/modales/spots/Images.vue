@@ -23,6 +23,16 @@
 							<i class="icon-upload" aria-hidden="true"></i> {{ texts.cta }}
 						</button>
 
+						<transition name="fade">
+							<div v-if="progress" class="progress-bar">
+								<Progress :value="progress" max="100" />
+								<div class="progress-message">
+									<span class="progress-current" v-if="!progressFail">{{ texts.progress }} ({{ progress - 1 }}%)</span>
+									<span class="progress-fail" v-if="progressFail">{{ texts.fail }}</span>
+								</div>
+							</div>
+						</transition>
+
 						<input class="sr-only" ref="fileUploader" type="file" accept="image/*capture=camera" multiple @change="onChangeInput($event.target.files)">
 					</div>
 				</form>
@@ -43,7 +53,7 @@
 <script>
 import Vue from 'vue'
 import encodeImageURI from 'encode-image-uri'
-// import resizeBase64 from 'resize-base64'
+import Progress from '@/components/progress/Progress'
 
 export default {
 	data () {
@@ -51,6 +61,8 @@ export default {
 			pictures: [],
 			picturesPreview: [],
 			picturesURI: [],
+			progress: null,
+			progressFail: false,
 			warning: false,
 			texts: this.$store.state.languages.lang.modal.spot.pictures
 		}
@@ -58,6 +70,10 @@ export default {
 
 	mounted () {
 		this.reset()
+	},
+
+	components: {
+		Progress
 	},
 
 	methods: {
@@ -88,25 +104,30 @@ export default {
 				medias: spot.medias,
 				newMedias: []
 			}
+			const config = {
+				onUploadProgress: progressEvent => {
+					this.progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+				}
+			}
 
 			this.pictures.forEach((picture, index) => {
 				data.newMedias.push({ filename: picture.name, uri: this.picturesURI[index] })
 			})
 
-			Vue.axios.put(`https://rest.parkourfinder.com/spots/${spot._id}`, data)
+			Vue.axios.put(`https://rest.parkourfinder.com/spots/${spot._id}`, data, config)
 				.then(() => {
-					this.$store.dispatch('spots/init')
-					this.reset()
-					this.closeModal()
-				})
-				.catch(error => {
 					this.$modal.show('dialog', {
-						title: this.texts.error.title,
-						text: `${this.texts.error.text}\n\n${error.code}: ${error.message}`,
+						title: this.texts.success,
+						text: `<div class="global-success"><i class="icon-ok" aria-hidden="true"></i></div>`,
 						buttons: [
 							{ title: this.texts.error.buttons.close }
 						]
 					})
+					this.closeModal()
+					this.$store.dispatch('spots/init')
+				})
+				.catch(error => {
+					this.progressFail = true
 				})
 		},
 
@@ -183,4 +204,7 @@ export default {
 		vertical-align top
 		max-width 100%
 		max-height 100px
+
+.progress-bar
+	margin 1rem 0
 </style>

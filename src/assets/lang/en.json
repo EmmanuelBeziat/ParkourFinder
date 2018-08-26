@@ -149,6 +149,9 @@
 				"cta": "Choose pictures",
 				"upload_max": "You can’t upload more than 4 images at once.",
 				"files_max": "Each spot can have a maximum than 4 images.",
+				"progress": "Upload in progress…",
+				"fail": "Failed to upload",
+				"success": "Upload complete",
 				"buttons": {
 					"confirm": "Send",
 					"cancel": "Cancel"
