@@ -122,6 +122,9 @@ export default {
 </script>
 
 <style lang="stylus">
+@require '~@/assets/styles/variables.styl'
+@require '~@/assets/styles/mixins.styl'
+
 .pkf-map
 	flex 1
 
@@ -129,5 +132,14 @@ export default {
 	height 100% !important
 	max-width 100vw
 	width 100vw
+
+.leaflet-top.leaflet-left
+	left auto
+	top auto
+	right 0
+	bottom 0 !important
+
+	.leaflet-control
+		margin 0 10px 10px 0
 </style>
 

@@ -30,7 +30,6 @@ export default {
 	mounted () {
 		this.places = places({
 			container: this.$refs.search,
-			type: 'city',
 			aroundLatLngViaIP: false,
 			templates: {
 				value: (suggestion => {

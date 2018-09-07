@@ -15,7 +15,14 @@
 	"about": {
 		"title": "À propos",
 		"description": "Description à propos",
-		"author": "Codé avec <span class=\"heart\">♥</span> par <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Rendez-vous sur Github</a> pour rapporter un bug, faire des suggestions, dire merci — Suivez-moi sur <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"author": {
+			"title": "Auteur(e)(s)",
+			"text": "Codé avec <span class=\"heart\">♥</span> par <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> (<a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a> / <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>).<br>N’hésitez pas à venir me dire ce que vous pensez de l’app !"
+		},
+		"privacy": {
+			"title": "Vie privée &amp; données",
+			"text": "<em>ParkourFinder</em> ne collecte strictement aucune information sur vous, et n’utilise aucun service de tracking indésirable. Aucune donnée n’est transmise à Google, Facebook et consorts."
+		},
 		"buttons": {
 			"bug": "Signaler un bug",
 			"close": "Fermer"

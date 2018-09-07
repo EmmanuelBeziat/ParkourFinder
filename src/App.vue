@@ -14,7 +14,7 @@
 
 <script>
 import Map from '@/components/map/Map'
-import LayoutHeader from '@/components/layout/Header'
+import LayoutHeader from '@/components/layout/header/Header'
 import Modales from '@/components/modales/Modales'
 
 export default {

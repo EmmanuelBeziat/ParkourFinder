@@ -15,7 +15,14 @@
 	"about": {
 		"title": "About",
 		"description": "Description about",
-		"author": "Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> — <a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a><br><a href=\"https://github.com/EmmanuelBeziat/parkourfinder/issues/new\">Go to Github</a> to report bugs, make suggestions, say thanks — Follow me on <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>",
+		"author": {
+			"title": "Author(s)",
+			"text": "Coded with <span class=\"heart\">♥</span> by <a href=\"https://www.emmanuelbeziat.com/\">Emmanuel Béziat</a> (<a href=\"https://github.com/EmmanuelBeziat/parkourfinder\">GitHub</a> / <a href=\"https://twitter.com/EmmanuelBeziat\">Twitter</a>).<br>Feel free to tell me what you think of this app!"
+		},
+		"privacy": {
+			"title": "Privacy &amp; datas",
+			"text": "<em>ParkourFinder</em> doesn’t collect any information about you, and doesn’t use any unwanted tracking service. No data will be sent to Google, Facebook and co."
+		},
 		"buttons": {
 			"bug": "Report a bug",
 			"close": "Close"

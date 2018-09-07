@@ -15,6 +15,10 @@ const getters = {
 	getSpotByID: (state) => (id) => {
 		return state.spots.find(spot => spot._id === id)
 	},
+
+	getSpotsCount: (state) => {
+		return state.spots.length
+	}
 }
 
 // Actions
