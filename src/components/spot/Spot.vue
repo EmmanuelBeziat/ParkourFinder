@@ -30,10 +30,10 @@
 
 			<div class="spot-infos">
 				<div class="spot-date">{{ texts.infos.created }}
-					<time>{{ spot.createdAt | moment('DD-MM-YYYY') }}</time>
+					<time>{{ spot.createdAt | date }}</time>
 				</div>
 				<div class="spot-date" v-if="spot.updatedAt !== spot.createdAt">{{ texts.infos.edited }}
-					<time>{{ spot.updatedAt | moment('DD-MM-YYYY') }}</time>
+					<time>{{ spot.updatedAt | date }}</time>
 				</div>
 			</div>
 		</footer>

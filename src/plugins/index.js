@@ -1,4 +1,4 @@
-import './filters/moment.js'
+import './filters/date.js'
 import './filters/normalize.js'
 import './modules/modal.js'
 import './modules/axios.js'
