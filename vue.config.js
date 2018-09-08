@@ -8,7 +8,8 @@ module.exports = {
 				'process.env': {
 					PACKAGE_JSON: '"' + escape(JSON.stringify(require('./package.json'))) + '"'
 				}
-			})
+			}),
+			new webpack.IgnorePlugin(/^\.\/locale\/(en|fr)\.js$/, /moment$/)
 		]
 	},
 	outputDir: '../site',
