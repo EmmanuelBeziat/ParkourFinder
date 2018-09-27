@@ -11,7 +11,10 @@
 			<LCircle :latlng="user.position" :options="user.zone" />
 		</LMap>
 
-		<ButtonLock v-if="map.fullyLoaded" @action="lockView()" :class="{ 'is-locked': map.locked }" />
+		<div class="leaflet-custom-control" v-if="map.fullyLoaded">
+			<ButtonLeaflet @action="lockView()" :class="{ 'is-locked': map.locked }" :label="$store.state.languages.lang.map.toggle" icon="icon-target" />
+			<ButtonLeaflet @action="fullScreen()" :class="{ 'is-locked': map.fullScreen }" :label="$store.state.languages.lang.map.toggle" icon="icon-resize-full" />
+		</div>
 	</div>
 </template>
 
@@ -20,7 +23,7 @@ import Vue from 'vue'
 import VueLeaflet from 'vue-leaflet'
 import 'vue-leaflet/dist/vue-leaflet.css'
 
-import ButtonLock from '@/components/map/ButtonLock'
+import ButtonLeaflet from '@/components/buttons/ButtonLeaflet'
 
 Vue.use(VueLeaflet)
 
@@ -41,6 +44,7 @@ export default {
 			},
 			map: {
 				fullyLoaded: false,
+				fullScreen: false,
 				locked: false,
 				options: {
 					attributionControl: false,
@@ -72,7 +76,7 @@ export default {
 	},
 
 	components: {
-		ButtonLock
+		ButtonLeaflet,
 	},
 
 	computed: {
@@ -86,10 +90,17 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Init Leaflet map with basic settings
+		 */
 		initMap () {
 			this.$refs.map.layer.locate({ watch: true, setView: false, enableHighAccuracy: true })
 		},
 
+		/**
+		 * Event fired when Leaflet location has finished
+		 * @param e { Event }
+		 */
 		locationFound (e) {
 			this.user.zone.radius = e.accuracy / 2
 			this.user.position = [e.latlng.lat, e.latlng.lng]
@@ -102,10 +113,17 @@ export default {
 			}
 		},
 
+		/**
+		 * Go to the selected spot
+		 * @param slug { String } spot slug url
+		 */
 		showSpot (slug) {
 			this.$router.push(`/spot/${slug}`)
 		},
 
+		/**
+		 * Lock or unlock the map on user's position
+		 */
 		lockView () {
 			if (this.map.locked) {
 				this.map.locked = false
@@ -115,6 +133,26 @@ export default {
 				this.map.locked = true
 				this.$refs.map.layer.locate({ watch: true, setView: true, enableHighAccuracy: true })
 				this.$refs.map.layer.flyTo([this.$store.state.position.coords.latitude, this.$store.state.position.coords.longitude])
+			}
+		},
+
+		/**
+		 * Enable / Disable fullscreen
+		 */
+		fullScreen () {
+			const doc = window.document
+			const docEl = doc.documentElement
+
+			const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen
+			const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen
+
+			if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+				requestFullScreen.call(docEl)
+				this.map.fullScreen = true
+			}
+			else {
+				cancelFullScreen.call(doc)
+				this.map.fullScreen = false
 			}
 		},
 	}
@@ -141,5 +179,46 @@ export default {
 
 	.leaflet-control
 		margin 0 10px 10px 0
+
+.leaflet-custom-control
+	border 2px solid rgba(0, 0, 0, 0.2)
+	bottom 5rem
+	right 10px
+	position fixed
+	z-index 410
+	border-radius 4px
+	overflow hidden
+
+.leaflet-control
+	line-height rem(30px)
+	font-size rem(18px)
+	text-align center
+	padding 0
+	background none
+	cursor pointer
+	overflow hidden
+	outline 0
+	border 0
+	background #fff
+	color var(--color-text)
+
+	i
+		size rem(30px)
+		display block
+
+	&:hover
+		background #f4f4f4
+		color var(--color-text)
+
+	&.is-locked
+		background var(--color-primary)
+		color var(--color-background)
+		&:hover
+			background var(--color-primary-alt)
+			color var(--color-background)
+
+	& + .leaflet-control
+		border-top 1px solid #ccc
+
 </style>
 

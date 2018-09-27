@@ -15,10 +15,12 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a :href="picture" class="spot-gallery-item" v-for="(picture, index) in spot.medias" :key="index">
+				<a :href="picture" class="spot-gallery-item" v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex" v-gallery>
 					<img class="spot-gallery-img" :src="picture[0].replace('.com/', '.com/min/')" :alt="spot.title">
 				</a>
 			</div>
+
+			<Gallery />
 		</div>
 
 		<footer class="spot-complementary">
@@ -42,18 +44,21 @@
 
 <script>
 import IconButton from '@/components/buttons/IconButton'
+import Gallery from '@/components/gallery/Gallery'
 
 export default {
 	props: ['spot'],
 
 	data () {
 		return {
-			texts: this.$store.state.languages.lang.spot
+			texts: this.$store.state.languages.lang.spot,
+			galleryIndex: null
 		}
 	},
 
 	components: {
-		IconButton
+		IconButton,
+		Gallery
 	},
 }
 </script>
@@ -79,7 +84,8 @@ export default {
 	position absolute
 	right 1rem
 	top 1rem
-	padding 0
+	padding 0 0 2px
+	line-height 1.25
 	font-size var(--font-size-heading-3)
 
 .spot-location-infos

@@ -69,10 +69,10 @@
 	/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-up-open:before { content: '\e800'; } /* '' */
-.icon-right-open:before { content: '\e801'; } /* '' */
-.icon-left-open:before { content: '\e802'; } /* '' */
-.icon-down-open:before { content: '\e803'; } /* '' */
+.icon-down:before { content: '\e800'; } /* '' */
+.icon-left:before { content: '\e801'; } /* '' */
+.icon-right:before { content: '\e802'; } /* '' */
+.icon-up:before { content: '\e803'; } /* '' */
 .icon-cog-alt:before { content: '\e804'; } /* '' */
 .icon-award:before { content: '\e805'; } /* '' */
 .icon-cog:before { content: '\e806'; } /* '' */
@@ -116,6 +116,9 @@
 .icon-up-big:before { content: '\e82c'; } /* '' */
 .icon-target:before { content: '\e82d'; } /* '' */
 .icon-arrows-cw:before { content: '\e82e'; } /* '' */
+.icon-share:before { content: '\e82f'; } /* '' */
+.icon-gauge:before { content: '\e830'; } /* '' */
+.icon-resize-full:before { content: '\e831'; } /* '' */
 .icon-cloud:before { content: '\e832'; } /* '' */
 .icon-flash:before { content: '\e833'; } /* '' */
 .icon-umbrella:before { content: '\e834'; } /* '' */
@@ -131,6 +134,11 @@
 .icon-minus-circled:before { content: '\e83e'; } /* '' */
 .icon-attach:before { content: '\e83f'; } /* '' */
 .icon-trash-empty:before { content: '\e840'; } /* '' */
+.icon-spin3:before { content: '\e841'; } /* '' */
+.icon-down-open:before { content: '\f004'; } /* '' */
+.icon-up-open:before { content: '\f005'; } /* '' */
+.icon-right-open:before { content: '\f006'; } /* '' */
+.icon-left-open:before { content: '\f007'; } /* '' */
 .icon-move:before { content: '\f047'; } /* '' */
 .icon-link-ext:before { content: '\f08e'; } /* '' */
 .icon-bookmark-empty:before { content: '\f097'; } /* '' */
@@ -168,7 +176,6 @@
 .icon-moon:before { content: '\f186'; } /* '' */
 .icon-bug:before { content: '\f188'; } /* '' */
 .icon-paper-plane:before { content: '\f1d8'; } /* '' */
-.icon-share:before { content: '\f1e0'; } /* '' */
 .icon-bell-off-empty:before { content: '\f1f7'; } /* '' */
 .icon-trash:before { content: '\f1f8'; } /* '' */
 .icon-user-circle-o:before { content: '\f2be'; } /* '' */

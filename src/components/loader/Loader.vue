@@ -1,5 +1,5 @@
 <template>
-	<div class="spot-content-loading">
+	<div class="component-loading">
 		<h3 class="title">{{ this.$store.state.languages.lang.site.loading }}</h3>
 		<div class="loader">
 			<span class="loader-item" />
@@ -22,7 +22,7 @@
 		transform scaleY(1.0)
 		background var(--color-primary)
 
-.spot-content-loading
+.component-loading
 	padding 1em
 	text-align center
 

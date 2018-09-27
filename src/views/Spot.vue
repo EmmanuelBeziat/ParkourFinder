@@ -10,7 +10,7 @@
 import Vue from 'vue'
 import Spot from '@/components/spot/Spot'
 import Error from '@/components/spot/Error'
-import Loader from '@/components/spot/Loader'
+import Loader from '@/components/loader/Loader'
 
 export default {
 	name: 'spot',
@@ -142,17 +142,14 @@ export default {
 	border-radius 3px
 	z-index 2005
 	position fixed
-	top 0
-	left 0
-	right 0
-	bottom 0
-	min-width rem(320px)
+	left .5rem
+	top .5rem
+	right .5rem
+	bottom .5rem
+	min-width 19rem
 
 	@media $mq-tablet
 		position absolute
-		left 1rem
-		top 1rem
-		right 1rem
 		bottom auto
 		max-height calc(100vh - 56px - 2rem)
 		right auto
