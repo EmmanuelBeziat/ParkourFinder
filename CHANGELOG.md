@@ -1,3 +1,8 @@
+# v0.6.3 (alpha stage)
+
+* Lightbox gallery for images in spots
+* Code refactoring modules
+
 # v0.6.1 (alpha stage)
 
 * Upload progress and confirmation for images
