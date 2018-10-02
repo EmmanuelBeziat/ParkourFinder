@@ -8,4 +8,5 @@ import './modules/axios.js'
 // import './modules/vue-carousel.js'
 
 // Directives
-import './directives/GalleryDirective.js'
+import './directives/gallery.js'
+import './directives/gesture.js'

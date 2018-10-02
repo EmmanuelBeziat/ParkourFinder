@@ -3,7 +3,7 @@
 		<Loader class="gallery-load" />
 
 		<transition :name="transition">
-			<GalleryImage :image="image" :key="image" />
+			<GalleryImage :image="image" :key="image" v-gesture @swipeleft="next" @swiperight="prev" />
 		</transition>
 
 		<div class="gallery-controls">
@@ -54,6 +54,10 @@ export default {
 	},
 
 	methods: {
+		test (one, event, two) {
+			console.log(one, event, two)
+		},
+
 		close () {
 			this.$store.dispatch('gallery/close')
 		},
