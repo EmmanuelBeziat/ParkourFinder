@@ -2,13 +2,15 @@
 	<section class="spot">
 		<Loader v-if="loading" />
 		<Error v-if="error" :message="error" />
-		<Spot v-if="spot" :spot="spot" @uploadPicture="mediaUpload()" @removeSpot="removeSpot()" @editSpot="editSpot()" />
+		<Edit v-if="spot && isEdit" :spot="spot" @close="isEdit = false" />
+		<Spot v-if="spot && !isEdit" :spot="spot" @uploadPicture="mediaUpload()" @removeSpot="removeSpot()" @editSpot="isEdit = true" />
 	</section>
 </template>
 
 <script>
 import Vue from 'vue'
 import Spot from '@/components/spot/Spot'
+import Edit from '@/components/spot/Edit'
 import Error from '@/components/spot/Error'
 import Loader from '@/components/loader/Loader'
 
@@ -20,11 +22,13 @@ export default {
 			loading: false,
 			spot: null,
 			error: null,
+			isEdit: false
 		}
 	},
 
 	components: {
 		Spot,
+		Edit,
 		Error,
 		Loader
 	},
@@ -75,13 +79,6 @@ export default {
 		 */
 		mediaUpload () {
 			this.$modal.show('spot-pictures')
-		},
-
-		/**
-		 * Call for edit modal
-		 */
-		editSpot () {
-			this.$modal.show('edit-spot')
 		},
 
 		/**
