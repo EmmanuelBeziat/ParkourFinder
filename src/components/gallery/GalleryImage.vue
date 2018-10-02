@@ -34,21 +34,23 @@ export default {
 .gallery-image
 	position absolute
 	z-index 5015
-	size calc(100vw - 1.5rem) calc(100vh - 1.5rem)
 	display flex
 	justify-content center
 	align-items center
 
 	@media $mq-tablet
-		size calc(100vw - 4rem) calc(100vh - 4rem)
 		max-width 1920px
 
 	img
 		display block
-		max-width 100%
-		max-height 100%
+		max-width calc(100vw - 4rem)
+		max-height calc(100vh - 4rem)
 		object-fit contain
 		object-position 50% 50%
+
+		@media $mq-tablet
+			max-width calc(100vw - 4rem)
+			max-height calc(100vh - 4rem)
 
 // TRANSITIONS
 .gallery-fade-enter-active
