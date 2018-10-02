@@ -1,3 +1,7 @@
+# v0.6.4 (alpha stage)
+
+* Lightbox gallery improvement
+
 # v0.6.3 (alpha stage)
 
 * Lightbox gallery for images in spots
