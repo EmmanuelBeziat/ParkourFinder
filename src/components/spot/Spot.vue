@@ -2,10 +2,10 @@
 	<div class="spot-content-loaded">
 		<header class="spot-header">
 			<h1 class="spot-title">{{ spot.title | normalize }}</h1>
-			<router-link to="/" class="spot-close btn">
+			<button class="spot-close btn" @click="closeSpot">
 				<i class="icon-cancel" aria-hidden="true"></i>
 				<span class="sr-only">Fermer</span>
-			</router-link>
+			</button>
 			<div class="spot-location-infos" v-if="spot.location.complementary">
 				<i class="icon-location" aria-hidden="true"></i> {{ spot.location.complementary }}
 			</div>
@@ -15,7 +15,7 @@
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
-				<a :href="picture" class="spot-gallery-item" v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex" v-gallery>
+				<a :href="picture" class="spot-gallery-item" v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex" :data-id="pictureIndex" v-gallery>
 					<img class="spot-gallery-img" :src="picture[0].replace('.com/', '.com/min/')" :alt="spot.title">
 				</a>
 			</div>
@@ -56,10 +56,21 @@ export default {
 		}
 	},
 
+	computed: {
+
+	},
+
 	components: {
 		IconButton,
 		Gallery
 	},
+
+	methods: {
+		closeSpot () {
+			this.$store.dispatch('gallery/resetList')
+			this.$router.push('/')
+		}
+	}
 }
 </script>
 

@@ -5,8 +5,7 @@
 			"search": "Rechercher",
 			"about": "À propos",
 			"settings": "Paramètres"
-		},
-		"loading": "Chargement"
+		}
 	},
 	"home": {
 		"title": "Accueil",
@@ -59,7 +58,8 @@
 		}
 	},
 	"map": {
-		"toggle": "Activer/désactiver le suivi"
+		"toggle": "Activer/désactiver le suivi",
+		"fullscreen": "Mode plein écran"
 	},
 	"modal": {
 		"spot": {
@@ -178,5 +178,17 @@
 			"title": "Page introuvable",
 			"text": ""
 		}
+	},
+	"common": {
+		"loading": "Chargement",
+		"close": "Fermer",
+		"open": "Ouvrir",
+		"previous": "Précédent",
+		"next": "Suivant",
+		"delete": "Supprimer",
+		"cancel": "Annuler",
+		"confirm": "Valider",
+		"success": "Réussite",
+		"error": "Erreur"
 	}
 }

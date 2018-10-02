@@ -7,34 +7,31 @@
 		</transition>
 
 		<div class="gallery-controls">
-			<button class="gallery-control gallery-control__previous" v-if="state.index- 1 >= 0" @click.stop.prevent="prev">
+			<button class="gallery-control gallery-control__previous" v-if="$store.getters['gallery/index'] - 1 >= 0" @click.stop.prevent="prev">
 				<i class="icon-angle-left" aria-hidden="true"></i>
-				<span class="sr-only">Précédent</span>
+				<span class="sr-only">{{ this.$store.state.languages.lang.common.previous }}</span>
 			</button>
 
-			<button class="gallery-control gallery-control__next" v-if="state.index + 1 < state.images.length" @click.stop.prevent="next">
+			<button class="gallery-control gallery-control__next" v-if="$store.getters['gallery/index'] + 1 < $store.getters['gallery/count']" @click.stop.prevent="next">
 				<i class="icon-angle-right" aria-hidden="true"></i>
-				<span class="sr-only">Suivant</span>
+				<span class="sr-only">{{ this.$store.state.languages.lang.common.next }}</span>
 			</button>
 
 			<button class="gallery-control gallery-control__close" @click="close">
 				<i class="icon-cancel" aria-hidden="true"></i>
-				<span class="sr-only">Fermer</span>
+				<span class="sr-only">{{ this.$store.state.languages.lang.common.close }}</span>
 			</button>
 		</div>
 	</div>
 </template>
 
 <script>
-import './GalleryDirective'
-import Store from './GalleryStore'
-import GalleryImage from './GalleryImage'
+import GalleryImage from '@/components/gallery/GalleryImage'
 import Loader from '@/components/loader/Loader'
 
 export default {
 	data () {
 		return {
-			state: Store.state,
 			direction: 'next'
 		}
 	},
@@ -50,24 +47,25 @@ export default {
 		},
 
 		image () {
-			if (this.state.index === null) return
-			return this.state.images[this.state.index]
+			const index = this.$store.getters['gallery/index']
+			if (index === null) return
+			return this.$store.getters['gallery/images'][index]
 		}
 	},
 
 	methods: {
 		close () {
-			Store.close()
+			this.$store.dispatch('gallery/close')
 		},
 
 		prev () {
 			this.direction = 'prev'
-			Store.prev()
+			this.$store.dispatch('gallery/previousImage')
 		},
 
 		next () {
 			this.direction = 'next'
-			Store.next()
+			this.$store.dispatch('gallery/nextImage')
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <template>
 	<div class="component-loading">
-		<h3 class="title">{{ this.$store.state.languages.lang.site.loading }}</h3>
+		<h3 class="title">{{ this.$store.state.languages.lang.common.loading }}</h3>
 		<div class="loader">
 			<span class="loader-item" />
 			<span class="loader-item" />

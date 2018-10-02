@@ -1,48 +1,84 @@
 // Initial state
 const state = {
-	images: null,
+	images: [],
 	index: null,
 }
 
+// Getters
 const getters = {
 	count: state => {
-		return images.length
+		return state.images.length
+	},
+
+	images: state => {
+		return state.images
+	},
+
+	index: state => {
+		return state.index
+	}
+}
+
+// Actions
+const actions = {
+	addImage ({ commit }, url) {
+		commit('ADD_IMAGE', url)
+	},
+
+	open ({ commit }, index) {
+		commit('OPEN', index)
+	},
+
+	close ({ commit }) {
+		commit('CLOSE')
+	},
+
+	previousImage ({ commit }) {
+		commit('PREVIOUS_IMAGE')
+	},
+
+	nextImage ({ commit }) {
+		commit('NEXT_IMAGE')
+	},
+
+	resetList ({ commit }) {
+		commit('RESET_LIST')
 	}
 }
 
 // Mutations
 const mutations = {
-	addImages (state, url) {
-		return state.images.push(url) - 1
+	ADD_IMAGE (state, url) {
+		state.images.push(url) - 1
 	},
 
-	open (index) {
-		this.state.index = index
+	OPEN (state, index) {
+		state.index = index
 	},
 
-	close () {
-		this.state.index = null
+	CLOSE (state) {
+		state.index = null
 	},
 
-	prev () {
-		this.state.index--
+	RESET_LIST (state) {
+		state.images = []
+	},
 
-		if (this.state.index < 0) {
-			this.state.index = this.state.images.length - 1
+	PREVIOUS_IMAGE (state) {
+		state.index--
+
+		if (state.index < 0) {
+			state.index = state.images.length - 1
 		}
 	},
 
-	next () {
-		this.state.index++
+	NEXT_IMAGE (state) {
+		state.index++
 
-		if (this.state.index >= this.state.images.length) {
-			this.state.index = 0
+		if (state.index >= state.images.length) {
+			state.index = 0
 		}
 	}
-}
-
-const actions = {
-
 }
 
 export default {

@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import app from '@/store/modules/app.js'
 import spots from '@/store/modules/spots.js'
 import search from '@/store/modules/search.js'
+import gallery from '@/store/modules/gallery.js'
 import position from '@/store/modules/position.js'
 import languages from '@/store/modules/languages.js'
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
 		app,
 		spots,
 		search,
+		gallery,
 		position,
 		languages,
 	},

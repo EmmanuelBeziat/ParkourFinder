@@ -5,8 +5,7 @@
 			"search": "Search",
 			"about": "About",
 			"settings": "Settings"
-		},
-		"loading": "Loading"
+		}
 	},
 	"home": {
 		"title": "Home",
@@ -43,7 +42,8 @@
 		}
 	},
 	"map": {
-		"toggle": "Toggle follow"
+		"toggle": "Toggle follow",
+		"fullscreen": "Toggle fullscreen"
 	},
 	"spot": {
 		"actions": {
@@ -178,5 +178,17 @@
 			"title": "Page not found",
 			"text": ""
 		}
+	},
+	"common": {
+		"loading": "Loading",
+		"close": "Close",
+		"open": "Open",
+		"previous": "Previous",
+		"next": "Next",
+		"delete": "Delete",
+		"cancel": "Cancel",
+		"confirm": "Confirm",
+		"success": "Success",
+		"error": "Error"
 	}
 }
