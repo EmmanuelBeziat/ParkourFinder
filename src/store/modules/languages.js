@@ -14,7 +14,7 @@ const actions = {
 
 		commit('setLocale', lang)
 		commit('setLang', require(`@/assets/lang/${lang}.json`))
-	}
+	},
 }
 
 // Mutations

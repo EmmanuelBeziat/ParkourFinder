@@ -104,7 +104,7 @@ export default {
 		locationFound (e) {
 			this.user.zone.radius = e.accuracy / 2
 			this.user.position = [e.latlng.lat, e.latlng.lng]
-			this.$store.commit('position/setPosition', { latitude: e.latlng.lat, longitude: e.latlng.lng })
+			this.$store.dispatch('position/setPosition', { latitude: e.latlng.lat, longitude: e.latlng.lng })
 
 			// Fires only the first time
 			if (!this.map.fullyLoaded) {

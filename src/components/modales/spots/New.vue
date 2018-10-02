@@ -64,7 +64,7 @@ export default {
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
 			Vue.axios.post('https://rest.parkourfinder.com/spots', datas)
 				.then(res => {
-					// this.$store.commit('spots/addSpot', res.data)
+					// this.$store.dispatch('spots/addSpot', res.data)
 					this.$store.dispatch('spots/init')
 					this.closeModal()
 				})

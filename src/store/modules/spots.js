@@ -25,25 +25,37 @@ const getters = {
 const actions = {
 	async init ({ commit }) {
 		let { data } = await axios.get('https://rest.parkourfinder.com/spots')
-		commit('setSpots', data)
+		commit('SET_SPOTS', data)
+	},
+
+	addSpot ({ commit }, spot) {
+		commit('ADD_SPOT', spot)
+	},
+
+	removeSpot ({ commit }, index) {
+		commit('REMOVE_SPOT', index)
+	},
+
+	setCurrentSpot ({ commit }, spot) {
+		commit('SET_CURRENT_SPOT', spot)
 	}
 }
 
 // Mutations
 const mutations = {
-	setSpots (state, spots) {
+	SET_SPOTS (state, spots) {
 		state.spots = spots
 	},
 
-	setCurrentSpot (state, spot) {
+	SET_CURRENT_SPOT (state, spot) {
 		state.currentSpot = spot
 	},
 
-	addSpot (state, spot) {
+	ADD_SPOT (state, spot) {
 		state.spots.push(spot)
 	},
 
-	removeSpot (state, spot) {
+	REMOVE_SPOT (state, spot) {
 		state.spots.forEach((item, index) => {
 			if (item['slug'] === spot.slug) {
 				state.spots.splice(index, 1)

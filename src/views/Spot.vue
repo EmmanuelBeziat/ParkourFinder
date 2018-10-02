@@ -67,7 +67,7 @@ export default {
 		 * update the store witht the current consulted spot
 		 */
 		setCurrentSpot () {
-			this.$store.commit('spots/setCurrentSpot', this.spot)
+			this.$store.dispatch('spots/setCurrentSpot', this.spot)
 		},
 
 		/**
@@ -112,7 +112,7 @@ export default {
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
 			Vue.axios.delete(`https://rest.parkourfinder.com/spots/${this.spot._id}`)
 				.then(() => {
-					this.$store.commit('spots/removeSpot', this.spot)
+					this.$store.dispatch('spots/removeSpot', this.spot)
 					this.$modal.hide('dialog')
 					this.$router.push('/')
 				})

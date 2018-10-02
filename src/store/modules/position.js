@@ -4,23 +4,39 @@ const state = {
 	infos: null,
 }
 
+// Getters
 const getters = {
 	getMapView: state => {
 		return state.mapView
 	}
 }
 
+// Actions
+const actions = {
+	setPosition ({ commit }, position) {
+		commit('SET_POSITION', position)
+	},
+
+	setInfos ({ commit }, infos) {
+		commit('SET_INFOS', infos)
+	},
+
+	setMapView ({ commit }, coords) {
+		commit('SET_MAP_VIEW', coords)
+	}
+}
+
 // Mutations
 const mutations = {
-	setPosition (state, position) {
+	SET_POSITION (state, position) {
 		state.coords = position
 	},
 
-	setInfos (state, infos) {
+	SET_INFOS (state, infos) {
 		state.infos = infos
 	},
 
-	setMapView (state, coords) {
+	SET_MAP_VIEW (state, coords) {
 		state.mapView = coords
 	}
 }
@@ -28,6 +44,7 @@ const mutations = {
 export default {
 	namespaced: true,
 	state,
+	actions,
 	getters,
 	mutations
 }

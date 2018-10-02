@@ -56,7 +56,7 @@ export default {
 		},
 
 		submit (value) {
-			this.$store.commit('search/setSearch', value)
+			this.$store.dispatch('search/setSearch', value)
 		},
 	}
 }

@@ -77,7 +77,7 @@ export default {
 		getCurrentPosition () {
 			const success = pos => {
 				this.getGeocodingInformations(pos.coords.latitude, pos.coords.longitude).then((datas) => {
-					this.$store.commit('position/setInfos', {
+					this.$store.dispatch('position/setInfos', {
 						city: datas.city,
 						country: datas.country,
 						countryCode: datas.countryCode,

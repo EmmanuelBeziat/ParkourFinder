@@ -7,12 +7,12 @@
 		</transition>
 
 		<div class="gallery-controls">
-			<button class="gallery-control gallery-control__previous" v-if="state.index >= 0" @click.stop.prevent="prev">
+			<button class="gallery-control gallery-control__previous" v-if="state.index- 1 >= 0" @click.stop.prevent="prev">
 				<i class="icon-angle-left" aria-hidden="true"></i>
 				<span class="sr-only">Précédent</span>
 			</button>
 
-			<button class="gallery-control gallery-control__next" v-if="state.index < state.images.length" @click.stop.prevent="next">
+			<button class="gallery-control gallery-control__next" v-if="state.index + 1 < state.images.length" @click.stop.prevent="next">
 				<i class="icon-angle-right" aria-hidden="true"></i>
 				<span class="sr-only">Suivant</span>
 			</button>
