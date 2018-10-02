@@ -1,3 +1,8 @@
+# v0.7.0 (alpha stage)
+
+* New edit form
+* Remove pictures in edit form
+
 # v0.6.4 (alpha stage)
 
 * Lightbox gallery improvement

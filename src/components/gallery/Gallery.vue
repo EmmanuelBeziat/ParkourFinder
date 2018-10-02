@@ -3,7 +3,7 @@
 		<Loader class="gallery-load" />
 
 		<transition :name="transition">
-			<GalleryImage :image="image" :key="image" v-gesture @swipeleft="next" @swiperight="prev" />
+			<Picture :image="image" :key="image" v-gesture @swipeleft="next" @swiperight="prev" />
 		</transition>
 
 		<div class="gallery-controls">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import GalleryImage from '@/components/gallery/GalleryImage'
+import Picture from '@/components/gallery/Picture'
 import Loader from '@/components/loader/Loader'
 
 export default {
@@ -37,7 +37,7 @@ export default {
 	},
 
 	components: {
-		GalleryImage,
+		Picture,
 		Loader,
 	},
 

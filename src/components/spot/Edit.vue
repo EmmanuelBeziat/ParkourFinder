@@ -14,11 +14,14 @@
 			<div class="form-group">
 				<label>Check pictures to remove</label>
 				<div class="spot-gallery">
-					<label class="spot-gallery-item" :class="{ 'checked': checkedPictures[pictureIndex] }" v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex">
-						<div class="picture-state">
-							<input type="checkbox" :id="pictureIndex" :value="picture[0]" v-model="checkedPictures">
+					<label v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex">
+						<input type="checkbox" class="sr-only" :id="pictureIndex" :value="picture[0]" v-model="checkedPictures">
+						<div class="spot-gallery-item">
+							<div class="picture-state">
+								<i class="icon-ok" aria-hidden="true"></i>
+							</div>
+							<img class="spot-gallery-img" :src="picture[0].replace('.com/', '.com/min/')" :alt="spot.title">
 						</div>
-						<img class="spot-gallery-img" :src="picture[0].replace('.com/', '.com/min/')" :alt="spot.title">
 					</label>
 				</div>
 			</div>
@@ -60,7 +63,8 @@ export default {
 		sendDatasToAPI (values) {
 			const datas = {
 				title: values.title,
-				description: values.description
+				description: values.description,
+				medias: values.medias
 			}
 
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
@@ -109,6 +113,8 @@ export default {
 		submitForm () {
 			const title = this.$refs.title
 			const desc = this.$refs.desc
+			const mediasBase = this.spot.medias.slice(0)
+			const medias = this.checkedPictures
 
 			this.formFieldValidation(title)
 			this.formFieldValidation(desc)
@@ -117,33 +123,25 @@ export default {
 				return
 			}
 
+			medias.forEach(item => {
+				this.removeFromArray(mediasBase, item)
+			})
+
 			this.sendDatasToAPI({
 				title: title.value,
-				description: desc.value
+				description: desc.value,
+				medias: mediasBase
 			})
 		},
 
-		/**
-		 * Call for form validation when detecting changes in the form fields
-		 */
-		formFieldChange (event) {
-			this.formFieldValidation(event.target)
-		},
-
-		/**
-		 * Form validation
-		 * Check for errors
-		 * @param field DOM object — current field being checked
-		 */
-		formFieldValidation (field) {
-			if (field.value === '' || field.value === undefined) {
-				field.classList.add('has-error')
-				this.formHasErrors = true
-			} else {
-				field.classList.remove('has-error')
-				this.formHasErrors = false
-			}
-		},
+		removeFromArray (array, removeValue) {
+			array.forEach((item, index) => {
+				if (item[0] === removeValue) {
+					array.splice(index, 1)
+				}
+			})
+			return array
+		}
 	}
 }
 </script>
@@ -194,15 +192,28 @@ label
 	border 1px solid var(--shadow)
 	overflow hidden
 	position relative
-
-	&.checked
-		border-color var(--color-primary)
-		transition color .2s ease-in
+	height 100%
+	transition color .2s ease-index
+	cursor pointer
 
 .picture-state
 	position absolute
-	right 6px
-	top 0
+	right -1px
+	top -1px
+	border 1px solid var(--color-primary)
+	font-size 1.5em
+	background var(--color-background)
+	z-index 5
+	opacity 0
+	visibility hidden
+
+input[type="checkbox"]:checked
+	& + .spot-gallery-item
+		border-color var(--color-primary)
+
+		.picture-state
+			opacity 1
+			visibility visible
 
 .spot-gallery-img
 	display block
