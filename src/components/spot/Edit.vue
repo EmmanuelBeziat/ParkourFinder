@@ -15,7 +15,7 @@
 			</div>
 
 			<div class="form-group" v-if="spot.medias.length">
-				<label>Check pictures to remove</label>
+				<label>{{ texts.pictures }}</label>
 				<div class="spot-gallery">
 					<label v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex">
 						<input type="checkbox" class="sr-only" :id="pictureIndex" :value="picture[0]" v-model="checkedPictures">

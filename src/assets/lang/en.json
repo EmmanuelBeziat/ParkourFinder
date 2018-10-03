@@ -134,6 +134,7 @@
 					"title": "Edit a spot",
 					"name": "Spot name",
 					"description": "Spot description",
+					"pictures": "Select pictures you wish to remove",
 					"buttons": {
 						"confirm": "Confirm",
 						"cancel": "Cancel"

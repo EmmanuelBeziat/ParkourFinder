@@ -134,6 +134,7 @@
 					"title": "Modifier un spot",
 					"name": "Nom du spot",
 					"description": "Description du spot",
+					"pictures": "Sélectionner les photos à supprimer",
 					"buttons": {
 						"confirm": "Valider",
 						"cancel": "Annuler"
