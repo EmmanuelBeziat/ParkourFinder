@@ -176,6 +176,7 @@ export default {
 	top auto
 	right 0
 	bottom 0 !important
+	position fixed
 
 	.leaflet-control
 		margin 0 10px 10px 0
