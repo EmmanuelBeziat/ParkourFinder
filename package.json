@@ -1,6 +1,6 @@
 {
 	"name": "parkourfinder",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": false,

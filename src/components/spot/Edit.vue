@@ -1,9 +1,12 @@
 <template>
 	<div class="spot-content-loaded">
+		<transition name="fade">
+			<Loader v-if="loading" />
+		</transition>
 		<div class="spot-body">
 			<div class="form-group">
 				<label for="spot-add-title">{{ texts.name }}</label>
-				<input type="text" id="spot-add-title" class="form-control" :placeholder="texts.name" required ref="title" @change="formFieldChange" :value="spot.title">
+				<input type="text" id="spot-add-title" class="form-control" :placeholder="texts.name" required ref="title" @change="formFieldChange" v-model="spot.title">
 			</div>
 
 			<div class="form-group">
@@ -11,7 +14,7 @@
 				<textarea id="spot-add-description" class="form-control" :placeholder="texts.description" required ref="desc" @change="formFieldChange" v-model="spot.description"></textarea>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" v-if="spot.medias.length">
 				<label>Check pictures to remove</label>
 				<div class="spot-gallery">
 					<label v-for="(picture, pictureIndex) in spot.medias" :key="pictureIndex">
@@ -38,6 +41,7 @@
 
 <script>
 import Vue from 'vue'
+import Loader from '@/components/loader/Loader'
 import IconButton from '@/components/buttons/IconButton'
 
 export default {
@@ -45,6 +49,7 @@ export default {
 
 	data () {
 		return {
+			loading: false,
 			formHasErrors: false,
 			texts: this.$store.state.languages.lang.modal.spot.edit.form,
 			checkedPictures: []
@@ -53,6 +58,7 @@ export default {
 
 	components: {
 		IconButton,
+		Loader,
 	},
 
 	methods: {
@@ -70,8 +76,11 @@ export default {
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
 			Vue.axios.put(`https://rest.parkourfinder.com/spots/${this.spot._id}`, datas)
 				.then(() => {
-					this.$store.dispatch('spots/init')
+					this.spot.title = datas.title
+					this.spot.description = datas.description
+					this.spot.medias = datas.medias
 					this.$emit('close')
+					this.loading = false
 				})
 				.catch(error => {
 					this.$modal.show('dialog', {
@@ -127,6 +136,8 @@ export default {
 				this.removeFromArray(mediasBase, item)
 			})
 
+			this.loading = true
+
 			this.sendDatasToAPI({
 				title: title.value,
 				description: desc.value,
@@ -149,6 +160,20 @@ export default {
 <style lang="stylus" scoped>
 @require '~@/assets/styles/variables.styl'
 @require '~@/assets/styles/mixins.styl'
+
+.component-loading
+	position absolute
+	z-index 10
+	background var(--color-background)
+	top 0
+	left 0
+	right 0
+	bottom 0
+	display flex
+	flex-direction column
+	justify-content center
+	align-items center
+	transition .25s ease-in-out
 
 label
 	display block

@@ -136,44 +136,9 @@ export default {
 	border 1px solid var(--shadow)
 	overflow hidden
 	position relative
-
-	/* &::before
-		content ""
-		position absolute
-		left 0
-		right 0
-		top 0
-		bottom 0
-		background alpha(white, 50%)
-		z-index 4
-		opacity 0
-		visibility hidden
-		transition .25s ease-in
-
-	&::after
-		font-family var(--font-stack-icons)
-		content "\e811"
-		position absolute
-		left 50%
-		top 50%
-		transform translate(-50%, -50%)
-		font-size 4rem
-		color var(--color-primary)
-		z-index 5
-		opacity 0
-		visibility hidden
-		transition .45s ease-out */
-
 	&:hover
 		border-color var(--color-primary)
 		transition color .2s ease-in
-
-		/*
-		&::before
-		&::after
-			opacity 1
-			visibility visible
-			transition .25s ease-in */
 
 .spot-gallery-img
 	display block

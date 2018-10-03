@@ -105,6 +105,7 @@ export default {
 				medias: spot.medias,
 				newMedias: []
 			}
+			const newImages = spot.medias.slice(0)
 			const config = {
 				onUploadProgress: progressEvent => {
 					this.progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
@@ -113,18 +114,12 @@ export default {
 
 			this.pictures.forEach((picture, index) => {
 				data.newMedias.push({ filename: picture.name, uri: this.picturesURI[index] })
+				newImages.push([this.picturesURI[index]])
 			})
 
 			Vue.axios.put(`https://rest.parkourfinder.com/spots/${spot._id}`, data, config)
 				.then(() => {
-					/* this.$modal.show('dialog', {
-						title: this.texts.success,
-						text: `<div class="global-success"><i class="icon-ok" aria-hidden="true"></i></div>`,
-						buttons: [
-							{ title: this.texts.error.buttons.close }
-						]
-					}) */
-					this.$store.dispatch('spots/init')
+					spot.medias = newImages
 				})
 				.catch(error => console.log(error))
 				.then(() => this.closeModal())

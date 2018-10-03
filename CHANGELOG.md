@@ -1,3 +1,9 @@
+# v0.7.1 (alpha stage)
+
+* Better transitions
+* Loaders for screen edits
+* Better UX, elements load just after edit
+
 # v0.7.0 (alpha stage)
 
 * New edit form

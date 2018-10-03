@@ -61,7 +61,6 @@ export default {
 	@media $mq-tablet
 		font-size var(--font-size-title)
 
-
 	a
 		color inherit
 		text-decoration none
@@ -69,8 +68,6 @@ export default {
 
 		&:hover
 			color var(--color-primary-alt)
-
-
 
 	span
 		display inline-block

@@ -1,9 +1,11 @@
 <template>
 	<section class="spot">
-		<Loader v-if="loading" />
-		<Error v-if="error" :message="error" />
-		<Edit v-if="spot && isEdit" :spot="spot" @close="isEdit = false" />
-		<Spot v-if="spot && !isEdit" :spot="spot" @uploadPicture="mediaUpload()" @removeSpot="removeSpot()" @editSpot="isEdit = true" />
+		<transition name="fade" mode="out-in">
+			<Loader v-if="loading" />
+			<Error v-if="error" :message="error" />
+			<Edit v-if="spot && isEdit" :spot="spot" @close="isEdit = false" />
+			<Spot v-if="spot && !isEdit" :spot="spot" @uploadPicture="mediaUpload()" @removeSpot="removeSpot()" @editSpot="isEdit = true" />
+		</transition>
 	</section>
 </template>
 
