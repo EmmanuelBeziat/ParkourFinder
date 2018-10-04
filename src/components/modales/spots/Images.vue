@@ -19,11 +19,7 @@
 
 				<form enctype="multipart/form-data" novalidate>
 					<div class="cta-images">
-						<button type="button" class="btn btn--lg btn--primary" @click="$refs.fileUploader.click()">
-							<i class="icon-upload" aria-hidden="true"></i> {{ texts.cta }}
-						</button>
-
-						<transition name="fade">
+						<transition name="fade" mode="out-in">
 							<div v-if="progress" class="progress-bar">
 								<Progress :value="progress" max="100" />
 								<div class="progress-message">
@@ -31,6 +27,10 @@
 									<span class="progress-fail" v-else>{{ texts.fail }}</span>
 								</div>
 							</div>
+
+							<button v-else type="button" class="btn btn--lg btn--primary" @click="$refs.fileUploader.click()">
+								<i class="icon-upload" aria-hidden="true"></i> {{ texts.cta }}
+							</button>
 						</transition>
 
 						<input class="sr-only" ref="fileUploader" type="file" accept="image/*capture=camera" multiple @change="onChangeInput($event.target.files)">
