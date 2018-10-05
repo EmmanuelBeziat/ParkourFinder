@@ -27,7 +27,7 @@
 			<div class="spot-actions">
 				<IconButton icon="icon-picture" :text="texts.actions.upload_picture" @action="$emit('uploadPicture')" />
 				<IconButton icon="icon-edit" :text="texts.actions.edit" @action="$emit('editSpot')" />
-				<IconButton icon="icon-trash" :text="texts.actions.remove" @action="$emit('removeSpot')" />
+				<!-- <IconButton icon="icon-trash" :text="texts.actions.remove" @action="$emit('removeSpot')" /> -->
 			</div>
 
 			<div class="spot-infos">

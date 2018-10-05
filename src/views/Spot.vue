@@ -89,7 +89,7 @@ export default {
 		removeSpot () {
 			this.$modal.show('dialog', {
 				title: this.$store.state.languages.lang.modal.spot.remove.action.title,
-				text: this.$store.state.languages.lang.modal.spot.remove.action.author,
+				text: this.$store.state.languages.lang.modal.spot.remove.action.text,
 				buttons: [
 					{
 						title: `<i class="icon-cancel" aria-hidden="true"></i> ${this.$store.state.languages.lang.modal.spot.remove.action.buttons.cancel}`

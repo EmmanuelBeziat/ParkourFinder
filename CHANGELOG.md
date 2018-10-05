@@ -1,3 +1,9 @@
+# v0.8.0 (alpha stage)
+
+* Debug transitions
+* Refactor Image upload
+* Ability to upload an image from the creation screen
+
 # v0.7.1 (alpha stage)
 
 * Better transitions
