@@ -68,6 +68,7 @@ export default {
 	methods: {
 		closeSpot () {
 			this.$store.dispatch('gallery/resetList')
+			this.$store.dispatch('spots/resetCurrentSpot')
 			this.$router.push('/')
 		}
 	}

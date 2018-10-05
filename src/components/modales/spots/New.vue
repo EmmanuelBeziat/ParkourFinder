@@ -1,42 +1,48 @@
 <template>
 	<modal class="vue-dialog" name="new-spot" :delay="250" height="auto" :clickToClose="false">
 		<div class="dialog-content">
-			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ texts.title }}</h3>
+			<h3 class="dialog-c-title"><i class="icon-location" aria-hidden="true"></i>{{ texts.form.title }}</h3>
 			<div class="dialog-c-text">
 				<form>
 					<div class="form-group">
-						<label for="spot-add-title" class="sr-only">{{ texts.name }}</label>
-						<input type="text" id="spot-add-title" class="form-control" :placeholder="texts.name" required ref="title" @change="formFieldChange">
+						<label for="spot-add-title" class="sr-only">{{ texts.form.name }}</label>
+						<input type="text" id="spot-add-title" class="form-control" :placeholder="texts.form.name" required ref="title" @change="formFieldChange">
 					</div>
 					<div class="form-group">
-						<label for="spot-add-description" class="sr-only">{{ texts.description }}</label>
-						<textarea id="spot-add-description" class="form-control" :placeholder="texts.description" required ref="desc" @change="formFieldChange"></textarea>
+						<label for="spot-add-description" class="sr-only">{{ texts.form.description }}</label>
+						<textarea id="spot-add-description" class="form-control" :placeholder="texts.form.description" required ref="desc" @change="formFieldChange"></textarea>
+					</div>
+
+					<div class="img-uploader">
+						<UploadImages ref="uploader" />
 					</div>
 				</form>
 			</div>
 		</div>
 
 		<div class="vue-dialog-buttons">
-			<ModalButton icon="icon-cancel" :text="texts.buttons.cancel" @action="closeModal" />
-			<ModalButton icon="icon-ok" :text="texts.buttons.confirm" @action="submitForm" />
+			<ModalButton icon="icon-cancel" :text="texts.form.buttons.cancel" @action="closeModal" />
+			<ModalButton icon="icon-ok" :text="texts.form.buttons.confirm" @action="submitForm" />
 		</div>
 	</modal>
 </template>
 
 <script>
 import Vue from 'vue'
+import UploadImages from '@/components/upload/UploadImages'
 import ModalButton from '@/components/buttons/ModalButton'
 
 export default {
 	data () {
 		return {
 			formHasErrors: false,
-			texts: this.$store.state.languages.lang.modal.spot.add.form
+			texts: this.$store.state.languages.lang.modal.spot.add
 		}
 	},
 
 	components: {
-		ModalButton
+		ModalButton,
+		UploadImages,
 	},
 
 	methods: {
@@ -49,7 +55,7 @@ export default {
 		 * @param values object { title, description, location { city, country, lat, lng } }
 		 */
 		sendDatasToAPI (values) {
-			const datas = {
+			const data = {
 				title: values.title,
 				description: values.description,
 				location: {
@@ -58,11 +64,27 @@ export default {
 					lat: this.$store.state.position.coords.latitude,
 					lng: this.$store.state.position.coords.longitude,
 					complementary: this.$store.state.position.infos.complementary
+				},
+				newMedias: [],
+			}
+			let picturesURI = null
+			let config = {}
+
+			if (this.$refs.uploader.pictures) {
+				picturesURI = this.$refs.uploader.picturesURI
+				config = {
+					onUploadProgress: progressEvent => {
+						this.$refs.uploader.progress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+					}
 				}
+
+				this.$refs.uploader.pictures.forEach((picture, index) => {
+					data.newMedias.push({ filename: picture.name, uri: picturesURI[index] })
+				})
 			}
 
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-			Vue.axios.post('https://rest.parkourfinder.com/spots', datas)
+			Vue.axios.post('https://rest.parkourfinder.com/spots', data, config)
 				.then(res => {
 					// this.$store.dispatch('spots/addSpot', res.data)
 					this.$store.dispatch('spots/init')
@@ -70,11 +92,11 @@ export default {
 				})
 				.catch(error => {
 					this.$modal.show('dialog', {
-						title: this.$store.state.languages.lang.modal.spot.add.error.title,
-						text: `${this.$store.state.languages.lang.modal.spot.add.error.text}\n\n${error.code}: ${error.message}`,
+						title: this.texts.error.title,
+						text: `${this.texts.error.text}\n\n${error.code}: ${error.message}`,
 						buttons: [
 							{
-								title: this.$store.state.languages.lang.modal.spot.add.error.buttons.close
+								title: this.texts.error.buttons.close
 							}
 						]
 					})
@@ -126,3 +148,8 @@ export default {
 	}
 }
 </script>
+
+<style lang="stylus" scoped>
+.img-uploader
+	margin-top 25px
+</style>

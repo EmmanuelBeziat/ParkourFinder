@@ -38,6 +38,10 @@ const actions = {
 
 	setCurrentSpot ({ commit }, spot) {
 		commit('SET_CURRENT_SPOT', spot)
+	},
+
+	resetCurrentSpot ({ commit }) {
+		commit('RESET_CURRENT_SPOT')
 	}
 }
 
@@ -45,10 +49,6 @@ const actions = {
 const mutations = {
 	SET_SPOTS (state, spots) {
 		state.spots = spots
-	},
-
-	SET_CURRENT_SPOT (state, spot) {
-		state.currentSpot = spot
 	},
 
 	ADD_SPOT (state, spot) {
@@ -61,7 +61,15 @@ const mutations = {
 				state.spots.splice(index, 1)
 			}
 		})
-	}
+	},
+
+	SET_CURRENT_SPOT (state, spot) {
+		state.currentSpot = spot
+	},
+
+	RESET_CURRENT_SPOT (state) {
+		state.currentSpot = null
+	},
 }
 
 export default {

@@ -17,13 +17,14 @@
 				<transition name="fade" mode="out-in">
 					<div v-if="progress" class="progress-bar">
 						<Progress :value="progress" max="100" />
+
 						<div class="progress-message">
 							<span class="progress-current" v-if="!progressFail">{{ texts.progress }} ({{ progress - 1 }}%)</span>
 							<span class="progress-fail" v-else>{{ texts.fail }}</span>
 						</div>
 					</div>
 
-					<button v-else type="button" class="btn btn--lg btn--primary" @click="$refs.fileUploader.click()">
+					<button v-else type="button" class="btn btn--primary" @click="$refs.fileUploader.click()">
 						<i class="icon-upload" aria-hidden="true"></i> {{ texts.cta }}
 					</button>
 				</transition>
@@ -96,7 +97,7 @@ export default {
 				return
 			}
 
-			if ((list.length + this.$store.state.spots.currentSpot.medias.length) > 4) {
+			if ((this.$store.state.spots.currentSpot && list.length + this.$store.state.spots.currentSpot.medias.length) > 4) {
 				alert(this.texts.files_max)
 				return
 			}
@@ -120,6 +121,12 @@ export default {
 .cta-images
 	text-align center
 	margin 1.5em 0 1em
+
+	button
+		--btn-padding .5em 1em
+		@media $mq-tablet
+			--btn-font-size 1.25rem
+			--btn-padding .5em 2em
 
 .pictures-preview
 	display grid
