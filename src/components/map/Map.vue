@@ -3,7 +3,9 @@
 		<LMap ref="map" @ready="initMap" @locationfound="locationFound" :options="map.options">
 			<LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			<LMarkerClusterGroup :options="map.clusterOptions">
-				<LMarker v-for="(spot, index) in spots" :key="index" :latlng="[spot.location.lat, spot.location.lng]" @click="showSpot(spot.slug)" />
+				<LMarker v-for="(spot, index) in spots" :key="index" :latlng="[spot.location.lat, spot.location.lng]" @click="showSpot(spot.slug)">
+					<LIcon :options="map.normalMarker" />
+				</LMarker>
 			</LMarkerClusterGroup>
 			<LMarker :latlng="user.position">
 				<LIcon :options="map.userIcon" />
@@ -48,6 +50,17 @@ export default {
 				locked: false,
 				options: {
 					attributionControl: false,
+				},
+				normalMarker: {
+				},
+				beginnerMarker: {
+					iconRetinaUrl: require('@/assets/img/map/marker-icon-bf-2x.png'),
+					iconUrl: require('@/assets/img/map/marker-icon-bf.png'),
+					iconSize: [25, 41],
+					shadowUrl: require('@/assets/img/map/markers-shadow.png'),
+					shadowRetinaUrl: require('@/assets/img/map/markers-shadow@2x.png'),
+					shadowSize: [32, 32],
+					shadowAnchor: [6, 8]
 				},
 				userIcon: {
 					iconRetinaUrl: require('@/assets/img/map/user-icon-2x.png'),
