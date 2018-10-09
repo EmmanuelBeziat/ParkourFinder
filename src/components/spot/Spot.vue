@@ -12,6 +12,9 @@
 		</header>
 
 		<div class="spot-body">
+			<div class="spot-options" v-if="spot.options">
+				<span class="spot-option-item" v-for="option in spot.options" :key="option">{{ option }}</span>
+			</div>
 			<div class="spot-description">{{ spot.description }}</div>
 
 			<div class="spot-gallery">
@@ -52,7 +55,7 @@ export default {
 	data () {
 		return {
 			texts: this.$store.state.languages.lang.spot,
-			galleryIndex: null
+			galleryIndex: null,
 		}
 	},
 
@@ -101,7 +104,6 @@ export default {
 	font-size var(--font-size-heading-3)
 
 .spot-location-infos
-	margin-bottom 1rem
 	font-style italic
 
 .spot-body
@@ -147,4 +149,17 @@ export default {
 	object-fit cover
 	object-position 50% 50%
 	transition .25s ease-in-out
+
+.spot-options
+	margin-bottom 1rem
+
+.spot-option-item
+	display inline-block
+	color var(--color-background)
+	background var(--color-primary)
+	padding 0 8px
+	border-radius 2px
+
+	& + .spot-option-item
+		margin-left 2px
 </style>
