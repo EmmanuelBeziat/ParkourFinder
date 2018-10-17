@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { api } from '@/config'
 
 // Initial state
 const state = {
@@ -24,7 +25,7 @@ const getters = {
 // Actions
 const actions = {
 	async init ({ commit }) {
-		let { data } = await axios.get('https://rest.parkourfinder.com/spots')
+		let { data } = await axios.get(api.spots)
 		commit('SET_SPOTS', data)
 	},
 

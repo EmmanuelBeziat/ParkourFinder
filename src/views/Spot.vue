@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { api } from '@/config'
 import Vue from 'vue'
 import Spot from '@/components/spot/Spot'
 import Edit from '@/components/spot/Edit'
@@ -52,7 +53,7 @@ export default {
 			this.error = this.post = null
 			this.loading = true
 
-			Vue.axios.get(`https://rest.parkourfinder.com/spots/${this.$route.params.slug}`)
+			Vue.axios.get(`${api.spots}/${this.$route.params.slug}`)
 				.then(response => {
 					this.spot = response.data
 					this.setCurrentSpot()
@@ -109,7 +110,7 @@ export default {
 		 */
 		confirmRemoveSpot () {
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-			Vue.axios.delete(`https://rest.parkourfinder.com/spots/${this.spot._id}`)
+			Vue.axios.delete(`${api.spots}/${this.spot._id}`)
 				.then(() => {
 					this.$store.dispatch('spots/removeSpot', this.spot)
 					this.$modal.hide('dialog')

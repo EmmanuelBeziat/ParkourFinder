@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { app } from '@/config'
 import IconButton from '@/components/buttons/IconButton'
 
 export default {
@@ -26,7 +27,7 @@ export default {
 		showAbout () {
 			this.$modal.show('dialog', {
 				title: this.$store.state.languages.lang.about.title,
-				text: `<div class="app-ver">version: ${this.$store.state.app.version} (alpha)</div>
+				text: `<div class="app-ver">version: ${app.version} (alpha)</div>
 					<h4 class="title-small">${this.$store.state.languages.lang.about.privacy.title}</h4>
 					${this.$store.state.languages.lang.about.privacy.text}
 

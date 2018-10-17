@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { api } from '@/config'
 import Vue from 'vue'
 import UploadImages from '@/components/upload/UploadImages'
 import ModalButton from '@/components/buttons/ModalButton'
@@ -84,7 +85,7 @@ export default {
 			}
 
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-			Vue.axios.post('https://rest.parkourfinder.com/spots', data, config)
+			Vue.axios.post(api.spots, data, config)
 				.then(res => {
 					// this.$store.dispatch('spots/addSpot', res.data)
 					this.$store.dispatch('spots/init')

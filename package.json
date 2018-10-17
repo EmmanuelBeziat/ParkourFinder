@@ -1,7 +1,7 @@
 {
 	"name": "parkourfinder",
 	"version": "0.8.0",
-	"description": "A tiny web app that helps tracers to locate parkour spots around the world",
+	"description": "A tiny web app that helps tracers to locate parkour spots around the world. Share your favorite spots or mark some to get back to it later!",
 	"author": "Emmanuel Béziat <contact@emmanuelbeziat.com>",
 	"private": false,
 	"repository": "https://github.com/EmmanuelBeziat/parkourfinder.git",

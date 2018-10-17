@@ -74,7 +74,7 @@ export default {
 			}
 
 			Vue.axios.defaults.headers.post['Content-Type'] = 'application/json'
-			Vue.axios.put(`https://rest.parkourfinder.com/spots/${this.spot._id}`, datas)
+			Vue.axios.put(`${api.spots}/${this.spot._id}`, datas)
 				.then(() => {
 					this.spot.title = datas.title
 					this.spot.description = datas.description

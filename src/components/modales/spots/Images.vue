@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { api } from '@/config'
 import Vue from 'vue'
 import UploadImages from '@/components/upload/UploadImages'
 import ModalButton from '@/components/buttons/ModalButton'
@@ -63,7 +64,7 @@ export default {
 				newImages.push([picturesURI[index]])
 			})
 
-			Vue.axios.put(`https://rest.parkourfinder.com/spots/${spot._id}`, data, config)
+			Vue.axios.put(`${api.spots}/${spot._id}`, data, config)
 				.then(() => {
 					spot.medias = newImages
 				})

@@ -3,9 +3,9 @@
 </template>
 
 <script>
+import { api } from '@/config'
 import Vue from 'vue'
 import IconButton from '@/components/buttons/IconButton'
-
 
 export default {
 	name: 'AddSpot',
@@ -102,7 +102,7 @@ export default {
 		getGeocodingInformations (lat, lng) {
 			return new Promise((resolve, reject) => {
 				Vue.axios
-					.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`).then(res => {
+					.get(`${api.osm}?format=json&lat=${lat}&lon=${lng}`).then(res => {
 						if (res.status === 200) {
 							let complementary = []
 							let city = null
