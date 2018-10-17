@@ -12,3 +12,7 @@ export const app = {
 	description: env.description,
 	author: env.author,
 }
+
+export const tiles = {
+	layer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+}

@@ -1,7 +1,7 @@
 <template>
 	<div id="map" class="pkf-map">
 		<LMap ref="map" @ready="initMap" @locationfound="locationFound" :options="map.options">
-			<LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+			<LTileLayer :url="map.tiles" />
 			<LMarkerClusterGroup :options="map.clusterOptions">
 				<LMarker v-for="(spot, index) in spots" :key="index" :latlng="[spot.location.lat, spot.location.lng]" @click="showSpot(spot.slug)">
 					<LIcon :options="map.normalMarker" />
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { tiles } from '@/config'
 import Vue from 'vue'
 import VueLeaflet from 'vue-leaflet'
 import 'vue-leaflet/dist/vue-leaflet.css'
@@ -45,6 +46,7 @@ export default {
 				}
 			},
 			map: {
+				tiles: tiles.layer,
 				fullyLoaded: false,
 				fullScreen: false,
 				locked: false,
