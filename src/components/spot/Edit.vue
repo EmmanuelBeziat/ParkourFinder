@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { api } from '@/config'
 import Vue from 'vue'
 import Loader from '@/components/loader/Loader'
 import IconButton from '@/components/buttons/IconButton'
